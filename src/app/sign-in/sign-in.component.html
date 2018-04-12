@@ -1,0 +1,22 @@
+<div class="sign-in-wrapper">
+  <form class="form-signin">
+    <div class="text-center mb-4">
+      <img class="mb-4" src="./assets/images/palet.png" alt="" width="144" height="144">
+      <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+    </div>
+
+    <div class="form-label-group">
+      <input type="email" id="email" class="form-control" placeholder="Email address..." name="email" [(ngModel)]="email" required autofocus>
+      <label for="email">Email address</label>
+    </div>
+
+    <div class="form-label-group">
+      <input type="password" id="password" class="form-control" placeholder="Password..." name="password" [(ngModel)]="password" required>
+      <label for="password">Password</label>
+    </div>
+
+    <button type="button" class="btn btn-lg btn-primary btn-block" (click)="signIn()">Go</button>
+
+    <p class="mt-5 mb-3 text-muted text-center">&copy; 2018</p>
+  </form>
+</div>
