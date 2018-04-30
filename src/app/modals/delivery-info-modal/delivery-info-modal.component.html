@@ -1,0 +1,52 @@
+<app-loader [small]="true" [hidden]="!loading"></app-loader>
+
+<div class="modalWrapper" *ngIf="!loading">
+
+  <div class="modal-header">
+    <h4 class="modal-title">Delivery details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+
+    <ngb-accordion activeIds="details">
+      <ngb-panel id="details" title="Delivery details">
+        <ng-template ngbPanelContent>
+
+          <ul class="simple-list">
+            <li>ID: <span class="float-right">{{ deliveryDetails.id }}</span></li>
+            <li>Delivery number: <span class="float-right">{{ deliveryDetails.delivery_Number | empty: '-'  }}</span></li>
+            <li>Delivery date: <span class="float-right">{{ deliveryDetails.date_Of_Delivery | empty: '-'  }}</span></li>
+            <li>Transport type: <span class="float-right">{{ deliveryDetails.transport_Type | empty: '-'  }}</span></li>
+          </ul>
+
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel id="positions" title="Delivery positions">
+        <ng-template ngbPanelContent>
+
+          <table class="table table-sm">
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Weight [kg]<br>(Ordered)</th>
+              <th scope="col">Amount [szt.]<br>(Ordered)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let position of deliveryDetails.listOfOrderPositions">
+              <td>{{ position.name }}</td>
+              <td>{{ position.weight_Gross_Received | empty: '-' }} ({{ position.weight_Gross | empty: '-' }})</td>
+              <td>{{ position.amount_Received | empty: '-' }} ({{ position.amount | empty: '-' }})</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+
+  </div>
+</div>
