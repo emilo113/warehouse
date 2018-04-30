@@ -16,5 +16,8 @@ export const routes = {
         editPosition: 'Order/EditOrdersPosition',
         remove: 'Order/RemoveOrder',
         removePosition: 'Order/RemoveOrdersPosition',
+    },
+    deliveries: {
+        fetchDetails: 'Delivery/GetOrderDelivery'
     }
 };

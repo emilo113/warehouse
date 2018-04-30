@@ -8,6 +8,7 @@ import { orderStatuses } from '../../models/enums/order.statuses';
 import { orders } from '../../const/orders';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderInfoModalComponent } from '../../modals/order-info-modal/order-info-modal.component';
+import {DeliveryInfoModalComponent} from '../../modals/delivery-info-modal/delivery-info-modal.component';
 
 @Component({
     selector: 'app-orders',
@@ -46,6 +47,11 @@ export class OrdersComponent implements OnInit {
 
     public showOrderInfo(order): void {
         const modalRef = this.modalService.open(OrderInfoModalComponent);
+        modalRef.componentInstance.order = order;
+    }
+
+    public showDeliveryInfo(order): void {
+        const modalRef = this.modalService.open(DeliveryInfoModalComponent);
         modalRef.componentInstance.order = order;
     }
 

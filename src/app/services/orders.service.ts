@@ -59,4 +59,14 @@ export class OrdersService {
             });
     }
 
+    public fetchDeliveryDetails(order): Observable<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.append('orderId', order.id);
+
+        return this.http.get<any>(routes.deliveries.fetchDetails, {params: params})
+            .map(data => {
+                return data;
+            });
+    }
+
 }

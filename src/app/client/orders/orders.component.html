@@ -53,7 +53,7 @@
 											<i class="fa fa-info fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" *ngIf="isDelivered(order)" ngbTooltip="Delivery informations">
+									<a class="table-link" *ngIf="isDelivered(order)" (click)="showDeliveryInfo(order)" ngbTooltip="Delivery informations">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-arrow-down fa-stack-1x fa-inverse"></i>

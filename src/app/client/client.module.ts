@@ -15,6 +15,7 @@ import { EmptyPipe } from '../pipes/empty-string.pipe';
 import { ObjectKeysPipe } from '../pipes/object-keys.pipe';
 import { OrderInfoModalComponent } from '../modals/order-info-modal/order-info-modal.component';
 import { SharedModule } from '../shared/shared.module';
+import { DeliveryInfoModalComponent } from '../modals/delivery-info-modal/delivery-info-modal.component';
 
 @NgModule({
     imports: [
@@ -34,6 +35,7 @@ import { SharedModule } from '../shared/shared.module';
         EditUserModalComponent,
         UserInfoModalComponent,
         OrderInfoModalComponent,
+        DeliveryInfoModalComponent,
         EmptyPipe,
         ObjectKeysPipe
     ],
@@ -42,7 +44,8 @@ import { SharedModule } from '../shared/shared.module';
         AddUserModalComponent,
         UserInfoModalComponent,
         EditUserModalComponent,
-        OrderInfoModalComponent
+        OrderInfoModalComponent,
+        DeliveryInfoModalComponent
     ],
     exports: [
         EmptyPipe
