@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from '../auth/auth.service';
-import {AlertService} from '../services/alert.service';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-client',
@@ -13,23 +13,16 @@ export class ClientComponent implements OnInit {
     constructor(
         private auth: AuthService,
         private router: Router,
-        private alert: AlertService
+        public user: UserService
     ) {}
 
     ngOnInit() {
-        this.isAuthenticated();
-    }
 
-    private isAuthenticated() {
-        if (!this.auth.isAuthenticated()) {
-            this.router.navigate(['']);
-            this.alert.error('Please, sign in...');
-        }
     }
 
     signOut() {
         this.auth.signOut();
-        this.router.navigate(['']);
+        this.router.navigate(['sign-in']);
     }
 
 }

@@ -18,9 +18,9 @@
 						</a>
 					</li>
 
-					<li class="nav-item">
-						<a class="nav-link active" routerLink="about" routerLinkActive="active-link">
-							About
+					<li class="nav-item" *ngIf="user.isHeadAdmin()">
+						<a class="nav-link active" routerLink="users" routerLinkActive="active-link">
+							Users
 						</a>
 					</li>
 				</ul>

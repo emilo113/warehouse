@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AuthService} from '../auth/auth.service';
 import {UserService} from '../services/user.service';
-import {LoaderService} from '../services/loader.service';
+import {LoaderService} from '../shared/services/loader.service';
 import {AlertService} from '../services/alert.service';
 
 @Component({

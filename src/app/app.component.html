@@ -1,4 +1,4 @@
 <app-alert></app-alert>
 <router-outlet>
-	<app-loader *ngIf="showLoader"></app-loader>
+	<app-loader [hidden]="!showLoader"></app-loader>
 </router-outlet>

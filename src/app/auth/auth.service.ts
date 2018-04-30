@@ -1,33 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Routes } from '../api/routes';
+import { routes } from '../api/routes';
+import {UserService} from '../services/user.service';
+import {Token} from '../models/Token';
 
 @Injectable()
 export class AuthService {
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private user: UserService
     ) {}
 
-    public getToken(): string {
-        return localStorage.getItem('token');
+    public getToken(): Token {
+        const token = JSON.parse(localStorage.getItem('token'));
+
+        if (token) {
+            this.user.setRole(token.role);
+        }
+
+        return token;
     }
 
-    private setToken(token: string) {
-        localStorage.setItem('token', token);
+    private setToken(token: Token) {
+        localStorage.setItem('token', JSON.stringify(token));
     }
 
     public isAuthenticated(): boolean {
         const token = this.getToken();
-        return token !== null;
+        return token !== null && token.expirationDate > (new Date).getTime();
     }
 
     public signIn (login: string, password: string) {
-        return this.http.post<any>(Routes.account.login, {login, password})
+        return this.http.post<any>(routes.account.login, {login, password})
             .map(data => {
-                console.log(data);
                 if (data && data.token) {
-                    this.setToken(data.token);
+                    const token = new Token(data.token, data.expirationTime, data.role);
+
+                    this.setToken(token);
+                    this.user.setRole(data.role);
                 }
 
                 return data.status;

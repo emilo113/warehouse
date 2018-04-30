@@ -1,0 +1,66 @@
+<app-loader [small]="true" [hidden]="!loading"></app-loader>
+
+<div class="modalWrapper" *ngIf="!loading">
+
+	<div class="modal-header">
+		<h4 class="modal-title">Order details</h4>
+		<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<div class="modal-body">
+
+		<ngb-accordion activeIds="details">
+			<ngb-panel id="details" title="Order details">
+				<ng-template ngbPanelContent>
+
+					<ul class="simple-list">
+						<li>ID: <span class="float-right">{{ order.id }}</span></li>
+						<li>Container ID: <span class="float-right">{{ order.container_Id | empty: '-'  }}</span></li>
+						<li>ATB: <span class="float-right">{{ order.atb | empty: '-'  }}</span></li>
+						<li>Created At: <span class="float-right">{{ order.creation_Date | empty: '-'  }}</span></li>
+						<li>Order number: <span class="float-right">{{ orderDetails.order_Number | empty: '-'  }}</span></li>
+						<li>Pickup PIN: <span class="float-right">{{ orderDetails.pickup_PIN | empty: '-' }}</span></li>
+						<li>Number of positions: <span class="float-right">{{ orderDetails.num_of_Positions | empty: '-' }}</span></li>
+					</ul>
+
+				</ng-template>
+			</ngb-panel>
+			<ngb-panel id="orderer" title="Orderer">
+				<ng-template ngbPanelContent>
+
+					<ul class="simple-list">
+						<li>Name: <span class="float-right">{{ orderDetails.orderer.name }}</span></li>
+						<li>E-mail: <span class="float-right">{{ orderDetails.orderer.email | empty: '-'  }}</span></li>
+						<li>Address: <span class="float-right">{{ orderDetails.orderer.address | empty: '-'  }}</span></li>
+						<li>VAT_ID: <span class="float-right">{{ orderDetails.orderer.vaT_Id | empty: '-'  }}</span></li>
+					</ul>
+
+				</ng-template>
+			</ngb-panel>
+			<ngb-panel id="positions" title="Order positions">
+				<ng-template ngbPanelContent>
+
+					<table class="table table-sm">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">Weight [kg]</th>
+								<th scope="col">Amount [szt.]</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let position of orderDetails.listOfOrderPositions">
+								<td>{{ position.name }}</td>
+								<td>{{ position.weight_Gross | empty: '-' }}</td>
+								<td>{{ position.amount | empty: '-' }}</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</ng-template>
+			</ngb-panel>
+		</ngb-accordion>
+	</div>
+</div>
