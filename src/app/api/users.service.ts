@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { routes } from './routes';
 import { UserType } from '../models/enums/user.types';
 import { users } from '../const/users';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class UsersService {
@@ -14,7 +15,7 @@ export class UsersService {
         private http: HttpClient
     ) {}
 
-    public fetchUsers (page: number = 1, needle: string = '') {
+    public fetchUsers (page: number = 1, needle: string = ''): Observable<any> {
         const limit = users.limit;
         const offset = (page - 1) * limit;
 
@@ -39,7 +40,14 @@ export class UsersService {
             });
     }
 
-    public register(userData) {
+    public fetchOwnData(): Observable<any> {
+        return this.http.get<any>(routes.account.fetchOwn)
+            .map(data => {
+               return data;
+            });
+    }
+
+    public register(userData): Observable<any> {
         let route;
 
         if (Number(userData.Role) === UserType.Client) {
@@ -58,7 +66,7 @@ export class UsersService {
             });
     }
 
-    public edit(userData) {
+    public edit(userData): Observable<any> {
         let route;
 
         if (Number(userData.Role) === UserType.Client) {
@@ -77,7 +85,7 @@ export class UsersService {
             });
     }
 
-    public remove(user) {
+    public remove(user): Observable<any> {
         let params: HttpParams = new HttpParams();
         params = params.append('userId', user.id);
 

@@ -8,34 +8,45 @@ export class Order {
     public address: string;
     public vaT_Id: string;
     public email: string;
-    public orderPositions: OrderPosition[];
+    public orderPositions: OrderPosition[] = [];
 
-    public addOrderPosition() {
+
+    constructor() {
+        this.addOrderPosition();
+    }
+
+    public addOrderPosition(): void {
         this.orderPositions.push(new OrderPosition());
     }
 
-    public removeOrderPosition(index: number) {
+    public removeOrderPosition(index: number): void {
         this.orderPositions.splice(index, 1);
     }
 
-    public isValidData() {
+    public isValidData(): boolean {
         return this.container_Id &&
             this.atb &&
             this.pickup_PIN &&
-            this.name &&
-            this.address &&
-            this.vaT_Id &&
-            this.email &&
+            this.isValidOrderer() &&
             this.isValidPositions();
     }
 
-    private isValidPositions() {
+    public isValidPositions(): boolean {
+        let isValid = true;
+
         this.orderPositions.forEach( (orderPosition: OrderPosition) => {
             if (!orderPosition.isValid()) {
-                return false;
+                isValid = false;
+                return;
             }
         });
 
-        return true;
+        return isValid;
+    }
+
+    public isValidOrderer(): boolean {
+        return Boolean(
+            this.name && this.address && this.vaT_Id && this.email
+        );
     }
 }

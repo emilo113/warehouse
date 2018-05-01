@@ -56,7 +56,7 @@ export class UsersComponent implements OnInit {
             }, () => {});
     }
 
-    public removeUser(user): void {
+    public removeUser(user: any): void {
         this.modalHelper.openConfirmModal({
             title: 'Are you sure?',
             text: 'Do you want to remove this user permanently?',
@@ -96,15 +96,15 @@ export class UsersComponent implements OnInit {
         return Object.keys(UserType).find(key => UserType[key] === role);
     }
 
-    public isClientRole(user): boolean {
+    public isClientRole(user: any): boolean {
         return user.role === UserType.Client;
     }
 
-    public isHeadAdmin(user): boolean {
+    public isHeadAdmin(user: any): boolean {
         return user.role === UserType.HeadAdmin;
     }
 
-    public showInfoModal(user): void {
+    public showInfoModal(user: any): void {
         const modalRef = this.modalService.open(UserInfoModalComponent);
         modalRef.componentInstance.user = user;
     }

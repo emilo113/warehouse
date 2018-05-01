@@ -6,6 +6,8 @@ export const routes = {
         editUser: 'Account/EditUser',
         editClient: 'Account/EditClient',
         fetchAll: 'Account/GetAllUsersByRole',
+        fetchOne: 'Account/GetUserById',
+        fetchOwn: 'Account/GetUser',
         remove: 'Account/RemoveUser'
     },
     orders: {

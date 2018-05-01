@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="main-box">
-				<button class="btn">Add order</button>
+				<button class="btn" (click)="openCreateOrderModal()">Add order</button>
 			</div>
 		</div>
 	</div>
@@ -16,9 +16,11 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="main-box">
-				<div class="form-label-group">
-					<input type="text" id="needle" name="needle" [formControl]="needle" class="form-control"
-						   placeholder="Search...">
+				<div class="form-default">
+					<div class="form-label-group">
+						<input type="text" id="needle" name="needle" [formControl]="needle" class="form-control" placeholder="Search...">
+						<label for="needle">Search...</label>
+					</div>
 				</div>
 			</div>
 		</div>

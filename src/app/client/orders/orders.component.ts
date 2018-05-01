@@ -9,6 +9,7 @@ import { orders } from '../../const/orders';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderInfoModalComponent } from '../../modals/order-info-modal/order-info-modal.component';
 import {DeliveryInfoModalComponent} from '../../modals/delivery-info-modal/delivery-info-modal.component';
+import {CreateOrderModalComponent} from '../../modals/create-order-modal/create-order-modal.component';
 
 @Component({
     selector: 'app-orders',
@@ -53,6 +54,15 @@ export class OrdersComponent implements OnInit {
     public showDeliveryInfo(order): void {
         const modalRef = this.modalService.open(DeliveryInfoModalComponent);
         modalRef.componentInstance.order = order;
+    }
+
+    public openCreateOrderModal(): void {
+        const modalRef = this.modalService.open(CreateOrderModalComponent);
+
+        modalRef.result
+            .then(() => {
+                this.handleOrders(this.page);
+            }, () => {});
     }
 
     public isDelivered(order): boolean {

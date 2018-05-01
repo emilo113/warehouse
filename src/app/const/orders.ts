@@ -1,3 +1,3 @@
 export const orders = {
-    limit: 10
+    limit: 20
 };

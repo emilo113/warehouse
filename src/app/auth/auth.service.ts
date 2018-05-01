@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { routes } from '../api/routes';
-import {UserService} from '../services/user.service';
-import {Token} from '../models/Token';
+import { UserService } from '../services/user.service';
+import { Token } from '../models/Token';
 
 @Injectable()
 export class AuthService {
