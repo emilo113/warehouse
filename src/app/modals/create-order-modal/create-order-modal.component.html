@@ -1,0 +1,109 @@
+<app-loader [small]="true" [hidden]="!loading"></app-loader>
+
+<div class="modalWrapper" *ngIf="!loading">
+
+	<div class="modal-header">
+		<h4 class="modal-title">{{ title }}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="close()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form class="form-default">
+
+			<div class="form-label-group">
+				<input type="text" id="containerId" class="form-control" placeholder="Container ID" name="containerId" [(ngModel)]="orderData.container_Id" required>
+				<label for="containerId">Container ID</label>
+			</div>
+
+			<div class="form-label-group">
+				<input type="text" id="atb" class="form-control" placeholder="ATB" name="atb" [(ngModel)]="orderData.atb" required>
+				<label for="atb">ATB</label>
+			</div>
+
+			<div class="form-label-group">
+				<input type="text" id="pickupPin" class="form-control" placeholder="Pickup PIN" name="pickupPin" [(ngModel)]="orderData.pickup_PIN" required>
+				<label for="pickupPin">Pickup PIN</label>
+			</div>
+
+			<div class="form-label-group" *ngIf="isEditing">
+				<input type="text" id="orderNumber" class="form-control" placeholder="Order Number" name="orderNumber" [(ngModel)]="orderData.order_Number" required>
+				<label for="orderNumber">Order Number</label>
+			</div>
+
+			<div class="form-label-group" *ngIf="isEditing">
+				<input type="date" id="creationDate" class="form-control" placeholder="Creation Date" name="creationDate" [(ngModel)]="orderData.creation_Date" required>
+				<label for="creationDate">Creation Date</label>
+			</div>
+
+			<div class="form-group form-check">
+				<input type="checkbox" id="otherOrderer" class="form-check-input" (change)="ordererChange()" [checked]="otherOrderer" [disabled]="!isUserData">
+				<label class="form-check-label" for="otherOrderer">Do you want to create this order in the name of someone else?</label>
+			</div>
+
+			<div *ngIf="otherOrderer">
+
+				<div class="form-label-group">
+					<input type="text" id="name" class="form-control" name="name" [(ngModel)]="orderData.name" placeholder="Name">
+					<label for="name">Name</label>
+				</div>
+
+				<div class="form-label-group">
+					<input type="text" id="email" class="form-control" name="email" [(ngModel)]="orderData.email" placeholder="Email">
+					<label for="email">E-mail</label>
+				</div>
+
+				<div class="form-label-group">
+					<input type="text" id="address" class="form-control" name="address" [(ngModel)]="orderData.address" placeholder="Address">
+					<label for="address">Address</label>
+				</div>
+
+				<div class="form-label-group">
+					<input type="text" id="vatId" class="form-control" name="vatId" [(ngModel)]="orderData.vaT_Id" placeholder="Vat Id">
+					<label for="vatId">Vat Id</label>
+				</div>
+
+			</div>
+
+			<p class="h5 mb-3">Order positions:</p>
+
+			<div class="order-positions">
+
+				<div class="group-inline first-half-width" *ngFor="let position of orderData.orderPositions; let i = index; let last = last">
+					<div class="form-label-group">
+						<input type="text" class="form-control" id="positionName-{{i}}" name="positionName-{{i}}" placeholder="Name" [(ngModel)]="position.name">
+						<label for="positionName-{{i}}">Name</label>
+					</div>
+					<div class="form-label-group">
+						<input type="number" class="form-control" id="positionWeight-{{i}}" name="positionWeight-{{i}}" placeholder="Weight" [(ngModel)]="position.weight_Gross">
+						<label for="positionWeight-{{i}}">Weight</label>
+					</div>
+					<div class="form-label-group">
+						<input type="number" class="form-control" id="positionAmount-{{i}}" name="positionAmount-{{i}}" placeholder="Amount" [(ngModel)]="position.amount">
+						<label for="positionAmount-{{i}}">Amount</label>
+					</div>
+
+					<a href="#" class="table-link remove-position" *ngIf="orderData.orderPositions.length > 1" (click)="removeOrderPosition($event, i)" ngbTooltip="Remove position">
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-minus fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+
+					<a href="#" class="table-link add-position" *ngIf="orderData.isValidPositions() && last" (click)="addOrderPosition($event)" ngbTooltip="Add position">
+						<span class="fa-stack">
+							<i class="fa fa-square fa-stack-2x"></i>
+							<i class="fa fa-plus fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+				</div>
+
+			</div>
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<input type="submit" class="btn btn-primary" (click)="save($event)" [value]="buttonValue" [disabled]="!orderData.isValidData()">
+	</div>
+
+</div>

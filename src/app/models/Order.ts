@@ -1,6 +1,8 @@
 import { OrderPosition } from './OrderPosition';
+import DateTimeFormat = Intl.DateTimeFormat;
 
 export class Order {
+    public id: number;
     public container_Id: string;
     public atb: string;
     public pickup_PIN: string;
@@ -8,6 +10,8 @@ export class Order {
     public address: string;
     public vaT_Id: string;
     public email: string;
+    public creation_Date: any;
+    public order_Number: string;
     public orderPositions: OrderPosition[] = [];
 
 
@@ -48,5 +52,43 @@ export class Order {
         return Boolean(
             this.name && this.address && this.vaT_Id && this.email
         );
+    }
+
+    public setDataFromOrder(order: any): void {
+        const date = order.creation_Date.split('-');
+
+        this.id = order.id;
+        this.container_Id = order.container_Id;
+        this.atb = order.atb;
+        this.pickup_PIN = order.pickup_PIN;
+        this.name = order.orderer.name;
+        this.address = order.orderer.address;
+        this.email = order.orderer.email;
+        this.vaT_Id = order.orderer.vaT_Id;
+        this.creation_Date = date[2] + '-' + date[1] + '-' + date[0];
+        this.order_Number = order.order_Number;
+
+        this.orderPositions = [];
+
+        order.listOfOrderPositions.forEach( position => {
+            const orderPosition = new OrderPosition();
+
+            orderPosition.id = position.id;
+            orderPosition.name = position.name;
+            orderPosition.amount = position.amount;
+            orderPosition.weight_Gross = position.weight_Gross;
+
+           this.orderPositions.push(orderPosition);
+        });
+    }
+
+    public getJSONData() {
+        const data = JSON.parse(JSON.stringify(this));
+
+        if (data.creation_Date) {
+            data.creation_Date = new Date(data.creation_Date);
+        }
+
+        return data;
     }
 }

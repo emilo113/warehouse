@@ -32,7 +32,6 @@ export class DeliveryInfoModalComponent extends AbstractModal implements OnInit 
         this.ordersService.fetchDeliveryDetails(this.order)
             .subscribe(data => {
                 if (data instanceof Object) {
-                    console.log(data);
                     this.deliveryDetails = data;
                     this.hideLoader();
                 } else {

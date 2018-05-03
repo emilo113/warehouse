@@ -69,4 +69,31 @@ export class OrdersService {
             });
     }
 
+    public edit(orderData: any): Observable<any> {
+
+        return this.http.post<any>(routes.orders.edit, orderData)
+            .map(data => {
+                if (data && data.status) {
+                    return true;
+                }
+
+                return false;
+            });
+    }
+
+    public remove(order: any): Observable<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.append('orderId', order.id);
+
+        return this.http.get<any>(routes.orders.remove, {params: params})
+            .map(data => {
+                if (data && data.status) {
+                    return true;
+                }
+
+                return false;
+            });
+    }
+
+
 }

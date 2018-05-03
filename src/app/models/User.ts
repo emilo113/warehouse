@@ -1,6 +1,7 @@
 import {UserType} from './enums/user.types';
 
 export class User {
+    Id: number;
     Login: string;
     Password: string;
     Password2: string;
@@ -48,6 +49,7 @@ export class User {
     }
 
     public setDataFromUser(userData): void {
+        this.Id = userData.id;
         this.Login = userData.login;
         this.Role = userData.role;
         this.Name = userData.name;

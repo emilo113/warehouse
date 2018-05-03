@@ -22,8 +22,6 @@ export class EditUserModalComponent extends AddUserModalComponent implements OnI
 
     protected saveUser(data) {
 
-        data.Id = this.user.id;
-
         this.usersService.edit(data)
             .subscribe(status => {
                 if (!status) {
