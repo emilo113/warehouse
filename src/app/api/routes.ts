@@ -17,9 +17,15 @@ export const routes = {
         edit: 'Order/EditOrder',
         editPosition: 'Order/EditOrdersPosition',
         remove: 'Order/RemoveOrder',
-        removePosition: 'Order/RemoveOrdersPosition',
+        removePosition: 'Order/RemoveOrdersPosition'
     },
     deliveries: {
-        fetchDetails: 'Delivery/GetOrderDelivery'
+        fetchDetails: 'Delivery/GetOrderDelivery',
+        create: 'Delivery/CreateDelivery'
+    },
+    dispatches: {
+        fetchAll: 'Dispatch/GetDispatches',
+        fetchForOrder: 'Dispatch/GetOrderDispatches',
+        remove: 'Dispatch/RemoveDispatch'
     }
 };

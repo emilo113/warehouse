@@ -25,7 +25,7 @@ export class OrdersService {
         params = params.append('offset', offset.toString());
         params = params.append('limit', limit.toString());
 
-        if (needle.length > 0) {
+        if (needle && needle.length > 0) {
             params = params.append('needle', needle);
         }
 
@@ -49,6 +49,14 @@ export class OrdersService {
             });
     }
 
+    public createDelivery(deliveryData): Observable<any> {
+
+        return this.http.post<any>(routes.deliveries.create, deliveryData)
+            .map(data => {
+               return !!(data && data.status);
+            });
+    }
+
     public fetchOrderDetails(order): Observable<any> {
         let params: HttpParams = new HttpParams();
         params = params.append('orderId', order.id);
@@ -64,6 +72,16 @@ export class OrdersService {
         params = params.append('orderId', order.id);
 
         return this.http.get<any>(routes.deliveries.fetchDetails, {params: params})
+            .map(data => {
+                return data;
+            });
+    }
+
+    public fetchDispatchesForOrder(order): Observable<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.append('orderId', order.id);
+
+        return this.http.get<any>(routes.dispatches.fetchForOrder, {params: params})
             .map(data => {
                 return data;
             });

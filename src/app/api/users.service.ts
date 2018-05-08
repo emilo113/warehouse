@@ -24,7 +24,7 @@ export class UsersService {
         params = params.append('offset', offset.toString());
         params = params.append('limit', limit.toString());
 
-        if (needle.length > 0) {
+        if (needle && needle.length > 0) {
             params = params.append('needle', needle);
         }
 

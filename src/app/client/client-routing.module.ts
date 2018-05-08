@@ -9,6 +9,7 @@ import { RoleGuardService } from '../auth/role-guard.service';
 
 import { UserType } from '../models/enums/user.types';
 import {User} from '../models/User';
+import {DispatchesComponent} from './dispatches/dispatches.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,11 @@ const routes: Routes = [
         component: ClientComponent,
         canActivate: [AuthGuardService],
         children: [
+            {
+                path: '',
+                redirectTo: 'orders',
+                pathMatch: 'full'
+            },
             {
                 path: 'orders',
                 component: OrdersComponent,
@@ -30,6 +36,14 @@ const routes: Routes = [
                 canActivate: [RoleGuardService],
                 data: {
                     expectedRole: [UserType.HeadAdmin]
+                }
+            },
+            {
+                path: 'dispatches',
+                component: DispatchesComponent,
+                canActivate: [RoleGuardService],
+                data: {
+                    expectedRole: [UserType.Admin, UserType.HeadAdmin]
                 }
             }
         ]

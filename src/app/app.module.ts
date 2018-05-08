@@ -24,6 +24,7 @@ import { ModalHelperService } from './modals/modal-helper.service';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { UnauthorizedInterceptor } from './auth/unauthorized.interceptor';
 import { OrdersService } from './services/orders.service';
+import { DispatchesService } from './services/dispatches.service';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { OrdersService } from './services/orders.service';
         ModalHelperService,
         UsersService,
         OrdersService,
+        DispatchesService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: APIInterceptor,

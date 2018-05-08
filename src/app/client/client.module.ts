@@ -18,6 +18,9 @@ import { SharedModule } from '../shared/shared.module';
 import { DeliveryInfoModalComponent } from '../modals/delivery-info-modal/delivery-info-modal.component';
 import { CreateOrderModalComponent } from '../modals/create-order-modal/create-order-modal.component';
 import { EditOrderModalComponent } from '../modals/edit-order-modal/edit-order-modal.component';
+import { DispatchesInfoModalComponent } from '../modals/dispatches-info-modal/dispatches-info-modal.component';
+import { DispatchesComponent } from './dispatches/dispatches.component';
+import { CreateDeliveryModalComponent } from '../modals/create-delivery-modal/create-delivery-modal.component';
 
 @NgModule({
     imports: [
@@ -40,8 +43,11 @@ import { EditOrderModalComponent } from '../modals/edit-order-modal/edit-order-m
         DeliveryInfoModalComponent,
         CreateOrderModalComponent,
         EditOrderModalComponent,
+        DispatchesInfoModalComponent,
+        CreateDeliveryModalComponent,
         EmptyPipe,
-        ObjectKeysPipe
+        ObjectKeysPipe,
+        DispatchesComponent
     ],
     bootstrap: [
         ConfirmModalComponent,
@@ -51,7 +57,9 @@ import { EditOrderModalComponent } from '../modals/edit-order-modal/edit-order-m
         OrderInfoModalComponent,
         DeliveryInfoModalComponent,
         CreateOrderModalComponent,
-        EditOrderModalComponent
+        EditOrderModalComponent,
+        DispatchesInfoModalComponent,
+        CreateDeliveryModalComponent
     ],
     exports: [
         EmptyPipe

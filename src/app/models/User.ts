@@ -1,4 +1,4 @@
-import {UserType} from './enums/user.types';
+import { UserType } from './enums/user.types';
 
 export class User {
     Id: number;
@@ -76,6 +76,5 @@ export class User {
 
     private isValidRole() {
         return this.Role && Object.keys(UserType).some(key => UserType[key] === Number(this.Role));
-
     }
 }

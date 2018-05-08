@@ -1,0 +1,111 @@
+<app-loader [small]="true" [hidden]="!loading"></app-loader>
+
+<div class="modalWrapper" *ngIf="!loading">
+
+	<div class="modal-header">
+		<h4 class="modal-title">Dispatches Info</h4>
+		<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<div class="modal-body">
+
+		<ngb-accordion activeIds="dispatch-0">
+
+			<ngb-panel *ngFor="let dispatch of dispatchesDetails; let i = index" id="dispatch-{{i}}">
+
+				<ng-template ngbPanelTitle>
+					Carrier: <b>{{ dispatch.carrier.carrier_Name | empty: '-' }}</b> | Date: <b>{{ dispatch.creation_Date | empty: '-' }}</b>
+				</ng-template>
+
+				<ng-template ngbPanelContent>
+
+					<ngb-tabset justify="justified">
+
+						<ngb-tab title="Details">
+							<ng-template ngbTabContent>
+
+								<ul class="simple-list mt-2">
+									<li>ID: <span class="float-right">{{ dispatch.id }}</span></li>
+									<li>Car ID: <span class="float-right">{{ dispatch.car_Id | empty: '-'  }}</span></li>
+									<li>Dispatch Number: <span class="float-right">{{ dispatch.dispatch_Number | empty: '-'  }}</span></li>
+									<li>Creation Date: <span class="float-right">{{ dispatch.creation_Date | empty: '-'  }}</span></li>
+								</ul>
+
+							</ng-template>
+						</ngb-tab>
+						<ngb-tab title="Carrier">
+							<ng-template ngbTabContent>
+
+								<ul class="simple-list mt-2">
+									<li>Name: <span class="float-right">{{ dispatch.carrier.carrier_Name }}</span></li>
+									<li>Address: <span class="float-right">{{ dispatch.carrier.carrier_Address | empty: '-'  }}</span></li>
+									<li>Email: <span class="float-right">{{ dispatch.carrier.carrier_Email | empty: '-'  }}</span></li>
+									<li>VAT ID: <span class="float-right">{{ dispatch.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
+								</ul>
+
+							</ng-template>
+						</ngb-tab>
+						<ngb-tab title="Receiver">
+							<ng-template ngbTabContent>
+
+								<ul class="simple-list mt-2">
+									<li>Name: <span class="float-right">{{ dispatch.receiver.receiver_Name }}</span></li>
+									<li>Address: <span class="float-right">{{ dispatch.receiver.receiver_Address | empty: '-'  }}</span></li>
+									<li>Email: <span class="float-right">{{ dispatch.receiver.receiver_Email | empty: '-'  }}</span></li>
+									<li>VAT ID: <span class="float-right">{{ dispatch.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
+								</ul>
+
+							</ng-template>
+						</ngb-tab>
+						<ngb-tab title="Positions">
+							<ng-template ngbTabContent>
+
+								<table class="table table-sm mt-2">
+									<thead>
+										<tr>
+											<th class="border-top-0" scope="col">Name</th>
+											<th class="border-top-0" scope="col">Amount [szt.]<br>Weight [kg]</th>
+											<th class="border-top-0" scope="col">Dispatched</th>
+											<th class="border-top-0" scope="col">Before dispatch</th>
+											<th class="border-top-0" scope="col">After dispatch</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr *ngFor="let position of dispatch.listOfOrderPositions">
+											<td>{{ position.name }}</td>
+											<td>
+												{{ position.amount_Received | empty: '-' }}
+												<br>
+												{{ position.weight_Gross_Received | empty: '-' }}
+											</td>
+											<td>
+												{{ position.amount_Dispatch | empty: '-' }}
+												<br>
+												{{ position.weight_Dispatch | empty: '-' }}
+											</td>
+											<td>
+												{{ position.amount_Before_Dispatch | empty: '-' }}
+												<br>
+												{{ position.weight_Before_Dispatch | empty: '-' }}
+											</td>
+											<td>
+												{{ position.amount_After_Dispatch | empty: '-' }}
+												<br>
+												{{ position.weight_After_Dispatch | empty: '-' }}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</ng-template>
+						</ngb-tab>
+					</ngb-tabset>
+
+				</ng-template>
+			</ngb-panel>
+		</ngb-accordion>
+
+	</div>
+</div>

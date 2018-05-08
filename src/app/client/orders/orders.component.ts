@@ -12,6 +12,8 @@ import { DeliveryInfoModalComponent } from '../../modals/delivery-info-modal/del
 import { CreateOrderModalComponent } from '../../modals/create-order-modal/create-order-modal.component';
 import { EditOrderModalComponent } from '../../modals/edit-order-modal/edit-order-modal.component';
 import { ModalHelperService } from '../../modals/modal-helper.service';
+import { DispatchesInfoModalComponent } from '../../modals/dispatches-info-modal/dispatches-info-modal.component';
+import {CreateDeliveryModalComponent} from '../../modals/create-delivery-modal/create-delivery-modal.component';
 
 @Component({
     selector: 'app-orders',
@@ -59,6 +61,14 @@ export class OrdersComponent implements OnInit {
         modalRef.componentInstance.order = order;
     }
 
+    public showDispatchesInfo(order: any): void {
+        const modalRef = this.modalService.open(DispatchesInfoModalComponent, {
+            size: 'lg'
+        });
+
+        modalRef.componentInstance.order = order;
+    }
+
     public showEditOrderModal(order: any): void {
         const modalRef = this.modalService.open(EditOrderModalComponent);
         modalRef.componentInstance.order = order;
@@ -71,6 +81,16 @@ export class OrdersComponent implements OnInit {
 
     public openCreateOrderModal(): void {
         const modalRef = this.modalService.open(CreateOrderModalComponent);
+
+        modalRef.result
+            .then(() => {
+                this.handleOrders(this.page, this.needle.value);
+            }, () => {});
+    }
+
+    public showCreateDeliveryModal(order: any): void {
+        const modalRef = this.modalService.open(CreateDeliveryModalComponent);
+        modalRef.componentInstance.order = order;
 
         modalRef.result
             .then(() => {

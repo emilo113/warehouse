@@ -1,0 +1,76 @@
+<div class="container bootstrap snippet">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box text-right">
+				Dispatches count: <b>{{ dispatchesService.count }}</b>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box">
+				<div class="form-default">
+					<div class="form-label-group">
+						<input type="text" id="needle" name="needle" [formControl]="needle" class="form-control"
+							   placeholder="Search...">
+						<label for="needle">Search...</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box no-header clearfix">
+				<div class="main-box-body clearfix">
+					<div class="table-responsive">
+						<table class="table user-list">
+							<thead>
+							<tr>
+								<th>Receiver Name</th>
+								<th>Carrier Name</th>
+								<th>Car ID</th>
+								<th>Created</th>
+								<th>&nbsp;</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr *ngFor="let dispatch of dispatchesService.dispatches">
+								<td>{{ dispatch.receiver_Name | empty: '-' }}</td>
+								<td>{{ dispatch.carrier_Name | empty: '-' }}</td>
+								<td>{{ dispatch.car_Id | empty: '-' }}</td>
+								<td>{{ dispatch.creation_Date | empty: '-' }}</td>
+								<td style="width: 20%;">
+									<a class="table-link">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-info fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									<a class="table-link danger" *ngIf="userService.isHeadAdmin()" (click)="removeDispatch(dispatch)" ngbTooltip="Remove dispatch">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<div>
+						<ngb-pagination
+								class="d-flex justify-content-center"
+								[collectionSize]="dispatchesService.count"
+								[(page)]="page"
+								[maxSize]="5"
+								(pageChange)="pageChange()"
+								[pageSize]="dispatchesConfig.limit"
+						></ngb-pagination>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
