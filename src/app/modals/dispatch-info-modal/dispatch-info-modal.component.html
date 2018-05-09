@@ -1,0 +1,98 @@
+<app-loader [small]="true" [hidden]="!loading"></app-loader>
+
+<div class="modalWrapper" *ngIf="!loading">
+
+	<div class="modal-header">
+		<h4 class="modal-title">Dispatch Info</h4>
+		<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	<div class="modal-body">
+
+		<ngb-tabset justify="justified">
+
+			<ngb-tab title="Dispatch details">
+				<ng-template ngbTabContent>
+
+					<div class="p-3">
+						<ul class="simple-list">
+							<li>ID: <span class="float-right">{{ dispatchDetails.id }}</span></li>
+							<li>Dispatch Number: <span class="float-right">{{ dispatchDetails.dispatch_Number | empty: '-'  }}</span></li>
+						</ul>
+					</div>
+
+				</ng-template>
+			</ngb-tab>
+
+			<ngb-tab title="Carrier">
+				<ng-template ngbTabContent>
+
+					<div class="p-3">
+						<ul class="simple-list mt-2">
+							<li>Name: <span class="float-right">{{ dispatchDetails.carrier.carrier_Name }}</span></li>
+							<li>Address: <span class="float-right">{{ dispatchDetails.carrier.carrier_Address | empty: '-'  }}</span></li>
+							<li>Email: <span class="float-right">{{ dispatchDetails.carrier.carrier_Email | empty: '-'  }}</span></li>
+							<li>VAT ID: <span class="float-right">{{ dispatchDetails.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
+						</ul>
+					</div>
+
+				</ng-template>
+			</ngb-tab>
+
+			<ngb-tab title="Receiver">
+				<ng-template ngbTabContent>
+
+					<div class="p-3">
+						<ul class="simple-list mt-2">
+							<li>Name: <span class="float-right">{{ dispatchDetails.receiver.receiver_Name }}</span></li>
+							<li>Address: <span class="float-right">{{ dispatchDetails.receiver.receiver_Address | empty: '-'  }}</span></li>
+							<li>Email: <span class="float-right">{{ dispatchDetails.receiver.receiver_Email | empty: '-'  }}</span></li>
+							<li>VAT ID: <span class="float-right">{{ dispatchDetails.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
+						</ul>
+					</div>
+
+				</ng-template>
+			</ngb-tab>
+
+		</ngb-tabset>
+
+		<p class="h5 mb-3 mt-1">Orders dispatches:</p>
+
+		<ngb-accordion activeIds="dispatch-0">
+
+			<ngb-panel *ngFor="let dispatch of dispatchDetails.listOfDispatchOrders; let i = index" id="dispatch-{{i}}">
+
+				<ng-template ngbPanelTitle>
+					Order ID: <b>{{ dispatch.orderId }}</b> |
+					Delivery ID: <b>{{ dispatch.deliveryId }}</b> |
+					ATB: <b>{{ dispatch.atb }}</b>
+				</ng-template>
+
+				<ng-template ngbPanelContent>
+
+					<table class="table table-sm">
+						<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Weight [kg]</th>
+							<th scope="col">Amount [szt.]</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr *ngFor="let position of dispatch.listOfDispatchPositions">
+							<td>{{ position.name }}</td>
+							<td>{{ position.weight_Gross | empty: '-' }}</td>
+							<td>{{ position.amount | empty: '-' }}</td>
+						</tr>
+						</tbody>
+					</table>
+
+				</ng-template>
+
+			</ngb-panel>
+		</ngb-accordion>
+
+	</div>
+</div>

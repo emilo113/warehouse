@@ -40,6 +40,16 @@ export class DispatchesService {
             });
     }
 
+    public fetchDispatchDetails(dispatch: any): Observable<any> {
+        let params: HttpParams = new HttpParams();
+        params = params.append('dispatchId', dispatch.id);
+
+        return this.http.get<any>(routes.dispatches.fetchDetails, {params: params})
+            .map(data => {
+                return data;
+            });
+    }
+
     public remove(dispatch: any): Observable<any> {
         let params: HttpParams = new HttpParams();
         params = params.append('dispatchId', dispatch.id);

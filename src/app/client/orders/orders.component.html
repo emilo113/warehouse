@@ -49,10 +49,10 @@
 								<td>{{ order.creation_Date | empty: '-' }}</td>
 								<td>
 									<b class="status-{{ order.status }}">{{ getStatusName(order.status) }}</b>
-									<a class="table-link change" (click)="showCreateDeliveryModal(order)" *ngIf="userService.isLevelAdmin() && !isDelivered(order)" ngbTooltip="Generate delivery">
+									<a class="table-link" (click)="showCreateDeliveryModal(order)" *ngIf="userService.isLevelAdmin() && !isDelivered(order)" ngbTooltip="Generate delivery">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
-											<i class="fa fa-cart-arrow-down fa-stack-1x fa-inverse"></i>
+											<i class="fa fa-hand-paper-o fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
 								</td>

@@ -26,6 +26,7 @@ export const routes = {
     dispatches: {
         fetchAll: 'Dispatch/GetDispatches',
         fetchForOrder: 'Dispatch/GetOrderDispatches',
+        fetchDetails: 'Dispatch/GetDispatchDetails',
         remove: 'Dispatch/RemoveDispatch'
     }
 };

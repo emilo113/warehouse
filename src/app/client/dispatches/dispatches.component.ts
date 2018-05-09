@@ -5,7 +5,9 @@ import { UserService } from '../../services/user.service';
 import { FormControl } from '@angular/forms';
 import { DispatchesService } from '../../services/dispatches.service';
 import { dispatches } from '../../const/dispatches';
-import {ModalHelperService} from '../../modals/modal-helper.service';
+import { ModalHelperService } from '../../modals/modal-helper.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {DispatchInfoModalComponent} from '../../modals/dispatch-info-modal/dispatch-info-modal.component';
 
 @Component({
     selector: 'app-dispatches',
@@ -23,7 +25,8 @@ export class DispatchesComponent implements OnInit {
         public userService: UserService,
         private loader: LoaderService,
         private alert: AlertService,
-        private modalHelper: ModalHelperService
+        private modalHelper: ModalHelperService,
+        private modalService: NgbModal
     ) {
     }
 
@@ -60,6 +63,11 @@ export class DispatchesComponent implements OnInit {
                         this.loader.hide();
                     });
             }, () => {});
+    }
+
+    public showDispatchInfo(dispatch: any): void {
+        const modalRef = this.modalService.open(DispatchInfoModalComponent);
+        modalRef.componentInstance.dispatch = dispatch;
     }
 
 

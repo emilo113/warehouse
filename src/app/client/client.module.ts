@@ -21,6 +21,7 @@ import { EditOrderModalComponent } from '../modals/edit-order-modal/edit-order-m
 import { DispatchesInfoModalComponent } from '../modals/dispatches-info-modal/dispatches-info-modal.component';
 import { DispatchesComponent } from './dispatches/dispatches.component';
 import { CreateDeliveryModalComponent } from '../modals/create-delivery-modal/create-delivery-modal.component';
+import { DispatchInfoModalComponent } from '../modals/dispatch-info-modal/dispatch-info-modal.component';
 
 @NgModule({
     imports: [
@@ -44,6 +45,7 @@ import { CreateDeliveryModalComponent } from '../modals/create-delivery-modal/cr
         CreateOrderModalComponent,
         EditOrderModalComponent,
         DispatchesInfoModalComponent,
+        DispatchInfoModalComponent,
         CreateDeliveryModalComponent,
         EmptyPipe,
         ObjectKeysPipe,
@@ -59,7 +61,8 @@ import { CreateDeliveryModalComponent } from '../modals/create-delivery-modal/cr
         CreateOrderModalComponent,
         EditOrderModalComponent,
         DispatchesInfoModalComponent,
-        CreateDeliveryModalComponent
+        CreateDeliveryModalComponent,
+        DispatchInfoModalComponent
     ],
     exports: [
         EmptyPipe
