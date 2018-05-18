@@ -26,6 +26,11 @@
 				<label for="pickupPin">Pickup PIN</label>
 			</div>
 
+			<div class="form-label-group">
+				<input type="date" id="eta" class="form-control" placeholder="ETA" name="eta" [(ngModel)]="orderData.eta" required>
+				<label for="eta">ETA</label>
+			</div>
+
 			<div class="form-label-group" *ngIf="isEditing">
 				<input type="text" id="orderNumber" class="form-control" placeholder="Order Number" name="orderNumber" [(ngModel)]="orderData.order_Number" required>
 				<label for="orderNumber">Order Number</label>
@@ -103,7 +108,7 @@
 		</form>
 	</div>
 	<div class="modal-footer">
-		<input type="submit" class="btn btn-primary" (click)="save($event)" [value]="buttonValue" [disabled]="!orderData.isValidData()">
+		<input type="submit" class="btn btn-primary" (click)="save($event)" [value]="buttonValue" [disabled]="!isValidData()">
 	</div>
 
 </div>

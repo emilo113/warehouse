@@ -10,6 +10,7 @@ export class Order {
     public address: string;
     public vaT_Id: string;
     public email: string;
+    public eta: string;
     public creation_Date: any;
     public order_Number: string;
     public orderPositions: OrderPosition[] = [];
@@ -31,8 +32,16 @@ export class Order {
         return this.container_Id &&
             this.atb &&
             this.pickup_PIN &&
+            this.eta &&
             this.isValidOrderer() &&
             this.isValidPositions();
+    }
+
+    public isValidEditingData(): boolean {
+        return this.isValidData() &&
+            this.id &&
+            this.order_Number &&
+            this.creation_Date;
     }
 
     public isValidPositions(): boolean {
@@ -56,6 +65,7 @@ export class Order {
 
     public setDataFromOrder(order: any): void {
         const date = order.creation_Date.split('-');
+        const eta = order.eta.split('-');
 
         this.id = order.id;
         this.container_Id = order.container_Id;
@@ -66,6 +76,7 @@ export class Order {
         this.email = order.orderer.email;
         this.vaT_Id = order.orderer.vaT_Id;
         this.creation_Date = date[2] + '-' + date[1] + '-' + date[0];
+        this.eta = eta[2] + '-' + eta[1] + '-' + eta[0];
         this.order_Number = order.order_Number;
 
         this.orderPositions = [];
@@ -82,11 +93,15 @@ export class Order {
         });
     }
 
-    public getJSONData() {
+    public getJSONData(): any {
         const data = JSON.parse(JSON.stringify(this));
 
         if (data.creation_Date) {
             data.creation_Date = new Date(data.creation_Date);
+        }
+
+        if (data.eta) {
+            data.eta = new Date(data.eta);
         }
 
         return data;

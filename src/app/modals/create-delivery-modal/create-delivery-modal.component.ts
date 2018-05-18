@@ -22,20 +22,24 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
 
     constructor(
         public activeModal: NgbActiveModal,
-        private ordersService: OrdersService,
-        private alert: AlertService
+        protected ordersService: OrdersService,
+        protected alert: AlertService
     ) {
         super(activeModal);
 
         this.deliveryData = new Delivery();
+        this.transportTypes = transportTypes;
         this.title = 'Creating delivery';
         this.buttonValue = 'Create';
-        this.transportTypes = transportTypes;
     }
 
     ngOnInit() {
         this.showLoader();
         this.fetchOrderInfo();
+    }
+
+    public isValidData(): boolean {
+        return this.deliveryData.isValidData();
     }
 
     private fetchOrderInfo(): void {

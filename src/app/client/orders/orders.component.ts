@@ -13,7 +13,8 @@ import { CreateOrderModalComponent } from '../../modals/create-order-modal/creat
 import { EditOrderModalComponent } from '../../modals/edit-order-modal/edit-order-modal.component';
 import { ModalHelperService } from '../../modals/modal-helper.service';
 import { DispatchesInfoModalComponent } from '../../modals/dispatches-info-modal/dispatches-info-modal.component';
-import {CreateDeliveryModalComponent} from '../../modals/create-delivery-modal/create-delivery-modal.component';
+import { CreateDeliveryModalComponent } from '../../modals/create-delivery-modal/create-delivery-modal.component';
+import { EditDeliveryModalComponent } from '../../modals/edit-delivery-modal/edit-delivery-modal.component';
 
 @Component({
     selector: 'app-orders',
@@ -98,6 +99,16 @@ export class OrdersComponent implements OnInit {
             }, () => {});
     }
 
+    public showEditDeliveryModal(order: any): void {
+        const modalRef = this.modalService.open(EditDeliveryModalComponent);
+        modalRef.componentInstance.order = order;
+
+        modalRef.result
+            .then(() => {
+                this.handleOrders(this.page, this.needle.value);
+            }, () => {});
+    }
+
     public removeOrder(order: any): void {
         this.modalHelper.openConfirmModal({
             title: 'Are you sure?',
@@ -114,6 +125,30 @@ export class OrdersComponent implements OnInit {
                             this.loader.hide();
                         } else {
                             this.alert.success('Order has been removed');
+                            this.handleOrders(this.page, this.needle.value);
+                        }
+                    }, () => {
+                        this.loader.hide();
+                    });
+            }, () => {});
+    }
+
+    public removeDelivery(order: any): void {
+        this.modalHelper.openConfirmModal({
+            title: 'Are you sure?',
+            text: 'Do you want to remove this delivery permanently?',
+            icon: 'fa fa-question'
+        })
+            .then(() => {
+                this.loader.show();
+
+                this.ordersService.removeDelivery(order)
+                    .subscribe(status => {
+                        if (!status) {
+                            this.alert.error('Something went wrong...');
+                            this.loader.hide();
+                        } else {
+                            this.alert.success('Delivery has been removed');
                             this.handleOrders(this.page, this.needle.value);
                         }
                     }, () => {

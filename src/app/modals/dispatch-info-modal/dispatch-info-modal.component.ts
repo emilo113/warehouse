@@ -29,7 +29,6 @@ export class DispatchInfoModalComponent extends AbstractModal implements OnInit 
     private fetchInfo(): void {
         this.dispatchesService.fetchDispatchDetails(this.dispatch)
             .subscribe(data => {
-                console.log(data);
                 this.dispatchDetails = data;
                 this.hideLoader();
             });

@@ -37,6 +37,10 @@ export class EditOrderModalComponent extends CreateOrderModalComponent implement
             });
     }
 
+    isValidData(): boolean {
+        return this.orderData.isValidEditingData();
+    }
+
     protected handleRole() {
         if (this.user.isLevelAdmin()) {
             this.otherOrderer = true;

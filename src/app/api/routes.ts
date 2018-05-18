@@ -20,8 +20,12 @@ export const routes = {
         removePosition: 'Order/RemoveOrdersPosition'
     },
     deliveries: {
+        fetchAll: 'Delivery/GetDeliveries',
         fetchDetails: 'Delivery/GetOrderDelivery',
-        create: 'Delivery/CreateDelivery'
+        create: 'Delivery/CreateDelivery',
+        edit: 'Delivery/EditDelivery',
+        remove: 'Delivery/RemoveDelivery',
+        getDeliveryState: 'Delivery/GetDeliveryState'
     },
     dispatches: {
         fetchAll: 'Dispatch/GetDispatches',

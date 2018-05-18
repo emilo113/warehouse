@@ -41,6 +41,38 @@ export class OrdersService {
             });
     }
 
+    public fetchDeliveries(needle: string = ''): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        if (needle && needle.length > 0) {
+            params = params.append('needle', needle);
+        }
+
+        return this.http.get<any>(routes.deliveries.fetchAll, {params: params})
+            .map(data => {
+                if (data instanceof Object) {
+                    return data.listOfDeliveries;
+                }
+
+                return false;
+            });
+    }
+
+    public getDeliveryState(orderId: number): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('orderId', orderId.toString());
+
+        return this.http.get<any>(routes.deliveries.getDeliveryState, {params: params})
+            .map(data => {
+                if (data instanceof Array) {
+                    return data;
+                }
+
+                return false;
+            });
+    }
+
     public create(orderData): Observable<any> {
 
         return this.http.post<any>(routes.orders.create, orderData)
@@ -99,11 +131,38 @@ export class OrdersService {
             });
     }
 
+    public editDelivery(deliveryData: any): Observable<any> {
+
+        return this.http.post<any>(routes.deliveries.edit, deliveryData)
+            .map(data => {
+                if (data && data.status) {
+                    return true;
+                }
+
+                return false;
+            });
+    }
+
     public remove(order: any): Observable<any> {
         let params: HttpParams = new HttpParams();
         params = params.append('orderId', order.id);
 
         return this.http.get<any>(routes.orders.remove, {params: params})
+            .map(data => {
+                if (data && data.status) {
+                    return true;
+                }
+
+                return false;
+            });
+    }
+
+    public removeDelivery(order: any): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('orderId', order.id);
+
+        return this.http.get<any>(routes.deliveries.remove, {params: params})
             .map(data => {
                 if (data && data.status) {
                     return true;

@@ -1,6 +1,13 @@
 <div class="container bootstrap snippet">
 	<div class="row">
 		<div class="col-lg-12">
+			<div class="main-box">
+				<button class="btn" (click)="openCreateDispatchModal()">Create dispatch</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
 			<div class="main-box text-right">
 				Dispatches count: <b>{{ dispatchesService.count }}</b>
 			</div>

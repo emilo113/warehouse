@@ -12,7 +12,8 @@ export class ModalHelperService {
   public openConfirmModal(data): Promise<any>{
       const modalRef = this.modalService.open(ConfirmModalComponent, {
           backdrop : 'static',
-          keyboard : false
+          keyboard : false,
+          windowClass: 'custom-bg-modal'
       });
 
       modalRef.componentInstance.data = data;

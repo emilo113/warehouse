@@ -20,6 +20,7 @@
 						<li>Container ID: <span class="float-right">{{ order.container_Id | empty: '-'  }}</span></li>
 						<li>ATB: <span class="float-right">{{ order.atb | empty: '-'  }}</span></li>
 						<li>Created At: <span class="float-right">{{ order.creation_Date | empty: '-'  }}</span></li>
+						<li>ETA: <span class="float-right">{{ orderDetails.eta | empty: '-'  }}</span></li>
 						<li>Order number: <span class="float-right">{{ orderDetails.order_Number | empty: '-'  }}</span></li>
 						<li>Pickup PIN: <span class="float-right">{{ orderDetails.pickup_PIN | empty: '-' }}</span></li>
 						<li>Number of positions: <span class="float-right">{{ orderDetails.num_of_Positions | empty: '-' }}</span></li>

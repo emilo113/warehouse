@@ -18,6 +18,16 @@
 				<label for="transportType">Transport type</label>
 			</div>
 
+			<div class="form-label-group" *ngIf="isEditing">
+				<input type="text" id="deliveryNumber" class="form-control" placeholder="Delivery Number" name="deliveryNumber" [(ngModel)]="deliveryData.delivery_Number" required>
+				<label for="deliveryNumber">Delivery Number</label>
+			</div>
+
+			<div class="form-label-group" *ngIf="isEditing">
+				<input type="date" id="deliveryDate" class="form-control" placeholder="Delivery Date" name="deliveryDate" [(ngModel)]="deliveryData.date_Of_Delivery" required>
+				<label for="deliveryDate">Delivery Date</label>
+			</div>
+
 			<p class="h5 mb-3">Order positions:</p>
 
 			<div class="order-positions">
@@ -47,7 +57,7 @@
 	</div>
 	<div class="modal-footer">
 		<input type="submit" class="btn btn-primary" (click)="save()" [value]="buttonValue"
-			   [disabled]="!deliveryData.isValidData()">
+			   [disabled]="!isValidData()">
 	</div>
 
 </div>

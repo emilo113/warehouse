@@ -5,3 +5,11 @@
 @import './assets/styles/simple-list.scss';
 @import './assets/styles/form.scss';
 @import './assets/styles/default-layout.scss';
+
+.custom-bg-modal {
+  background: rgba(#000, .5);
+}
+
+.modal {
+  overflow-y: auto !important;
+}

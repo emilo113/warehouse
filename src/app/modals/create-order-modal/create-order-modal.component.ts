@@ -58,7 +58,7 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
     }
 
     public isValidData(): boolean {
-        return false;
+        return this.orderData.isValidData();
     }
 
     public ordererChange(): void {

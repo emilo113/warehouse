@@ -29,7 +29,6 @@ export class DispatchesService {
 
         return this.http.get<any>(routes.dispatches.fetchAll, {params: params})
             .map(data => {
-                console.log(data);
                 if (data instanceof Object) {
                     this.dispatches = data.listOfDispatches;
                     this.count = data.numberOfDispatches;

@@ -8,6 +8,7 @@ import { dispatches } from '../../const/dispatches';
 import { ModalHelperService } from '../../modals/modal-helper.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DispatchInfoModalComponent} from '../../modals/dispatch-info-modal/dispatch-info-modal.component';
+import {CreateDispatchModalComponent} from '../../modals/create-dispatch-modal/create-dispatch-modal.component';
 
 @Component({
     selector: 'app-dispatches',
@@ -68,6 +69,13 @@ export class DispatchesComponent implements OnInit {
     public showDispatchInfo(dispatch: any): void {
         const modalRef = this.modalService.open(DispatchInfoModalComponent);
         modalRef.componentInstance.dispatch = dispatch;
+    }
+
+    public openCreateDispatchModal(): void {
+        const modalRef = this.modalService.open(CreateDispatchModalComponent, {
+            size: 'lg',
+            keyboard: false
+        });
     }
 
 
