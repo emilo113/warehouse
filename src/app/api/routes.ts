@@ -31,6 +31,7 @@ export const routes = {
         fetchAll: 'Dispatch/GetDispatches',
         fetchForOrder: 'Dispatch/GetOrderDispatches',
         fetchDetails: 'Dispatch/GetDispatchDetails',
-        remove: 'Dispatch/RemoveDispatch'
+        remove: 'Dispatch/RemoveDispatch',
+        create: 'Dispatch/CreateDispatch'
     }
 };

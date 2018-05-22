@@ -63,4 +63,15 @@ export class DispatchesService {
             });
     }
 
+    public create(dispatchData: any, isCmr: boolean): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('isCMR', isCmr.toString());
+
+        return this.http.post<any>(routes.dispatches.create, dispatchData, {params: params})
+            .map(data => {
+                return !!(data && data.status);
+            });
+    }
+
 }

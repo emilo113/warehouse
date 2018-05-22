@@ -20,14 +20,6 @@ export class Dispatch {
         this.dispatchPositions = [];
     }
 
-    public addDispatchPosition(position: OrderPosition): void {
-        this.dispatchPositions.push(position);
-    }
-
-    public removeDispatchPosition(index: number): void {
-        this.dispatchPositions.splice(index, 1);
-    }
-
     public isValidData(): boolean {
         return this.car_Id &&
             this.duty_Doc_Id &&
@@ -55,6 +47,14 @@ export class Dispatch {
     }
 
     public getJSONData(): any {
-        console.log(JSON.parse(JSON.stringify(this)));
+        const data = JSON.parse(JSON.stringify(this));
+
+        data.dispatchPositions.forEach(position => {
+           // noinspection JSAnnotator
+            delete position.name;
+        });
+
+        return data;
+
     }
 }

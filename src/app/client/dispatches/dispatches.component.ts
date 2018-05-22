@@ -76,8 +76,16 @@ export class DispatchesComponent implements OnInit {
             size: 'lg',
             keyboard: false
         });
+
+        modalRef.result
+            .then(() => {
+               this.handleDispatches(this.page, this.needle.value);
+            });
     }
 
+    public showEditDispatchModal(dispatch: any): void {
+
+    }
 
     private handleDispatches(page: number = 1, needle: string = ''): void {
         this.dispatchesService.fetchDispatches(page, needle)
