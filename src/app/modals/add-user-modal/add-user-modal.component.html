@@ -11,7 +11,7 @@
 			<select name="role" id="role" class="form-control" autofocus [(ngModel)]="userData.Role" (change)="onRoleChanged()" required>
 				<option *ngFor="let key of userTypes | keys" value="{{ userTypes[key] }}">{{ key }}</option>
 			</select>
-			<label for="role">User role</label>
+			<label for="role">Poziom uprawnień</label>
 		</div>
 
 		<div class="form-label-group">
@@ -20,33 +20,33 @@
 		</div>
 
 		<div class="form-label-group">
-			<input type="password" id="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="userData.Password" required>
-			<label for="password">Password</label>
+			<input type="password" id="password" class="form-control" placeholder="Hasło" name="password" [(ngModel)]="userData.Password" required>
+			<label for="password">Hasło</label>
 		</div>
 
 		<div class="form-label-group">
-			<input type="password" id="password2" class="form-control" placeholder="Repeat Password" name="password2" [(ngModel)]="userData.Password2" required>
-			<label for="password2">Repeat Password</label>
+			<input type="password" id="password2" class="form-control" placeholder="Powtórz hasło" name="password2" [(ngModel)]="userData.Password2" required>
+			<label for="password2">Powtórz hasło</label>
 		</div>
 
 		<div *ngIf="userData.isClient()">
 
 			<div class="form-label-group">
-				<input type="text" id="name" class="form-control" placeholder="Name" [(ngModel)]="userData.Name"
+				<input type="text" id="name" class="form-control" placeholder="Imię" [(ngModel)]="userData.Name"
 					   name="name">
-				<label for="name">Name</label>
+				<label for="name">Imię</label>
 			</div>
 
 			<div class="form-label-group">
-				<input type="text" id="email" class="form-control" placeholder="Email" [(ngModel)]="userData.Email"
+				<input type="text" id="email" class="form-control" placeholder="E-mail" [(ngModel)]="userData.Email"
 					   name="email">
 				<label for="email">E-mail</label>
 			</div>
 
 			<div class="form-label-group">
-				<input type="text" id="address" class="form-control" placeholder="Address"
+				<input type="text" id="address" class="form-control" placeholder="Adres"
 					   [(ngModel)]="userData.Address" name="address">
-				<label for="address">Address</label>
+				<label for="address">Adres</label>
 			</div>
 
 			<div class="form-label-group">
@@ -60,5 +60,5 @@
 	</form>
 </div>
 <div class="modal-footer">
-	<input type="submit" class="btn btn-primary" (click)="save($event)" value="{{ buttonValue }}" [disabled]="!isValidData()">
+	<input type="submit" class="btn btn-primary" (click)="save()" value="{{ buttonValue }}" [disabled]="!isValidData()">
 </div>

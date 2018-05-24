@@ -1,0 +1,219 @@
+<app-loader [small]="true" [hidden]="!loading"></app-loader>
+
+<div class="modalWrapper" *ngIf="!loading">
+
+	<div class="modal-header">
+		<h4 class="modal-title">{{ title }}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="close()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+
+		<form class="form-default">
+
+			<div class="row">
+
+				<div class="col">
+
+					<div class="form-label-group">
+						<input type="text" id="carId" class="form-control" placeholder="ID Pojazdu" name="carId"
+							   [(ngModel)]="dispatch.car_Id" required>
+						<label for="carId">ID Pojazdu</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="dutyDocId" class="form-control" placeholder="Duty Doc ID" name="dutyDocId"
+							   [(ngModel)]="dispatch.duty_Doc_Id" required>
+						<label for="dutyDocId">Duty Doc ID</label>
+					</div>
+
+					<div class="form-label-group" *ngIf="isEditing">
+						<input type="text" id="dispatchNumber" class="form-control" placeholder="Numer wydania" name="dispatchNumber"
+							   [(ngModel)]="dispatch.dispatch_Number" required>
+						<label for="dispatchNumber">Numer wydania</label>
+					</div>
+
+					<p class="h5 mb-3">Przewoźnik:</p>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierName" class="form-control" placeholder="Nazwa przewoźnika" name="carrierName"
+							   [(ngModel)]="dispatch.carrier.carrier_Name" required>
+						<label for="carrierName">Nazwa przewoźnika</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierAddress" class="form-control" placeholder="Adres przewoźnika" name="carrierAddress"
+							   [(ngModel)]="dispatch.carrier.carrier_Address" required>
+						<label for="carrierAddress">Adres przewoźnika</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierEmail" class="form-control" placeholder="E-mail przewoźnika"
+							   name="carrierEmail" [(ngModel)]="dispatch.carrier.carrier_Email" required>
+						<label for="carrierEmail">E-mail przewoźnika</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierVAT" class="form-control" placeholder="Vat ID przewoźnika"
+							   name="carrierVAT" [(ngModel)]="dispatch.carrier.carrier_VAT_Id" required>
+						<label for="carrierVAT">Vat ID przewoźnika</label>
+					</div>
+
+					<p class="h5 mb-3">Odbiorca:</p>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverName" class="form-control" placeholder="Nazwa odbiorcy" name="receiverName"
+							   [(ngModel)]="dispatch.receiver.receiver_Name" required>
+						<label for="receiverName">Nazwa odbiorcy</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverAddress" class="form-control" placeholder="Adres odbiorcy" name="receiverAddress"
+							   [(ngModel)]="dispatch.receiver.receiver_Address" required>
+						<label for="receiverAddress">Adres odbiorcy</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverEmail" class="form-control" placeholder="E-mail odbiorcy"
+							   name="receiverEmail" [(ngModel)]="dispatch.receiver.receiver_Email" required>
+						<label for="receiverEmail">E-mail odbiorcy</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverVAT" class="form-control" placeholder="Vat ID odbiorcy"
+							   name="receiverVAT" [(ngModel)]="dispatch.receiver.receiver_VAT_Id" required>
+						<label for="receiverVAT">Vat ID odbiorcy</label>
+					</div>
+
+				</div>
+
+				<div class="col">
+
+					<div class="form-group form-check">
+						<input type="checkbox" id="isCmr" class="form-check-input" (change)="onCmrChange()" [checked]="isCmr">
+						<label class="form-check-label" for="isCmr">Czy chcesz dodać dane do CMR?</label>
+					</div>
+
+					<div *ngIf="isCmr">
+
+						<p class="h5 mb-3">CMR:</p>
+
+						<div class="form-label-group">
+							<input type="text" id="commodityType" class="form-control" placeholder="Typ towaru" name="commodityType"
+								   [(ngModel)]="dispatch.cmrDispatch.commodity_Type" required>
+							<label for="commodityType">Typ towaru</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="destination" class="form-control" placeholder="Cel" name="destination"
+								   [(ngModel)]="dispatch.cmrDispatch.destination" required>
+							<label for="destination">Cel</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="senderName" class="form-control" placeholder="Nazwa nadawcy" name="senderName"
+								   [(ngModel)]="dispatch.cmrDispatch.sender_Name" required>
+							<label for="senderName">Nazwa nadawcy</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="senderAddress" class="form-control" placeholder="Adres nadawcy" name="senderAddress"
+								   [(ngModel)]="dispatch.cmrDispatch.sender_Address" required>
+							<label for="senderAddress">Adres nadawcy</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="senderEmail" class="form-control" placeholder="E-mail nadawcy"
+								   name="senderEmail" [(ngModel)]="dispatch.cmrDispatch.sender_Email" required>
+							<label for="senderEmail">E-mail nadawcy</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="senderVAT" class="form-control" placeholder="Vat ID nadawcy"
+								   name="senderVAT" [(ngModel)]="dispatch.cmrDispatch.sender_VAT_Id" required>
+							<label for="senderVAT">Vat ID nadawcy</label>
+						</div>
+
+					</div>
+
+					<p class="h5 mb-3">Wydawane pozycje:</p>
+
+					<div class="form-label-group">
+						<ng-template #rt let-r="result" let-t="term">
+							ATB: {{ r.atb }} | Name: {{ r.name }}
+						</ng-template>
+
+						<input
+								id="delivery"
+								type="text"
+								class="form-control"
+								name="delivery"
+								[ngbTypeahead]="search()"
+								[resultTemplate]="rt"
+								[inputFormatter]="getFormatter()"
+								(selectItem)="onChooseDelivery($event)"
+								placeholder="Search for delivery..."
+						/>
+						<label for="delivery">Szukaj przyjęcia...</label>
+					</div>
+
+					<div class="order-positions">
+
+						<ngb-accordion [activeIds]="activeIds">
+
+							<ngb-panel *ngFor="let set of dispatchSets; let i = index" [id]="set.delivery.atb">
+
+								<ng-template ngbPanelTitle>
+									ATB: <b>{{ set.delivery.atb }}</b>
+								</ng-template>
+
+								<ng-template ngbPanelContent>
+
+									<div class="group-inline first-half-width" *ngFor="let position of set.positions; let j = index">
+
+										<div class="form-label-group">
+											<input type="text" class="form-control" id="positionName-{{i}}{{j}}" name="positionName-{{i}}{{j}}"
+												   placeholder="Name" [ngModel]="position.name" disabled>
+											<label for="positionName-{{i}}{{j}}">Nazwa</label>
+										</div>
+
+										<div class="form-label-group">
+											<input type="number" class="form-control" id="positionWeight-{{i}}{{j}}" name="positionWeight-{{i}}{{j}}"
+												   placeholder="Weight" [(ngModel)]="position.weight_Gross" disabled>
+											<label for="positionWeight-{{i}}{{j}}">Waga</label>
+										</div>
+										<div class="form-label-group">
+											<input type="number" class="form-control" id="positionAmount-{{i}}{{j}}" name="positionAmount-{{i}}{{j}}"
+												   placeholder="Amount" [(ngModel)]="position.amount" disabled>
+											<label for="positionAmount-{{i}}{{j}}">Liczba</label>
+										</div>
+
+										<a href="#" class="table-link remove-position" (click)="removeDispatchPosition($event, position, i, j)" ngbTooltip="Remove position">
+											<span class="fa-stack">
+												<i class="fa fa-square fa-stack-2x"></i>
+												<i class="fa fa-minus fa-stack-1x fa-inverse"></i>
+											</span>
+										</a>
+									</div>
+
+								</ng-template>
+
+							</ngb-panel>
+
+						</ngb-accordion>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</form>
+
+	</div>
+	<div class="modal-footer">
+		<input type="submit" class="btn btn-primary" (click)="save()" [value]="buttonValue" [disabled]="!isValidData()">
+	</div>
+
+</div>

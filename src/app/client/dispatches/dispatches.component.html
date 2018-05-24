@@ -2,14 +2,14 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="main-box">
-				<button class="btn" (click)="openCreateDispatchModal()">Create dispatch</button>
+				<button class="btn" (click)="openCreateDispatchModal()">Stwórz wydanie</button>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="main-box text-right">
-				Dispatches count: <b>{{ dispatchesService.count }}</b>
+				Liczba wydań: <b>{{ dispatchesService.count }}</b>
 			</div>
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 					<div class="form-label-group">
 						<input type="text" id="needle" name="needle" [formControl]="needle" class="form-control"
 							   placeholder="Search...">
-						<label for="needle">Search...</label>
+						<label for="needle">Wyszukaj...</label>
 					</div>
 				</div>
 			</div>
@@ -34,10 +34,10 @@
 						<table class="table user-list">
 							<thead>
 							<tr>
-								<th>Receiver Name</th>
-								<th>Carrier Name</th>
-								<th>Car ID</th>
-								<th>Created</th>
+								<th>Nazwa odbiorcy</th>
+								<th>Nazwa przewoźnika</th>
+								<th>ID pojazdu</th>
+								<th>Utworzone</th>
 								<th>&nbsp;</th>
 							</tr>
 							</thead>
@@ -48,19 +48,19 @@
 								<td>{{ dispatch.car_Id | empty: '-' }}</td>
 								<td>{{ dispatch.creation_Date | empty: '-' }}</td>
 								<td style="width: 20%;">
-									<a class="table-link" (click)="showDispatchInfo(dispatch)" ngbTooltip="Show info">
+									<a class="table-link" (click)="showDispatchInfo(dispatch)" ngbTooltip="Informacje o wydaniu">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-info fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" (click)="showEditDispatchModal(dispatch)" ngbTooltip="Show info">
+									<a class="table-link" (click)="showEditDispatchModal(dispatch)" ngbTooltip="Edytuj wydanie">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link danger" *ngIf="userService.isHeadAdmin()" (click)="removeDispatch(dispatch)" ngbTooltip="Remove dispatch">
+									<a class="table-link danger" *ngIf="userService.isHeadAdmin()" (click)="removeDispatch(dispatch)" ngbTooltip="Usuń wydanie">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

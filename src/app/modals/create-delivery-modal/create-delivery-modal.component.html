@@ -15,20 +15,20 @@
 				<select name="transportType" id="transportType" class="form-control" autofocus [(ngModel)]="deliveryData.transport_Type" required>
 					<option *ngFor="let key of transportTypes | keys" value="{{ transportTypes[key].value }}">{{ transportTypes[key].name }}</option>
 				</select>
-				<label for="transportType">Transport type</label>
+				<label for="transportType">Typ transportu</label>
 			</div>
 
 			<div class="form-label-group" *ngIf="isEditing">
-				<input type="text" id="deliveryNumber" class="form-control" placeholder="Delivery Number" name="deliveryNumber" [(ngModel)]="deliveryData.delivery_Number" required>
-				<label for="deliveryNumber">Delivery Number</label>
+				<input type="text" id="deliveryNumber" class="form-control" placeholder="Numer przyjęcia" name="deliveryNumber" [(ngModel)]="deliveryData.delivery_Number" required>
+				<label for="deliveryNumber">Numer przyjęcia</label>
 			</div>
 
 			<div class="form-label-group" *ngIf="isEditing">
-				<input type="date" id="deliveryDate" class="form-control" placeholder="Delivery Date" name="deliveryDate" [(ngModel)]="deliveryData.date_Of_Delivery" required>
-				<label for="deliveryDate">Delivery Date</label>
+				<input type="date" id="deliveryDate" class="form-control" placeholder="Data przyjęcia" name="deliveryDate" [(ngModel)]="deliveryData.date_Of_Delivery" required>
+				<label for="deliveryDate">Data przyjęcia</label>
 			</div>
 
-			<p class="h5 mb-3">Order positions:</p>
+			<p class="h5 mb-3">Zamówione pozycje:</p>
 
 			<div class="order-positions">
 
@@ -36,18 +36,18 @@
 					 *ngFor="let position of deliveryData.deliveryPositions; let i = index; let last = last">
 					<div class="form-label-group">
 						<input type="text" class="form-control" id="positionName-{{i}}" name="positionName-{{i}}"
-							   placeholder="Name" [ngModel]="position.name" disabled>
-						<label for="positionName-{{i}}">Name</label>
+							   placeholder="Nazwa" [ngModel]="position.name" disabled>
+						<label for="positionName-{{i}}">Nazwa</label>
 					</div>
 					<div class="form-label-group">
 						<input type="number" class="form-control" id="positionWeight-{{i}}" name="positionWeight-{{i}}"
-							   placeholder="Weight" [(ngModel)]="position.weight_Gross">
-						<label for="positionWeight-{{i}}">Weight</label>
+							   placeholder="Waga" [(ngModel)]="position.weight_Gross">
+						<label for="positionWeight-{{i}}">Waga</label>
 					</div>
 					<div class="form-label-group">
 						<input type="number" class="form-control" id="positionAmount-{{i}}" name="positionAmount-{{i}}"
-							   placeholder="Amount" [(ngModel)]="position.amount">
-						<label for="positionAmount-{{i}}">Amount</label>
+							   placeholder="Liczba" [(ngModel)]="position.amount">
+						<label for="positionAmount-{{i}}">Liczba</label>
 					</div>
 				</div>
 

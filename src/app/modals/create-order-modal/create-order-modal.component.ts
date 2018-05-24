@@ -20,8 +20,8 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
     public otherOrderer: boolean = false;
     public isUserData: boolean = true;
     protected userData: any;
-    public title: string = 'Creating order...';
-    public buttonValue: string = 'Create';
+    public title: string = 'Tworzenie zamówienia';
+    public buttonValue: string = 'Utwórz';
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -47,14 +47,14 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
         this.ordersService.create(orderData)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Error creating new order, check typed data...', true);
+                    this.alert.error('Błąd podczas tworzenia zamówienia, sprawdź wprowadzone dane', true);
                     this.hideLoader();
                 } else {
-                    this.alert.success('Order has been created...');
+                    this.alert.success('Zamówienie zostało utworzone pomyślnie');
                     this.hideLoader();
                     this.activeModal.close();
                 }
-            });
+            }, () => { this.hideLoader(); });
     }
 
     public isValidData(): boolean {
@@ -71,8 +71,8 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
 
     public close(): void {
         this.modalHelper.openConfirmModal({
-            title: 'Are you sure',
-            text: 'Are you sure you want to dismiss your changes?',
+            title: 'Jesteś pewien?',
+            text: 'Czy na pewno chcesz porzucić wprowadzone zmiany?',
             icon: 'fa fa-warning'
         })
             .then(() => {
@@ -109,11 +109,11 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
                     this.setUserData();
                     this.hideLoader();
                 } else {
-                    this.alert.error('Something went wrong...', true);
+                    this.alert.error('Coś poszło nie tak', true);
                     this.activeModal.dismiss();
                 }
 
-            });
+            }, () => { this.activeModal.dismiss(); });
     }
 
     private setUserData(): void {

@@ -12,6 +12,7 @@ export class Dispatch {
     public cmrDispatch: CmrDispatch;
     public dispatchPositions: OrderPosition[];
 
+    public dispatch_Number: string;
 
     constructor() {
         this.receiver = new Receiver();
@@ -25,11 +26,18 @@ export class Dispatch {
             this.duty_Doc_Id &&
             this.receiver.isValidData() &&
             this.carrier.isValidData() &&
-            this.cmrDispatch.isValidData() &&
             this.isValidPositions();
     }
 
+    public isValidEditingData(): boolean {
+        return this.dispatch_Number && this.isValidData();
+    }
+
     public isValidPositions(): boolean {
+        if (this.dispatchPositions.length === 0) {
+            return false;
+        }
+
         let isValid = true;
 
         this.dispatchPositions.forEach( (orderPosition: OrderPosition) => {
@@ -55,6 +63,20 @@ export class Dispatch {
         });
 
         return data;
+    }
 
+    public setFromDetails(details: any): void {
+
+        this.id = details.id;
+        this.duty_Doc_Id = details.duty_Doc_Id;
+        this.car_Id = details.car_Id;
+        this.dispatch_Number = details.dispatch_Number;
+
+        this.carrier.setData(details.carrier);
+        this.receiver.setData(details.receiver);
+
+        if (details.isCMR) {
+            this.cmrDispatch.setData(details.cmrDispatch);
+        }
     }
 }

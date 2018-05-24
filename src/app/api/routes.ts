@@ -32,6 +32,7 @@ export const routes = {
         fetchForOrder: 'Dispatch/GetOrderDispatches',
         fetchDetails: 'Dispatch/GetDispatchDetails',
         remove: 'Dispatch/RemoveDispatch',
-        create: 'Dispatch/CreateDispatch'
+        create: 'Dispatch/CreateDispatch',
+        edit: 'Dispatch/EditDispatch'
     }
 };

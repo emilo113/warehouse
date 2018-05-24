@@ -5,6 +5,7 @@ import { routes } from '../api/routes';
 import { orders } from '../const/orders';
 import {UserType} from '../models/enums/user.types';
 import {Observable} from 'rxjs/Observable';
+import {diPublic} from '@angular/core/src/render3/instructions';
 
 @Injectable()
 export class OrdersService {
@@ -41,11 +42,19 @@ export class OrdersService {
             });
     }
 
-    public fetchDeliveries(needle: string = ''): Observable<any> {
+    public fetchDeliveries(needle: string = '', isCreatingDispatch: boolean = false, dispatchId: number = null): Observable<any> {
         let params: HttpParams = new HttpParams();
 
         if (needle && needle.length > 0) {
             params = params.append('needle', needle);
+        }
+
+        if (isCreatingDispatch) {
+            params = params.append('isCreatingDispatch', isCreatingDispatch.toString());
+        }
+
+        if (dispatchId) {
+            params = params.append('dispatchId', dispatchId.toString());
         }
 
         return this.http.get<any>(routes.deliveries.fetchAll, {params: params})
@@ -58,10 +67,14 @@ export class OrdersService {
             });
     }
 
-    public getDeliveryState(orderId: number): Observable<any> {
+    public getDeliveryState(orderId: number, dispatchId: number = null): Observable<any> {
         let params: HttpParams = new HttpParams();
 
         params = params.append('orderId', orderId.toString());
+
+        if (dispatchId) {
+            params = params.append('dispatchId', dispatchId.toString());
+        }
 
         return this.http.get<any>(routes.deliveries.getDeliveryState, {params: params})
             .map(data => {

@@ -5,7 +5,7 @@ export class DispatchSet {
     public positions: OrderPosition[];
 
 
-    constructor(delivery: any, positions: OrderPosition[]) {
+    constructor(delivery: any= null, positions: OrderPosition[] = null) {
         this.delivery = delivery;
         this.positions = positions;
     }

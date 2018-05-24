@@ -9,6 +9,7 @@ import { ModalHelperService } from '../../modals/modal-helper.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DispatchInfoModalComponent} from '../../modals/dispatch-info-modal/dispatch-info-modal.component';
 import {CreateDispatchModalComponent} from '../../modals/create-dispatch-modal/create-dispatch-modal.component';
+import {EditDispatchModalComponent} from '../../modals/edit-dispatch-modal/edit-dispatch-modal.component';
 
 @Component({
     selector: 'app-dispatches',
@@ -80,11 +81,16 @@ export class DispatchesComponent implements OnInit {
         modalRef.result
             .then(() => {
                this.handleDispatches(this.page, this.needle.value);
-            });
+            }, () => {});
     }
 
     public showEditDispatchModal(dispatch: any): void {
+        const modalRef = this.modalService.open(EditDispatchModalComponent, {
+            size: 'lg',
+            keyboard: false
+        });
 
+        modalRef.componentInstance.dispatchBase = dispatch;
     }
 
     private handleDispatches(page: number = 1, needle: string = ''): void {

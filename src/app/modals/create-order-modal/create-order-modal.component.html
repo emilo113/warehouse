@@ -12,8 +12,8 @@
 		<form class="form-default">
 
 			<div class="form-label-group">
-				<input type="text" id="containerId" class="form-control" placeholder="Container ID" name="containerId" [(ngModel)]="orderData.container_Id" required>
-				<label for="containerId">Container ID</label>
+				<input type="text" id="containerId" class="form-control" placeholder="ID kontenera" name="containerId" [(ngModel)]="orderData.container_Id" required>
+				<label for="containerId">ID kontenera</label>
 			</div>
 
 			<div class="form-label-group">
@@ -22,8 +22,8 @@
 			</div>
 
 			<div class="form-label-group">
-				<input type="text" id="pickupPin" class="form-control" placeholder="Pickup PIN" name="pickupPin" [(ngModel)]="orderData.pickup_PIN" required>
-				<label for="pickupPin">Pickup PIN</label>
+				<input type="text" id="pickupPin" class="form-control" placeholder="PIN odbioru" name="pickupPin" [(ngModel)]="orderData.pickup_PIN" required>
+				<label for="pickupPin">PIN odbioru</label>
 			</div>
 
 			<div class="form-label-group">
@@ -32,35 +32,35 @@
 			</div>
 
 			<div class="form-label-group" *ngIf="isEditing">
-				<input type="text" id="orderNumber" class="form-control" placeholder="Order Number" name="orderNumber" [(ngModel)]="orderData.order_Number" required>
-				<label for="orderNumber">Order Number</label>
+				<input type="text" id="orderNumber" class="form-control" placeholder="Numer zamówienia" name="orderNumber" [(ngModel)]="orderData.order_Number" required>
+				<label for="orderNumber">Numer zamówienia</label>
 			</div>
 
 			<div class="form-label-group" *ngIf="isEditing">
-				<input type="date" id="creationDate" class="form-control" placeholder="Creation Date" name="creationDate" [(ngModel)]="orderData.creation_Date" required>
-				<label for="creationDate">Creation Date</label>
+				<input type="date" id="creationDate" class="form-control" placeholder="Data utworzenia" name="creationDate" [(ngModel)]="orderData.creation_Date" required>
+				<label for="creationDate">Data utworzenia</label>
 			</div>
 
 			<div class="form-group form-check">
 				<input type="checkbox" id="otherOrderer" class="form-check-input" (change)="ordererChange()" [checked]="otherOrderer" [disabled]="!isUserData">
-				<label class="form-check-label" for="otherOrderer">Do you want to create this order in the name of someone else?</label>
+				<label class="form-check-label" for="otherOrderer">Czy chcesz utworzyć zamówienie w imieniu kogoś innego?</label>
 			</div>
 
 			<div *ngIf="otherOrderer">
 
 				<div class="form-label-group">
-					<input type="text" id="name" class="form-control" name="name" [(ngModel)]="orderData.name" placeholder="Name">
-					<label for="name">Name</label>
+					<input type="text" id="name" class="form-control" name="name" [(ngModel)]="orderData.name" placeholder="Nazwa">
+					<label for="name">Nazwa</label>
 				</div>
 
 				<div class="form-label-group">
-					<input type="text" id="email" class="form-control" name="email" [(ngModel)]="orderData.email" placeholder="Email">
+					<input type="text" id="email" class="form-control" name="email" [(ngModel)]="orderData.email" placeholder="E-mail">
 					<label for="email">E-mail</label>
 				</div>
 
 				<div class="form-label-group">
-					<input type="text" id="address" class="form-control" name="address" [(ngModel)]="orderData.address" placeholder="Address">
-					<label for="address">Address</label>
+					<input type="text" id="address" class="form-control" name="address" [(ngModel)]="orderData.address" placeholder="Adres">
+					<label for="address">Adres</label>
 				</div>
 
 				<div class="form-label-group">
@@ -70,32 +70,32 @@
 
 			</div>
 
-			<p class="h5 mb-3">Order positions:</p>
+			<p class="h5 mb-3">Zamawiane pozycje:</p>
 
 			<div class="order-positions">
 
 				<div class="group-inline first-half-width" *ngFor="let position of orderData.orderPositions; let i = index; let last = last">
 					<div class="form-label-group">
-						<input type="text" class="form-control" id="positionName-{{i}}" name="positionName-{{i}}" placeholder="Name" [(ngModel)]="position.name">
-						<label for="positionName-{{i}}">Name</label>
+						<input type="text" class="form-control" id="positionName-{{i}}" name="positionName-{{i}}" placeholder="Nazwa" [(ngModel)]="position.name">
+						<label for="positionName-{{i}}">Nazwa</label>
 					</div>
 					<div class="form-label-group">
-						<input type="number" class="form-control" id="positionWeight-{{i}}" name="positionWeight-{{i}}" placeholder="Weight" [(ngModel)]="position.weight_Gross">
-						<label for="positionWeight-{{i}}">Weight</label>
+						<input type="number" class="form-control" id="positionWeight-{{i}}" name="positionWeight-{{i}}" placeholder="Waga" [(ngModel)]="position.weight_Gross">
+						<label for="positionWeight-{{i}}">Waga</label>
 					</div>
 					<div class="form-label-group">
-						<input type="number" class="form-control" id="positionAmount-{{i}}" name="positionAmount-{{i}}" placeholder="Amount" [(ngModel)]="position.amount">
-						<label for="positionAmount-{{i}}">Amount</label>
+						<input type="number" class="form-control" id="positionAmount-{{i}}" name="positionAmount-{{i}}" placeholder="Liczba" [(ngModel)]="position.amount">
+						<label for="positionAmount-{{i}}">Liczba</label>
 					</div>
 
-					<a href="#" class="table-link remove-position" *ngIf="orderData.orderPositions.length > 1" (click)="removeOrderPosition($event, i)" ngbTooltip="Remove position">
+					<a href="#" class="table-link remove-position" *ngIf="orderData.orderPositions.length > 1" (click)="removeOrderPosition($event, i)" ngbTooltip="Usuń pozycję">
 						<span class="fa-stack">
 							<i class="fa fa-square fa-stack-2x"></i>
 							<i class="fa fa-minus fa-stack-1x fa-inverse"></i>
 						</span>
 					</a>
 
-					<a href="#" class="table-link add-position" *ngIf="orderData.isValidPositions() && last" (click)="addOrderPosition($event)" ngbTooltip="Add position">
+					<a href="#" class="table-link add-position" *ngIf="orderData.isValidPositions() && last" (click)="addOrderPosition($event)" ngbTooltip="Dodaj pozycję">
 						<span class="fa-stack">
 							<i class="fa fa-square fa-stack-2x"></i>
 							<i class="fa fa-plus fa-stack-1x fa-inverse"></i>

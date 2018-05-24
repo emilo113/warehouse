@@ -11,4 +11,11 @@ export class Receiver {
             this.receiver_Address && this.receiver_Email && this.receiver_VAT_Id && this.receiver_Name
         );
     }
+
+    public setData(receiverData: any): void {
+        this.receiver_Name = receiverData.receiver_Name;
+        this.receiver_Address = receiverData.receiver_Address;
+        this.receiver_VAT_Id = receiverData.receiver_VAT_Id;
+        this.receiver_Email = receiverData.receiver_Email;
+    }
 }

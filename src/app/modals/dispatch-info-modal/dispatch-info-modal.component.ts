@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AbstractModal } from '../abstract-modal';
 import { DispatchesService } from '../../services/dispatches.service';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
     selector: 'app-dispatch-info-modal',
@@ -31,6 +32,8 @@ export class DispatchInfoModalComponent extends AbstractModal implements OnInit 
             .subscribe(data => {
                 this.dispatchDetails = data;
                 this.hideLoader();
+            }, () => {
+                this.activeModal.dismiss();
             });
     }
 

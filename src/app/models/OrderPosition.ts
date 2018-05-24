@@ -24,4 +24,12 @@ export class OrderPosition {
             return;
         }
     }
+
+    public setData(positionData): void {
+        this.id = positionData.id;
+        this.name = positionData.name;
+        this.amount = positionData.amount;
+        this.weight_Gross = positionData.weight_Gross;
+        this.maxAmount = positionData.amount;
+    }
 }

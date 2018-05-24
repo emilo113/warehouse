@@ -29,8 +29,8 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
 
         this.deliveryData = new Delivery();
         this.transportTypes = transportTypes;
-        this.title = 'Creating delivery';
-        this.buttonValue = 'Create';
+        this.title = 'Tworzenie przyjęcia';
+        this.buttonValue = 'Utwórz';
     }
 
     ngOnInit() {
@@ -51,10 +51,10 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
 
                     this.hideLoader();
                 } else {
-                    this.alert.error('Something went wrong...', true);
-                    this.activeModal.close();
+                    this.alert.error('Coś poszło nie tak', true);
+                    this.activeModal.dismiss();
                 }
-            });
+            }, () => { this.activeModal.dismiss(); });
     }
 
     protected save() {
@@ -66,13 +66,13 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
         this.ordersService.createDelivery(deliveryData)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Error creating delivery, check typed data...', true);
+                    this.alert.error('Wystąpił błąd podczas tworzenia przyjęcia, sprawdź wprowadzone dane', true);
                     this.hideLoader();
                 } else {
-                    this.alert.success('Delivery has been created...', true);
+                    this.alert.success('Przyjęcie zostało utworzone pomyślnie', true);
                     this.hideLoader();
                     this.activeModal.close();
                 }
-            });
+            }, () => { this.hideLoader(); });
     }
 }

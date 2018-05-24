@@ -2,14 +2,14 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="main-box">
-				<button class="btn" (click)="openCreateOrderModal()">Add order</button>
+				<button class="btn" (click)="openCreateOrderModal()">Stwórz zamówienie</button>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="main-box text-right">
-				Orders count: <b>{{ ordersService.count }}</b>
+				Liczba zamówień: <b>{{ ordersService.count }}</b>
 			</div>
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 				<div class="form-default">
 					<div class="form-label-group">
 						<input type="text" id="needle" name="needle" [formControl]="needle" class="form-control" placeholder="Search...">
-						<label for="needle">Search...</label>
+						<label for="needle">Wyszukaj...</label>
 					</div>
 				</div>
 			</div>
@@ -33,10 +33,10 @@
 						<table class="table user-list">
 							<thead>
 							<tr>
-								<th *ngIf="userService.isLevelAdmin()">User Name</th>
+								<th *ngIf="userService.isLevelAdmin()">Nazwa użytkownika</th>
 								<th>ATB</th>
 								<th>Container Id</th>
-								<th>Created</th>
+								<th>Utworzone</th>
 								<th>Status</th>
 								<th>&nbsp;</th>
 							</tr>
@@ -49,19 +49,19 @@
 								<td>{{ order.creation_Date | empty: '-' }}</td>
 								<td>
 									<b class="status-{{ order.status }}">{{ getStatusName(order.status) }}</b>
-									<a class="table-link" (click)="showCreateDeliveryModal(order)" *ngIf="userService.isLevelAdmin() && !isDelivered(order)" ngbTooltip="Generate delivery">
+									<a class="table-link" (click)="showCreateDeliveryModal(order)" *ngIf="userService.isLevelAdmin() && !isDelivered(order)" ngbTooltip="Utwórz przyjęcie">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-hand-paper-o fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" (click)="showEditDeliveryModal(order)" *ngIf="userService.isLevelAdmin() && isDelivered(order) && !order.isDispatched" ngbTooltip="Edit delivery">
+									<a class="table-link" (click)="showEditDeliveryModal(order)" *ngIf="userService.isLevelAdmin() && isDelivered(order) && !order.isDispatched" ngbTooltip="Edytuj przyjęcie">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link danger" (click)="removeDelivery(order)" *ngIf="userService.isLevelAdmin() && isDelivered(order) && !order.isDispatched" ngbTooltip="Remove delivery">
+									<a class="table-link danger" (click)="removeDelivery(order)" *ngIf="userService.isLevelAdmin() && isDelivered(order) && !order.isDispatched" ngbTooltip="Usuń przyjęcie">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
@@ -69,31 +69,31 @@
 									</a>
 								</td>
 								<td style="width: 20%;">
-									<a class="table-link" (click)="showOrderInfo(order)" ngbTooltip="Order informations">
+									<a class="table-link" (click)="showOrderInfo(order)" ngbTooltip="Informacje o zamówieniu">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-info fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" *ngIf="isDelivered(order)" (click)="showDeliveryInfo(order)" ngbTooltip="Delivery informations">
+									<a class="table-link" *ngIf="isDelivered(order)" (click)="showDeliveryInfo(order)" ngbTooltip="Informacje o przyjęciu">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-arrow-down fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" (click)="showDispatchesInfo(order)" *ngIf="order.isDispatched && userService.isLevelAdmin()" ngbTooltip="Dispatches informations">
+									<a class="table-link" (click)="showDispatchesInfo(order)" *ngIf="order.isDispatched && userService.isLevelAdmin()" ngbTooltip="Informacje o wydaniu">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-arrow-up fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" *ngIf="userService.isHeadAdmin()" (click)="showEditOrderModal(order)" ngbTooltip="Edit order">
+									<a class="table-link" *ngIf="userService.isHeadAdmin()" (click)="showEditOrderModal(order)" ngbTooltip="Edytuj zamówienia">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link danger" *ngIf="userService.isHeadAdmin()" (click)="removeOrder(order)" ngbTooltip="Remove order">
+									<a class="table-link danger" *ngIf="userService.isHeadAdmin()" (click)="removeOrder(order)" ngbTooltip="Usuń zamówienie">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

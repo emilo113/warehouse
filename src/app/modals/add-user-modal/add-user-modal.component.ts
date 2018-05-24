@@ -16,8 +16,8 @@ export class AddUserModalComponent implements OnInit {
 
     public userData: User = new User();
     public userTypes = UserType;
-    public title: string = 'Adding user...';
-    public buttonValue: string = 'Add user';
+    public title: string = 'Tworzenie użytkownika';
+    public buttonValue: string = 'Utwórz';
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -31,8 +31,8 @@ export class AddUserModalComponent implements OnInit {
 
     public close() {
         this.modalHelper.openConfirmModal({
-            title: 'Are you sure',
-            text: 'Are you sure you want to dismiss your changes?',
+            title: 'Jesteś pewien?',
+            text: 'Czy na pewno chcesz porzucić wprowadzone zmiany?',
             icon: 'fa fa-warning'
         })
             .then(() => {
@@ -67,14 +67,13 @@ export class AddUserModalComponent implements OnInit {
         this.usersService.register(data)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Something went wrong...');
+                    this.alert.error('Coś poszło nie tak');
                 } else {
-                    this.alert.success('User added successfully!');
+                    this.alert.success('Użytkownik został utworzony pomyślnie');
                 }
 
                 this.activeModal.close();
             }, () => {
-                this.alert.error('Something went wrong...');
                 this.loader.hide();
             });
 
