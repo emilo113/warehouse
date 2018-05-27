@@ -20,6 +20,8 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
     public buttonValue: string;
     public transportTypes: any;
 
+    public isATBRequired: boolean;
+
     constructor(
         public activeModal: NgbActiveModal,
         protected ordersService: OrdersService,
@@ -34,12 +36,13 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
     }
 
     ngOnInit() {
+        this.isATBRequired = !Boolean(this.order.atb);
         this.showLoader();
         this.fetchOrderInfo();
     }
 
     public isValidData(): boolean {
-        return this.deliveryData.isValidData();
+        return this.deliveryData.isValidData(this.isATBRequired);
     }
 
     private fetchOrderInfo(): void {

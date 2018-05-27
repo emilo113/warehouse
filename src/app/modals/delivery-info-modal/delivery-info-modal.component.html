@@ -3,7 +3,7 @@
 <div class="modalWrapper" *ngIf="!loading">
 
   <div class="modal-header">
-    <h4 class="modal-title">Delivery details</h4>
+    <h4 class="modal-title">Szczegóły przyjęcia</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -12,27 +12,28 @@
   <div class="modal-body">
 
     <ngb-accordion activeIds="details">
-      <ngb-panel id="details" title="Delivery details">
+      <ngb-panel id="details" title="Szczegóły przyjęcia">
         <ng-template ngbPanelContent>
 
           <ul class="simple-list">
             <li>ID: <span class="float-right">{{ deliveryDetails.id }}</span></li>
-            <li>Delivery number: <span class="float-right">{{ deliveryDetails.delivery_Number | empty: '-'  }}</span></li>
-            <li>Delivery date: <span class="float-right">{{ deliveryDetails.date_Of_Delivery | empty: '-'  }}</span></li>
-            <li>Transport type: <span class="float-right">{{ deliveryDetails.transport_Type | empty: '-'  }}</span></li>
+            <li>Numer przyjęcia: <span class="float-right">{{ deliveryDetails.delivery_Number | empty: '-'  }}</span></li>
+            <li>Data przyjęcia: <span class="float-right">{{ deliveryDetails.date_Of_Delivery | empty: '-'  }}</span></li>
+            <li>Typ transportu: <span class="float-right">{{ deliveryDetails.transport_Type | empty: '-'  }}</span></li>
+            <li>ID pojazdu: <span class="float-right">{{ deliveryDetails.car_Id | empty: '-'  }}</span></li>
           </ul>
 
         </ng-template>
       </ngb-panel>
-      <ngb-panel id="positions" title="Delivery positions">
+      <ngb-panel id="positions" title="Przyjęte pozycje">
         <ng-template ngbPanelContent>
 
           <table class="table table-sm">
             <thead>
             <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Weight [kg]<br>(Ordered)</th>
-              <th scope="col">Amount [szt.]<br>(Ordered)</th>
+              <th scope="col">Nazwa</th>
+              <th scope="col">Waga [kg]<br>(Zamówione)</th>
+              <th scope="col">Liczba [szt.]<br>(Zamówione)</th>
             </tr>
             </thead>
             <tbody>

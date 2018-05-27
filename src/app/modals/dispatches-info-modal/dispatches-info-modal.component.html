@@ -3,7 +3,7 @@
 <div class="modalWrapper" *ngIf="!loading">
 
 	<div class="modal-header">
-		<h4 class="modal-title">Dispatches Info</h4>
+		<h4 class="modal-title">Szczegóły wydań</h4>
 		<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -16,60 +16,60 @@
 			<ngb-panel *ngFor="let dispatch of dispatchesDetails; let i = index" id="dispatch-{{i}}">
 
 				<ng-template ngbPanelTitle>
-					Carrier: <b>{{ dispatch.carrier.carrier_Name | empty: '-' }}</b> | Date: <b>{{ dispatch.creation_Date | empty: '-' }}</b>
+					Przewoźnik: <b>{{ dispatch.carrier.carrier_Name | empty: '-' }}</b> | Data: <b>{{ dispatch.creation_Date | empty: '-' }}</b>
 				</ng-template>
 
 				<ng-template ngbPanelContent>
 
 					<ngb-tabset justify="justified">
 
-						<ngb-tab title="Details">
+						<ngb-tab title="Szczegóły">
 							<ng-template ngbTabContent>
 
 								<ul class="simple-list mt-2">
 									<li>ID: <span class="float-right">{{ dispatch.id }}</span></li>
-									<li>Car ID: <span class="float-right">{{ dispatch.car_Id | empty: '-'  }}</span></li>
-									<li>Dispatch Number: <span class="float-right">{{ dispatch.dispatch_Number | empty: '-'  }}</span></li>
-									<li>Creation Date: <span class="float-right">{{ dispatch.creation_Date | empty: '-'  }}</span></li>
+									<li>ID pojazdu: <span class="float-right">{{ dispatch.car_Id | empty: '-'  }}</span></li>
+									<li>Numer wydania: <span class="float-right">{{ dispatch.dispatch_Number | empty: '-'  }}</span></li>
+									<li>Data utworzenia: <span class="float-right">{{ dispatch.creation_Date | empty: '-'  }}</span></li>
 								</ul>
 
 							</ng-template>
 						</ngb-tab>
-						<ngb-tab title="Carrier">
+						<ngb-tab title="Przewoźnik">
 							<ng-template ngbTabContent>
 
 								<ul class="simple-list mt-2">
-									<li>Name: <span class="float-right">{{ dispatch.carrier.carrier_Name }}</span></li>
-									<li>Address: <span class="float-right">{{ dispatch.carrier.carrier_Address | empty: '-'  }}</span></li>
-									<li>Email: <span class="float-right">{{ dispatch.carrier.carrier_Email | empty: '-'  }}</span></li>
-									<li>VAT ID: <span class="float-right">{{ dispatch.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
+									<li>Nazwa przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_Name }}</span></li>
+									<li>Adres przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_Address | empty: '-'  }}</span></li>
+									<li>E-mail przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_Email | empty: '-'  }}</span></li>
+									<li>VAT ID przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
 								</ul>
 
 							</ng-template>
 						</ngb-tab>
-						<ngb-tab title="Receiver">
+						<ngb-tab title="Odbiorca">
 							<ng-template ngbTabContent>
 
 								<ul class="simple-list mt-2">
-									<li>Name: <span class="float-right">{{ dispatch.receiver.receiver_Name }}</span></li>
-									<li>Address: <span class="float-right">{{ dispatch.receiver.receiver_Address | empty: '-'  }}</span></li>
-									<li>Email: <span class="float-right">{{ dispatch.receiver.receiver_Email | empty: '-'  }}</span></li>
-									<li>VAT ID: <span class="float-right">{{ dispatch.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
+									<li>Nazwa odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_Name }}</span></li>
+									<li>Adres odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_Address | empty: '-'  }}</span></li>
+									<li>E-mail odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_Email | empty: '-'  }}</span></li>
+									<li>VAT ID odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
 								</ul>
 
 							</ng-template>
 						</ngb-tab>
-						<ngb-tab title="Positions">
+						<ngb-tab title="Pozycje">
 							<ng-template ngbTabContent>
 
 								<table class="table table-sm mt-2">
 									<thead>
 										<tr>
-											<th class="border-top-0" scope="col">Name</th>
-											<th class="border-top-0" scope="col">Amount [szt.]<br>Weight [kg]</th>
-											<th class="border-top-0" scope="col">Dispatched</th>
-											<th class="border-top-0" scope="col">Before dispatch</th>
-											<th class="border-top-0" scope="col">After dispatch</th>
+											<th class="border-top-0" scope="col">Nazwa</th>
+											<th class="border-top-0" scope="col">Liczba [szt.]<br>Waga [kg]</th>
+											<th class="border-top-0" scope="col">Wydano</th>
+											<th class="border-top-0" scope="col">Przed wydaniem</th>
+											<th class="border-top-0" scope="col">Po wydaniu</th>
 										</tr>
 									</thead>
 									<tbody>

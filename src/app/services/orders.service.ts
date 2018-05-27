@@ -185,5 +185,15 @@ export class OrdersService {
             });
     }
 
+    // public getDifferenceReport(order: any): Observable<any> {
+    //     return this.http.get<any>(routes.deliveries.remove, {params: params})
+    //         .map(data => {
+    //             if (data && data.status) {
+    //                 return true;
+    //             }
+    //
+    //             return false;
+    //         });
+    // }
 
 }

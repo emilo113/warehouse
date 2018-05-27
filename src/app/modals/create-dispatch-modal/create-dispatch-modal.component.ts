@@ -84,16 +84,29 @@ export class CreateDispatchModalComponent extends AbstractModal implements OnIni
 
         modalRef.result
             .then(result => {
-                const set = new DispatchSet(event.item, result);
-                this.dispatchSets.push(set);
-                this.activeIds.push(event.item.atb);
-
-                this.dispatch.dispatchPositions = this.dispatch.dispatchPositions.concat(result);
+                this.addDispatchSet(event.item, result);
             }, () => { });
     }
 
     protected passPropertiesToDeliveryPositionsModal(event: any, modalRef: NgbModalRef): void {
         modalRef.componentInstance.delivery = event.item;
+    }
+
+    private addDispatchSet(delivery: any, positions: OrderPosition[]): void {
+        const set = new DispatchSet(delivery, positions);
+
+        const setKey = this.dispatchSets.findIndex( setData => {
+            return Number(setData.delivery.id) === Number(delivery.id);
+        });
+
+        if (setKey !== -1) {
+            this.dispatchSets[setKey] = set;
+            this.dispatch.replacePositions(positions);
+        } else {
+            this.dispatchSets.push(set);
+            this.dispatch.addPositions(positions);
+            this.activeIds.push(delivery.atb);
+        }
     }
 
     public onCmrChange(): void {
@@ -107,11 +120,7 @@ export class CreateDispatchModalComponent extends AbstractModal implements OnIni
     public removeDispatchPosition($event: Event, position: OrderPosition, dispatchSetIndex: number, positionIndex: number): void {
         $event.preventDefault();
 
-        const positionKey = this.dispatch.dispatchPositions.findIndex(item => {
-            return Number(item.id) === Number(position.id);
-        });
-
-        this.dispatch.dispatchPositions.splice(positionKey, 1);
+        this.dispatch.removePosition(position);
 
         if (this.dispatchSets[dispatchSetIndex].positions.length === 1) {
             this.dispatchSets.splice(dispatchSetIndex, 1);

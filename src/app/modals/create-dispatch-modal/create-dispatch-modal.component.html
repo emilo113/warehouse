@@ -34,6 +34,11 @@
 						<label for="dispatchNumber">Numer wydania</label>
 					</div>
 
+					<div class="form-label-group" *ngIf="isEditing">
+						<input type="date" id="creationDate" class="form-control" placeholder="Data utworzenia" name="creationDate" [(ngModel)]="dispatch.creation_Date" required>
+						<label for="creationDate">Data utworzenia</label>
+					</div>
+
 					<p class="h5 mb-3">Przewoźnik:</p>
 
 					<div class="form-label-group">
@@ -52,6 +57,12 @@
 						<input type="text" id="carrierEmail" class="form-control" placeholder="E-mail przewoźnika"
 							   name="carrierEmail" [(ngModel)]="dispatch.carrier.carrier_Email" required>
 						<label for="carrierEmail">E-mail przewoźnika</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierPhoneNumber" class="form-control" placeholder="Telefon przewoźnika"
+							   name="carrierPhoneNumber" [(ngModel)]="dispatch.carrier.carrier_PhoneNumber" required>
+						<label for="carrierPhoneNumber">Telefon przewoźnika</label>
 					</div>
 
 					<div class="form-label-group">
@@ -78,6 +89,12 @@
 						<input type="text" id="receiverEmail" class="form-control" placeholder="E-mail odbiorcy"
 							   name="receiverEmail" [(ngModel)]="dispatch.receiver.receiver_Email" required>
 						<label for="receiverEmail">E-mail odbiorcy</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverPhoneNumber" class="form-control" placeholder="Telefon odbiorcy"
+							   name="receiverPhoneNumber" [(ngModel)]="dispatch.receiver.receiver_PhoneNumber" required>
+						<label for="receiverPhoneNumber">Telefon odbiorcy</label>
 					</div>
 
 					<div class="form-label-group">
@@ -178,11 +195,6 @@
 											<label for="positionName-{{i}}{{j}}">Nazwa</label>
 										</div>
 
-										<div class="form-label-group">
-											<input type="number" class="form-control" id="positionWeight-{{i}}{{j}}" name="positionWeight-{{i}}{{j}}"
-												   placeholder="Weight" [(ngModel)]="position.weight_Gross" disabled>
-											<label for="positionWeight-{{i}}{{j}}">Waga</label>
-										</div>
 										<div class="form-label-group">
 											<input type="number" class="form-control" id="positionAmount-{{i}}{{j}}" name="positionAmount-{{i}}{{j}}"
 												   placeholder="Amount" [(ngModel)]="position.amount" disabled>

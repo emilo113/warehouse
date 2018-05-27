@@ -6,6 +6,7 @@ export class Order {
     public container_Id: string;
     public atb: string;
     public pickup_PIN: string;
+    public terminal: string;
     public name: string;
     public address: string;
     public vaT_Id: string;
@@ -30,8 +31,8 @@ export class Order {
 
     public isValidData(): boolean {
         return this.container_Id &&
-            this.atb &&
             this.pickup_PIN &&
+            this.terminal &&
             this.eta &&
             this.isValidOrderer() &&
             this.isValidPositions();
@@ -75,6 +76,7 @@ export class Order {
         this.address = order.orderer.address;
         this.email = order.orderer.email;
         this.vaT_Id = order.orderer.vaT_Id;
+        this.terminal = order.terminal;
         this.creation_Date = date[2] + '-' + date[1] + '-' + date[0];
         this.eta = eta[2] + '-' + eta[1] + '-' + eta[0];
         this.order_Number = order.order_Number;

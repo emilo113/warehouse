@@ -6,37 +6,57 @@ export class User {
     Password: string;
     Password2: string;
     Role: number = UserType.Client;
+    UserName: string;
+    UserSurname: string;
+    PhoneNumber: string;
     Name: string;
     Address: string;
     VAT_Id: string;
     Email: string;
 
     public isValidData(): boolean {
-        return this.isValidLogin() && this.isValidPassword() && this.isValidRole();
+        return this.UserName && this.UserSurname && this.isValidLogin() && this.isValidPassword() && this.isValidRole();
     }
 
     public isValidDataWhileEditing(): boolean {
-        return this.isValidLogin() && this.isValidPasswordWhileEditing() && this.isValidRole();
+        return this.UserName && this.UserSurname && this.isValidLogin() && this.isValidPasswordWhileEditing() && this.isValidRole();
     }
 
     public getUserData(): object {
-        return {
-            Login: this.Login,
-            Password: this.Password,
-            Role: this.Role
-        };
-    }
-
-    public getClientData(): object {
-        return {
+        const data: any = {
             Login: this.Login,
             Password: this.Password,
             Role: this.Role,
+            UserName: this.UserName,
+            UserSurname: this.UserSurname
+        };
+
+        if (this.Id) {
+            data.Id = this.Id;
+        }
+
+        return data;
+    }
+
+    public getClientData(): object {
+        const data: any = {
+            Login: this.Login,
+            Password: this.Password,
+            Role: this.Role,
+            UserName: this.UserName,
+            UserSurname: this.UserSurname,
             Name: this.Name,
             Address: this.Address,
             VAT_Id: this.VAT_Id,
-            Email: this.Email
+            Email: this.Email,
+            PhoneNumber: this.PhoneNumber
         };
+
+        if (this.Id) {
+            data.Id = this.Id;
+        }
+
+        return data;
     }
 
     public onRoleChanged(): void {
@@ -56,6 +76,9 @@ export class User {
         this.Address = userData.address;
         this.VAT_Id = userData.vaT_Id;
         this.Email = userData.email;
+        this.UserName = userData.userName;
+        this.UserSurname = userData.userSurname;
+        this.PhoneNumber = userData.phoneNumber;
     }
 
     public isClient(): boolean {

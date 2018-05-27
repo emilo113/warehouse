@@ -9,8 +9,8 @@ import { AddUserModalComponent } from '../add-user-modal/add-user-modal.componen
 export class EditUserModalComponent extends AddUserModalComponent implements OnInit {
     @Input() user;
 
-    public title: string = 'Editing user...';
-    public buttonValue: string = 'Save';
+    public title: string = 'Edycja użytkownika';
+    public buttonValue: string = 'Zapisz';
 
     ngOnInit() {
         this.userData.setDataFromUser(this.user);
@@ -25,16 +25,13 @@ export class EditUserModalComponent extends AddUserModalComponent implements OnI
         this.usersService.edit(data)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Something went wrong...');
+                    this.alert.error('Coś poszło nie tak');
                 } else {
-                    this.alert.success('User edited successfully!');
+                    this.alert.success('Użytkownik został zapisany pomyślnie');
                 }
 
                 this.activeModal.close();
-            }, () => {
-                this.alert.error('Something went wrong...');
-                this.loader.hide();
-            });
+            }, () => { this.loader.hide(); });
 
     }
 }

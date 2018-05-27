@@ -18,6 +18,16 @@
 				<label for="transportType">Typ transportu</label>
 			</div>
 
+			<div class="form-label-group">
+				<input type="text" id="carId" class="form-control" placeholder="ID pojazdu" name="carId" [(ngModel)]="deliveryData.car_Id" required>
+				<label for="carId">ID pojazdu</label>
+			</div>
+
+			<div class="form-label-group" *ngIf="isATBRequired">
+				<input type="text" id="atb" class="form-control" placeholder="ATB" name="atb" [(ngModel)]="deliveryData.atb" required>
+				<label for="atb">ATB</label>
+			</div>
+
 			<div class="form-label-group" *ngIf="isEditing">
 				<input type="text" id="deliveryNumber" class="form-control" placeholder="Numer przyjęcia" name="deliveryNumber" [(ngModel)]="deliveryData.delivery_Number" required>
 				<label for="deliveryNumber">Numer przyjęcia</label>
@@ -38,11 +48,6 @@
 						<input type="text" class="form-control" id="positionName-{{i}}" name="positionName-{{i}}"
 							   placeholder="Nazwa" [ngModel]="position.name" disabled>
 						<label for="positionName-{{i}}">Nazwa</label>
-					</div>
-					<div class="form-label-group">
-						<input type="number" class="form-control" id="positionWeight-{{i}}" name="positionWeight-{{i}}"
-							   placeholder="Waga" [(ngModel)]="position.weight_Gross">
-						<label for="positionWeight-{{i}}">Waga</label>
 					</div>
 					<div class="form-label-group">
 						<input type="number" class="form-control" id="positionAmount-{{i}}" name="positionAmount-{{i}}"

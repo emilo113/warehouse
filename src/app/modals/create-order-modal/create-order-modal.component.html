@@ -17,7 +17,7 @@
 			</div>
 
 			<div class="form-label-group">
-				<input type="text" id="atb" class="form-control" placeholder="ATB" name="atb" [(ngModel)]="orderData.atb" required>
+				<input type="text" id="atb" class="form-control" placeholder="ATB" name="atb" [(ngModel)]="orderData.atb">
 				<label for="atb">ATB</label>
 			</div>
 
@@ -27,13 +27,18 @@
 			</div>
 
 			<div class="form-label-group">
+				<input type="text" id="terminal" class="form-control" placeholder="Terminal" name="terminal" [(ngModel)]="orderData.terminal" required>
+				<label for="terminal">Terminal</label>
+			</div>
+
+			<div class="form-label-group">
 				<input type="date" id="eta" class="form-control" placeholder="ETA" name="eta" [(ngModel)]="orderData.eta" required>
 				<label for="eta">ETA</label>
 			</div>
 
 			<div class="form-label-group" *ngIf="isEditing">
-				<input type="text" id="orderNumber" class="form-control" placeholder="Numer zamówienia" name="orderNumber" [(ngModel)]="orderData.order_Number" required>
-				<label for="orderNumber">Numer zamówienia</label>
+				<input type="text" id="orderNumber" class="form-control" placeholder="Numer zlecenia" name="orderNumber" [(ngModel)]="orderData.order_Number" required>
+				<label for="orderNumber">Numer zlecenia</label>
 			</div>
 
 			<div class="form-label-group" *ngIf="isEditing">
@@ -43,7 +48,7 @@
 
 			<div class="form-group form-check">
 				<input type="checkbox" id="otherOrderer" class="form-check-input" (change)="ordererChange()" [checked]="otherOrderer" [disabled]="!isUserData">
-				<label class="form-check-label" for="otherOrderer">Czy chcesz utworzyć zamówienie w imieniu kogoś innego?</label>
+				<label class="form-check-label" for="otherOrderer">Czy chcesz utworzyć zlecenie w imieniu kogoś innego?</label>
 			</div>
 
 			<div *ngIf="otherOrderer">

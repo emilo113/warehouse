@@ -3,7 +3,7 @@
 <div class="modalWrapper" *ngIf="!loading">
 
 	<div class="modal-header">
-		<h4 class="modal-title">Order details</h4>
+		<h4 class="modal-title">Szczegóły zlecenia</h4>
 		<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -12,43 +12,44 @@
 	<div class="modal-body">
 
 		<ngb-accordion activeIds="details">
-			<ngb-panel id="details" title="Order details">
+			<ngb-panel id="details" title="Szczegóły zlecenia">
 				<ng-template ngbPanelContent>
 
 					<ul class="simple-list">
 						<li>ID: <span class="float-right">{{ order.id }}</span></li>
-						<li>Container ID: <span class="float-right">{{ order.container_Id | empty: '-'  }}</span></li>
+						<li>ID kontenera: <span class="float-right">{{ order.container_Id | empty: '-'  }}</span></li>
 						<li>ATB: <span class="float-right">{{ order.atb | empty: '-'  }}</span></li>
-						<li>Created At: <span class="float-right">{{ order.creation_Date | empty: '-'  }}</span></li>
+						<li>Terminal: <span class="float-right">{{ order.terminal | empty: '-'  }}</span></li>
+						<li>Utworzone: <span class="float-right">{{ order.creation_Date | empty: '-'  }}</span></li>
 						<li>ETA: <span class="float-right">{{ orderDetails.eta | empty: '-'  }}</span></li>
-						<li>Order number: <span class="float-right">{{ orderDetails.order_Number | empty: '-'  }}</span></li>
-						<li>Pickup PIN: <span class="float-right">{{ orderDetails.pickup_PIN | empty: '-' }}</span></li>
-						<li>Number of positions: <span class="float-right">{{ orderDetails.num_of_Positions | empty: '-' }}</span></li>
+						<li>Numer zlecenia: <span class="float-right">{{ orderDetails.order_Number | empty: '-'  }}</span></li>
+						<li>PIN odbioru: <span class="float-right">{{ orderDetails.pickup_PIN | empty: '-' }}</span></li>
+						<li>Liczba pozycji: <span class="float-right">{{ orderDetails.num_of_Positions | empty: '-' }}</span></li>
 					</ul>
 
 				</ng-template>
 			</ngb-panel>
-			<ngb-panel id="orderer" title="Orderer">
+			<ngb-panel id="orderer" title="Zamawiający">
 				<ng-template ngbPanelContent>
 
 					<ul class="simple-list">
-						<li>Name: <span class="float-right">{{ orderDetails.orderer.name }}</span></li>
-						<li>E-mail: <span class="float-right">{{ orderDetails.orderer.email | empty: '-'  }}</span></li>
-						<li>Address: <span class="float-right">{{ orderDetails.orderer.address | empty: '-'  }}</span></li>
-						<li>VAT_ID: <span class="float-right">{{ orderDetails.orderer.vaT_Id | empty: '-'  }}</span></li>
+						<li>Nazwa zamawiającego: <span class="float-right">{{ orderDetails.orderer.name }}</span></li>
+						<li>Adres zamawiającego: <span class="float-right">{{ orderDetails.orderer.address | empty: '-'  }}</span></li>
+						<li>E-mail zamawiającego: <span class="float-right">{{ orderDetails.orderer.email | empty: '-'  }}</span></li>
+						<li>VAT_ID zamawiającego: <span class="float-right">{{ orderDetails.orderer.vaT_Id | empty: '-'  }}</span></li>
 					</ul>
 
 				</ng-template>
 			</ngb-panel>
-			<ngb-panel id="positions" title="Order positions">
+			<ngb-panel id="positions" title="Zamówione pozycje">
 				<ng-template ngbPanelContent>
 
 					<table class="table table-sm">
 						<thead>
 							<tr>
-								<th scope="col">Name</th>
-								<th scope="col">Weight [kg]</th>
-								<th scope="col">Amount [szt.]</th>
+								<th scope="col">Nazwa</th>
+								<th scope="col">Waga [kg]</th>
+								<th scope="col">Liczba [szt.]</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -20,6 +20,16 @@
 		</div>
 
 		<div class="form-label-group">
+			<input type="text" id="userName" class="form-control" placeholder="Imię" name="userName" [(ngModel)]="userData.UserName" required>
+			<label for="userName">Imię</label>
+		</div>
+
+		<div class="form-label-group">
+			<input type="text" id="userSurname" class="form-control" placeholder="Nazwisko" name="userSurname" [(ngModel)]="userData.UserSurname" required>
+			<label for="userSurname">Nazwisko</label>
+		</div>
+
+		<div class="form-label-group">
 			<input type="password" id="password" class="form-control" placeholder="Hasło" name="password" [(ngModel)]="userData.Password" required>
 			<label for="password">Hasło</label>
 		</div>
@@ -32,9 +42,9 @@
 		<div *ngIf="userData.isClient()">
 
 			<div class="form-label-group">
-				<input type="text" id="name" class="form-control" placeholder="Imię" [(ngModel)]="userData.Name"
+				<input type="text" id="name" class="form-control" placeholder="Nazwa" [(ngModel)]="userData.Name"
 					   name="name">
-				<label for="name">Imię</label>
+				<label for="name">Nazwa</label>
 			</div>
 
 			<div class="form-label-group">
@@ -47,6 +57,12 @@
 				<input type="text" id="address" class="form-control" placeholder="Adres"
 					   [(ngModel)]="userData.Address" name="address">
 				<label for="address">Adres</label>
+			</div>
+
+			<div class="form-label-group">
+				<input type="text" id="phone" class="form-control" placeholder="Telefon"
+					   [(ngModel)]="userData.PhoneNumber" name="phone">
+				<label for="phone">Telefon</label>
 			</div>
 
 			<div class="form-label-group">

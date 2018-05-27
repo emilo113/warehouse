@@ -9,8 +9,12 @@ export class OrderPosition {
         return this.name && Boolean(this.amount) && Boolean(this.weight_Gross);
     }
 
+    public isValidForDelivery(): boolean {
+        return this.name && Boolean(this.amount);
+    }
+
     public isValidForDispatch(): boolean {
-        return this.isValid() && this.amount > 0 && this.amount <= this.maxAmount;
+        return this.isValidForDelivery() && this.amount > 0 && this.amount <= this.maxAmount;
     }
 
     public checkMax(amount: number): void {
@@ -29,7 +33,10 @@ export class OrderPosition {
         this.id = positionData.id;
         this.name = positionData.name;
         this.amount = positionData.amount;
-        this.weight_Gross = positionData.weight_Gross;
         this.maxAmount = positionData.amount;
+
+        if (positionData.weight_Gross) {
+            this.weight_Gross = positionData.weight_Gross;
+        }
     }
 }

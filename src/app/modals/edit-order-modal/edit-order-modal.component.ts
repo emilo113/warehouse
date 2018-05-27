@@ -10,8 +10,8 @@ export class EditOrderModalComponent extends CreateOrderModalComponent implement
     @Input() order: any;
 
     public isEditing: boolean = true;
-    public title: string = 'Editing order...';
-    public buttonValue: string = 'Save';
+    public title: string = 'Edycja zlecenia';
+    public buttonValue: string = 'Zapisz';
 
     ngOnInit() {
         this.showLoader();
@@ -27,14 +27,14 @@ export class EditOrderModalComponent extends CreateOrderModalComponent implement
         this.ordersService.edit(orderData)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Error editing order, check typed data...', true);
+                    this.alert.error('Błąd podczas edycji zlecenia, sprawdź wprowadzone dane', true);
                     this.hideLoader();
                 } else {
-                    this.alert.success('Order has been edited...');
+                    this.alert.success('Zlecenie zostało zapisane pomyślnie');
                     this.hideLoader();
                     this.activeModal.close();
                 }
-            });
+            }, () => { this.hideLoader(); });
     }
 
     isValidData(): boolean {
@@ -53,9 +53,14 @@ export class EditOrderModalComponent extends CreateOrderModalComponent implement
     private fetchOrderData() {
         this.ordersService.fetchOrderDetails(this.order)
             .subscribe(orderData => {
-                const fullOrder = Object.assign({}, this.order, orderData);
-                this.orderData.setDataFromOrder(fullOrder);
-                this.hideLoader();
-            });
+                if (orderData instanceof Object) {
+                    const fullOrder = Object.assign({}, this.order, orderData);
+                    this.orderData.setDataFromOrder(fullOrder);
+                    this.hideLoader();
+                } else {
+                    this.alert.error('Coś poszło nie tak', true);
+                    this.activeModal.close();
+                }
+            }, () => { this.activeModal.close(); });
     }
 }

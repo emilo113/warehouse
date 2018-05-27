@@ -34,9 +34,9 @@ export class OrderInfoModalComponent extends AbstractModal implements OnInit {
                     this.orderDetails = data;
                     this.hideLoader();
                 } else {
-                    this.alert.error('Something went wrong...');
+                    this.alert.error('Coś poszło nie tak');
                     this.activeModal.close();
                 }
-            });
+            }, () => this.activeModal.close());
     }
 }

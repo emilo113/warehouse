@@ -34,6 +34,7 @@
 							<thead>
 							<tr>
 								<th><span>Użytkownik</span></th>
+								<th><span>Imię i nazwisko</span></th>
 								<th><span>Utworzony</span></th>
 								<th class="text-center"><span>Poziom</span></th>
 								<th><span>E-mail</span></th>
@@ -46,6 +47,7 @@
 									<span href="#" class="user-link">{{ user.login | empty: '-' }}</span>
 									<span class="user-subhead">{{ user.name | empty: '-' }}</span>
 								</td>
+								<td>{{ user.userName }} {{ user.userSurname }}</td>
 								<td>{{ user.created_At | empty: '-' }}</td>
 								<td class="text-center"><b class="role-{{ user.role }}">{{ getRoleName(user.role) }}</b></td>
 								<td>{{ user.email | empty: '-' }}</td>

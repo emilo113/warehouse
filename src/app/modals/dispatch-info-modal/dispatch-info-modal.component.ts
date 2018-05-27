@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AbstractModal } from '../abstract-modal';
 import { DispatchesService } from '../../services/dispatches.service';
-import {AlertService} from '../../services/alert.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
     selector: 'app-dispatch-info-modal',
@@ -17,7 +17,8 @@ export class DispatchInfoModalComponent extends AbstractModal implements OnInit 
 
     constructor(
         public activeModal: NgbActiveModal,
-        private dispatchesService: DispatchesService
+        private dispatchesService: DispatchesService,
+        private alert: AlertService
     ) {
         super(activeModal);
     }
@@ -30,11 +31,14 @@ export class DispatchInfoModalComponent extends AbstractModal implements OnInit 
     private fetchInfo(): void {
         this.dispatchesService.fetchDispatchDetails(this.dispatch)
             .subscribe(data => {
-                this.dispatchDetails = data;
-                this.hideLoader();
-            }, () => {
-                this.activeModal.dismiss();
-            });
+                if (data instanceof Object) {
+                    this.dispatchDetails = data;
+                    this.hideLoader();
+                } else {
+                    this.alert.error('Coś poszło nie tak');
+                    this.activeModal.close();
+                }
+            }, () => { this.activeModal.dismiss(); });
     }
 
 }

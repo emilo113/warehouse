@@ -3,8 +3,10 @@ import { transportTypes } from './enums/transport.types';
 
 export class Delivery {
     public id: number;
+    public atb: string;
     public order_Id: number;
     public transport_Type: number;
+    public car_Id: string;
     public delivery_Number: string;
     public date_Of_Delivery: any;
     public deliveryPositions: OrderPosition[];
@@ -23,10 +25,10 @@ export class Delivery {
 
             if (!editing) {
                 deliveryPosition.amount = position.amount;
-                deliveryPosition.weight_Gross = position.weight_Gross;
+                // deliveryPosition.weight_Gross = position.weight_Gross;
             } else {
                 deliveryPosition.amount = position.amount_Received;
-                deliveryPosition.weight_Gross = position.weight_Gross_Received;
+                // deliveryPosition.weight_Gross = position.weight_Gross_Received;
             }
 
 
@@ -34,19 +36,21 @@ export class Delivery {
         });
     }
 
-    public isValidData(): boolean {
-        return this.order_Id && this.transport_Type && this.isValidPositions();
+    public isValidData(isATBRequired: boolean = false): boolean {
+        const isValidATB = isATBRequired && this.atb || !isATBRequired;
+
+        return this.order_Id && this.transport_Type && this.car_Id && isValidATB && this.isValidPositions();
     }
 
     public isValidEditionData(): boolean {
-        return this.id && this.delivery_Number && this.date_Of_Delivery && this.transport_Type && this.isValidPositions();
+        return this.id && this.delivery_Number && this.date_Of_Delivery && this.car_Id && this.transport_Type && this.isValidPositions();
     }
 
     public isValidPositions(): boolean {
         let isValid = true;
 
         this.deliveryPositions.forEach( (orderPosition: OrderPosition) => {
-            if (!orderPosition.isValid()) {
+            if (!orderPosition.isValidForDelivery()) {
                 isValid = false;
                 return;
             }
@@ -72,6 +76,7 @@ export class Delivery {
         this.transport_Type = data.transport_Type;
         this.date_Of_Delivery = date[2] + '-' + date[1] + '-' + date[0];
         this.delivery_Number = data.delivery_Number;
+        this.car_Id = data.car_Id;
 
         this.setDeliveryPositions(data.listOfOrderPositions, true);
     }

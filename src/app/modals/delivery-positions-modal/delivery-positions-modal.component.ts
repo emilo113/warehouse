@@ -59,8 +59,6 @@ export class DeliveryPositionsModalComponent extends AbstractModal implements On
 
     public addPositions(): void {
         const resultPositions = this.positions.filter((position, index) => {
-            position.maxAmount = undefined;
-
             return this.checked[index];
         });
 
@@ -78,10 +76,10 @@ export class DeliveryPositionsModalComponent extends AbstractModal implements On
                    this.handlePositions(positions);
 
                } else {
-                   this.alert.error('Something went wrong..', true);
+                   this.alert.error('Coś poszło nie tak', true);
                    this.activeModal.dismiss();
                }
-            });
+            }, () => { this.activeModal.dismiss(); });
     }
 
     private handlePositions(positions: any[]): void {

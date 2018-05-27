@@ -15,6 +15,7 @@ import { ModalHelperService } from '../../modals/modal-helper.service';
 import { DispatchesInfoModalComponent } from '../../modals/dispatches-info-modal/dispatches-info-modal.component';
 import { CreateDeliveryModalComponent } from '../../modals/create-delivery-modal/create-delivery-modal.component';
 import { EditDeliveryModalComponent } from '../../modals/edit-delivery-modal/edit-delivery-modal.component';
+import {CreateDifferenceReportComponent} from '../../modals/create-difference-report/create-difference-report.component';
 
 @Component({
     selector: 'app-orders',
@@ -111,8 +112,8 @@ export class OrdersComponent implements OnInit {
 
     public removeOrder(order: any): void {
         this.modalHelper.openConfirmModal({
-            title: 'Are you sure?',
-            text: 'Do you want to remove this order permanently?',
+            title: 'Jesteś pewien?',
+            text: 'Czy na pewno chcesz usunąć to zlecenie bezpowrotnie?',
             icon: 'fa fa-question'
         })
             .then(() => {
@@ -121,10 +122,10 @@ export class OrdersComponent implements OnInit {
                 this.ordersService.remove(order)
                     .subscribe(status => {
                         if (!status) {
-                            this.alert.error('Something went wrong...');
+                            this.alert.error('Coś poszło nie tak');
                             this.loader.hide();
                         } else {
-                            this.alert.success('Order has been removed');
+                            this.alert.success('Zlecenie zostało usunięte pomyślnie');
                             this.handleOrders(this.page, this.needle.value);
                         }
                     }, () => {
@@ -135,8 +136,8 @@ export class OrdersComponent implements OnInit {
 
     public removeDelivery(order: any): void {
         this.modalHelper.openConfirmModal({
-            title: 'Are you sure?',
-            text: 'Do you want to remove this delivery permanently?',
+            title: 'Jesteś pewien?',
+            text: 'Czy na pewno chcesz usunąć to przyjęcie bezpowrotnie?',
             icon: 'fa fa-question'
         })
             .then(() => {
@@ -145,10 +146,10 @@ export class OrdersComponent implements OnInit {
                 this.ordersService.removeDelivery(order)
                     .subscribe(status => {
                         if (!status) {
-                            this.alert.error('Something went wrong...');
+                            this.alert.error('Coś poszło nie tak');
                             this.loader.hide();
                         } else {
-                            this.alert.success('Delivery has been removed');
+                            this.alert.success('Przyjęcie zostało usunięte pomyślnie');
                             this.handleOrders(this.page, this.needle.value);
                         }
                     }, () => {
@@ -161,11 +162,25 @@ export class OrdersComponent implements OnInit {
         return order.status !== orderStatuses.Reported;
     }
 
+    public isDifferent(order): boolean {
+        return order.status === orderStatuses.Different;
+    }
+
+    public downloadDifferenceReport(order): void {
+        const modalRef = this.modalService.open(CreateDifferenceReportComponent);
+        modalRef.componentInstance.order = order;
+
+        modalRef.result
+            .then(() => {
+                console.log('result');
+            }, () => {});
+    }
+
     private handleOrders(page: number = 1, needle: string = ''): void {
         this.ordersService.fetchOrders(page, needle)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Something went wrong...');
+                    this.alert.error('Coś poszło nie tak');
                 }
 
                 this.loader.hide();

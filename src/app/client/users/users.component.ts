@@ -58,8 +58,8 @@ export class UsersComponent implements OnInit {
 
     public removeUser(user: any): void {
         this.modalHelper.openConfirmModal({
-            title: 'Are you sure?',
-            text: 'Do you want to remove this user permanently?',
+            title: 'Jesteś pewien?',
+            text: 'Czy na pewno chcesz usunąć tego użytkownika bezpowrotnie?',
             icon: 'fa fa-question'
         })
             .then(() => {
@@ -68,10 +68,10 @@ export class UsersComponent implements OnInit {
                 this.usersService.remove(user)
                     .subscribe(status => {
                         if (!status) {
-                            this.alert.error('Something went wrong...');
+                            this.alert.error('Coś poszło nie tak');
                             this.loader.hide();
                         } else {
-                            this.alert.success('User has been removed');
+                            this.alert.success('Użytkownik został usunięty');
                             this.handleUsers(this.page, this.needle.value);
                         }
                     }, () => {
@@ -114,7 +114,7 @@ export class UsersComponent implements OnInit {
         this.usersService.fetchUsers(page, needle)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Something went wrong...');
+                    this.alert.error('Coś poszło nie tak');
                 }
 
                 this.loader.hide();

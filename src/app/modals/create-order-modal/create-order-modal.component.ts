@@ -20,7 +20,7 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
     public otherOrderer: boolean = false;
     public isUserData: boolean = true;
     protected userData: any;
-    public title: string = 'Tworzenie zamówienia';
+    public title: string = 'Tworzenie zlecenia';
     public buttonValue: string = 'Utwórz';
 
     constructor(
@@ -47,10 +47,10 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
         this.ordersService.create(orderData)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Błąd podczas tworzenia zamówienia, sprawdź wprowadzone dane', true);
+                    this.alert.error('Błąd podczas tworzenia zlecenia, sprawdź wprowadzone dane', true);
                     this.hideLoader();
                 } else {
-                    this.alert.success('Zamówienie zostało utworzone pomyślnie');
+                    this.alert.success('Zlecenie zostało utworzone pomyślnie');
                     this.hideLoader();
                     this.activeModal.close();
                 }

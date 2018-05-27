@@ -21,8 +21,8 @@ export class EditDeliveryModalComponent extends CreateDeliveryModalComponent imp
         super(activeModal, ordersService, alert);
 
         this.isEditing = true;
-        this.title = 'Editing delivery';
-        this.buttonValue = 'Save';
+        this.title = 'Edycja przyjęcia';
+        this.buttonValue = 'Zapisz';
     }
 
     ngOnInit() {
@@ -39,14 +39,14 @@ export class EditDeliveryModalComponent extends CreateDeliveryModalComponent imp
         this.ordersService.editDelivery(deliveryData)
             .subscribe(status => {
                 if (!status) {
-                    this.alert.error('Error editing delivery, check typed data...', true);
+                    this.alert.error('Błąd podczas edycji przyjęcia, sprawdź wprowadzone dane', true);
                     this.hideLoader();
                 } else {
-                    this.alert.success('Delivery has been edited...', true);
+                    this.alert.success('Przyjęcie zostało pomyślnie zapisane', true);
                     this.hideLoader();
                     this.activeModal.close();
                 }
-            });
+            }, () => { this.hideLoader(); });
     }
 
     public isValidData(): boolean {
@@ -58,12 +58,11 @@ export class EditDeliveryModalComponent extends CreateDeliveryModalComponent imp
             .subscribe(data => {
                 if (data instanceof Object) {
                     this.deliveryData.setDataFromDelivery(data);
-
                     this.hideLoader();
                 } else {
-                    this.alert.error('Something went wrong...', true);
+                    this.alert.error('Coś poszło nie tak', true);
                     this.activeModal.close();
                 }
-            });
+            }, () => { this.activeModal.close(); });
     }
 }
