@@ -1,0 +1,44 @@
+<app-loader [small]="true" [hidden]="!loading"></app-loader>
+
+<div class="modalWrapper" *ngIf="!loading">
+
+	<div class="modal-header">
+		<h4 class="modal-title">Generowanie raportu różnicy</h4>
+		<button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form class="form-default">
+
+			<div class="form-label-group">
+				<input type="text" id="firstPersonName" class="form-control" placeholder="Imię i nazwisko 1" name="firstPersonName"
+					   [(ngModel)]="report.FirstPersonName" required>
+				<label for="firstPersonName">Imię i nazwisko 1</label>
+			</div>
+
+			<div class="form-label-group">
+				<input type="text" id="secondPersonName" class="form-control" placeholder="Imię i nazwisko 2" name="secondPersonName"
+					   [(ngModel)]="report.SecondPersonName" required>
+				<label for="secondPersonName">Imię i nazwisko 2</label>
+			</div>
+
+			<div class="form-label-group">
+				<input type="text" id="thirdPersonName" class="form-control" placeholder="Imię i nazwisko 3" name="thirdPersonName"
+					   [(ngModel)]="report.ThirdPersonName" required>
+				<label for="thirdPersonName">Imię i nazwisko 3</label>
+			</div>
+
+			<div class="form-group form-check">
+				<input type="checkbox" id="sendEmail" class="form-check-input" (change)="sendEmailChange()" [checked]="sendEmail">
+				<label class="form-check-label" for="sendEmail">Czy wysłać raport na e-mail?</label>
+			</div>
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<input type="submit" class="btn btn-primary" (click)="generate()" value="Wygeneruj"
+			   [disabled]="!isValidData()">
+	</div>
+
+</div>
