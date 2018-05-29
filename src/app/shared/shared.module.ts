@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from './loader/loader.component';
 import { LoaderService } from './services/loader.service';
+import { PdfCreatorService } from './services/pdf-creator.service';
 
 @NgModule({
     imports: [
@@ -11,7 +12,8 @@ import { LoaderService } from './services/loader.service';
         LoaderComponent
     ],
     providers: [
-        LoaderService
+        LoaderService,
+        PdfCreatorService
     ],
     exports: [
         LoaderComponent

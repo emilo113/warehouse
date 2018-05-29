@@ -15,7 +15,7 @@ import { ModalHelperService } from '../../modals/modal-helper.service';
 import { DispatchesInfoModalComponent } from '../../modals/dispatches-info-modal/dispatches-info-modal.component';
 import { CreateDeliveryModalComponent } from '../../modals/create-delivery-modal/create-delivery-modal.component';
 import { EditDeliveryModalComponent } from '../../modals/edit-delivery-modal/edit-delivery-modal.component';
-import {CreateDifferenceReportComponent} from '../../modals/create-difference-report/create-difference-report.component';
+import { CreateDifferenceReportComponent } from '../../modals/create-difference-report/create-difference-report.component';
 
 @Component({
     selector: 'app-orders',

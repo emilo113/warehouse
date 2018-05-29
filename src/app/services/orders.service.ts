@@ -3,9 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { routes } from '../api/routes';
 
 import { orders } from '../const/orders';
-import {UserType} from '../models/enums/user.types';
 import {Observable} from 'rxjs/Observable';
-import {diPublic} from '@angular/core/src/render3/instructions';
 
 @Injectable()
 export class OrdersService {
@@ -185,15 +183,20 @@ export class OrdersService {
             });
     }
 
-    // public getDifferenceReport(order: any): Observable<any> {
-    //     return this.http.get<any>(routes.deliveries.remove, {params: params})
-    //         .map(data => {
-    //             if (data && data.status) {
-    //                 return true;
-    //             }
-    //
-    //             return false;
-    //         });
-    // }
+    public getDifferenceReport(order: any, reportData: any, sendEmail: boolean): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('ifSendEmail', sendEmail.toString());
+        params = params.append('orderId', order.id.toString());
+
+        return this.http.post<any>(routes.deliveries.downloadDifferentReport, reportData, {params: params})
+            .map(data => {
+                if (typeof data === 'string') {
+                    return data;
+                }
+
+                return false;
+            });
+    }
 
 }

@@ -25,7 +25,8 @@ export const routes = {
         create: 'Delivery/CreateDelivery',
         edit: 'Delivery/EditDelivery',
         remove: 'Delivery/RemoveDelivery',
-        getDeliveryState: 'Delivery/GetDeliveryState'
+        getDeliveryState: 'Delivery/GetDeliveryState',
+        downloadDifferentReport: 'Delivery/GetDifferenceDeliveryPDF'
     },
     dispatches: {
         fetchAll: 'Dispatch/GetDispatches',

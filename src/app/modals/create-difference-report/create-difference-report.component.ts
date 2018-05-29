@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AbstractModal} from '../abstract-modal';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {DifferenceReport} from '../../models/DifferenceReport';
+import {OrdersService} from '../../services/orders.service';
+import {PdfCreatorService} from '../../shared/services/pdf-creator.service';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
     selector: 'app-create-difference-report',
@@ -15,7 +18,10 @@ export class CreateDifferenceReportComponent extends AbstractModal implements On
     public sendEmail: boolean;
 
     constructor(
-        public activeModal: NgbActiveModal
+        public activeModal: NgbActiveModal,
+        private ordersService: OrdersService,
+        private pdfCreator: PdfCreatorService,
+        private alert: AlertService
     ) {
         super(activeModal);
         this.report = new DifferenceReport();
@@ -23,7 +29,20 @@ export class CreateDifferenceReportComponent extends AbstractModal implements On
     }
 
     public generate(): void {
-        console.log(this.report.getJSONData());
+        this.showLoader();
+        this.ordersService.getDifferenceReport(this.order, this.report.getJSONData(), this.sendEmail)
+            .subscribe(data => {
+                if (!data) {
+                    this.alert.error('Coś poszło nie tak');
+                    this.hideLoader();
+                } else {
+                    this.pdfCreator.downloadPdf(
+                        data,
+                        this.pdfCreator.generateNameForDifferenceReport(this.order)
+                    );
+                    this.activeModal.close();
+                }
+            }, () => { this.hideLoader(); });
     }
 
     public isValidData(): boolean {
