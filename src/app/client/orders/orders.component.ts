@@ -16,6 +16,7 @@ import { DispatchesInfoModalComponent } from '../../modals/dispatches-info-modal
 import { CreateDeliveryModalComponent } from '../../modals/create-delivery-modal/create-delivery-modal.component';
 import { EditDeliveryModalComponent } from '../../modals/edit-delivery-modal/edit-delivery-modal.component';
 import { CreateDifferenceReportComponent } from '../../modals/create-difference-report/create-difference-report.component';
+import {PdfCreatorService} from '../../shared/services/pdf-creator.service';
 
 @Component({
     selector: 'app-orders',
@@ -34,7 +35,8 @@ export class OrdersComponent implements OnInit {
         private loader: LoaderService,
         private alert: AlertService,
         private modalService: NgbModal,
-        private modalHelper: ModalHelperService
+        private modalHelper: ModalHelperService,
+        private pdfCreator: PdfCreatorService
     ) {
     }
 
@@ -166,14 +168,45 @@ export class OrdersComponent implements OnInit {
         return order.status === orderStatuses.Different;
     }
 
-    public downloadDifferenceReport(order): void {
+    public downloadDifferenceReport(order: any): void {
         const modalRef = this.modalService.open(CreateDifferenceReportComponent);
         modalRef.componentInstance.order = order;
+    }
 
-        modalRef.result
-            .then(() => {
-                console.log('result');
-            }, () => {});
+    public downloadOrderReport(order: any): void {
+        this.loader.show();
+
+        this.ordersService.getOrderReport(order)
+            .subscribe(data => {
+                if (!data) {
+                    this.alert.error('Coś poszło nie tak');
+                    this.loader.hide();
+                } else {
+                    this.pdfCreator.downloadPdf(
+                        data,
+                        this.pdfCreator.generateNameForOrderReport(order)
+                    );
+                    this.loader.hide();
+                }
+            }, () => { this.loader.hide(); });
+    }
+
+    public downloadDeliveryReport(order: any): void {
+        this.loader.show();
+
+        this.ordersService.getDeliveryReport(order)
+            .subscribe(data => {
+                if (!data) {
+                    this.alert.error('Coś poszło nie tak');
+                    this.loader.hide();
+                } else {
+                    this.pdfCreator.downloadPdf(
+                        data,
+                        this.pdfCreator.generateNameForDeliveryReport(order)
+                    );
+                    this.loader.hide();
+                }
+            }, () => { this.loader.hide(); });
     }
 
     private handleOrders(page: number = 1, needle: string = ''): void {

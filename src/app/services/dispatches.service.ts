@@ -88,4 +88,36 @@ export class DispatchesService {
                 return false;
             });
     }
+
+    public getDispatchReport(dispatch: any): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('ifSendEmail', true.toString());
+        params = params.append('dispatchId', dispatch.id.toString());
+
+        return this.http.get<any>(routes.dispatches.downloadDispatchReport, {params: params})
+            .map(data => {
+                if (typeof data === 'string') {
+                    return data;
+                }
+
+                return false;
+            });
+    }
+
+    public getCMRReport(dispatch: any): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('ifSendEmail', true.toString());
+        params = params.append('dispatchId', dispatch.id.toString());
+
+        return this.http.get<any>(routes.dispatches.downloadCMRReport, {params: params})
+            .map(data => {
+                if (typeof data === 'string') {
+                    return data;
+                }
+
+                return false;
+            });
+    }
 }

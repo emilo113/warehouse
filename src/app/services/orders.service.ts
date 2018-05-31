@@ -199,4 +199,36 @@ export class OrdersService {
             });
     }
 
+    public getOrderReport(order: any): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('ifSendEmail', true.toString());
+        params = params.append('orderId', order.id.toString());
+
+        return this.http.get<any>(routes.orders.downloadOrderReport, {params: params})
+            .map(data => {
+                if (typeof data === 'string') {
+                    return data;
+                }
+
+                return false;
+            });
+    }
+
+    public getDeliveryReport(order: any): Observable<any> {
+        let params: HttpParams = new HttpParams();
+
+        params = params.append('ifSendEmail', true.toString());
+        params = params.append('orderId', order.id.toString());
+
+        return this.http.get<any>(routes.deliveries.downloadDeliveryReport, {params: params})
+            .map(data => {
+                if (typeof data === 'string') {
+                    return data;
+                }
+
+                return false;
+            });
+    }
+
 }

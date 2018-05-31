@@ -17,7 +17,8 @@ export const routes = {
         edit: 'Order/EditOrder',
         editPosition: 'Order/EditOrdersPosition',
         remove: 'Order/RemoveOrder',
-        removePosition: 'Order/RemoveOrdersPosition'
+        removePosition: 'Order/RemoveOrdersPosition',
+        downloadOrderReport: 'Order/GetOrderPDF'
     },
     deliveries: {
         fetchAll: 'Delivery/GetDeliveries',
@@ -26,7 +27,8 @@ export const routes = {
         edit: 'Delivery/EditDelivery',
         remove: 'Delivery/RemoveDelivery',
         getDeliveryState: 'Delivery/GetDeliveryState',
-        downloadDifferentReport: 'Delivery/GetDifferenceDeliveryPDF'
+        downloadDifferentReport: 'Delivery/GetDifferenceDeliveryPDF',
+        downloadDeliveryReport: 'Delivery/GetDeliveryPDF',
     },
     dispatches: {
         fetchAll: 'Dispatch/GetDispatches',
@@ -34,6 +36,8 @@ export const routes = {
         fetchDetails: 'Dispatch/GetDispatchDetails',
         remove: 'Dispatch/RemoveDispatch',
         create: 'Dispatch/CreateDispatch',
-        edit: 'Dispatch/EditDispatch'
+        edit: 'Dispatch/EditDispatch',
+        downloadDispatchReport: 'Dispatch/GetDispatchPDF',
+        downloadCMRReport: 'Dispatch/GetCMRPDF'
     }
 };

@@ -44,17 +44,19 @@ export class EditDispatchModalComponent extends CreateDispatchModalComponent imp
 
         const data = this.dispatch.getJSONData();
 
-        this.dispatchesService.edit(data, this.isCmr)
-            .subscribe(status => {
-                if (!status) {
-                    this.alert.error('Błąd podczas zapisu wydania, sprawdź wprowadzone dane', true);
-                    this.hideLoader();
-                } else {
-                    this.alert.success('Wydanie zostało pomyślnie zapisane');
-                    this.hideLoader();
-                    this.activeModal.close();
-                }
-            }, () => { this.hideLoader(); });
+        console.log(data);
+
+        // this.dispatchesService.edit(data, this.isCmr)
+        //     .subscribe(status => {
+        //         if (!status) {
+        //             this.alert.error('Błąd podczas zapisu wydania, sprawdź wprowadzone dane', true);
+        //             this.hideLoader();
+        //         } else {
+        //             this.alert.success('Wydanie zostało pomyślnie zapisane');
+        //             this.hideLoader();
+        //             this.activeModal.close();
+        //         }
+        //     }, () => { this.hideLoader(); });
     }
 
     public isValidData(): boolean {
@@ -82,8 +84,10 @@ export class EditDispatchModalComponent extends CreateDispatchModalComponent imp
                    const dispatchSet = new DispatchSet();
 
                    dispatchSet.delivery = {
-                       atb: order.atb
+                       atb: order.atb,
+                       id: order.deliveryId
                    };
+
                    dispatchSet.positions = [];
 
                    order.listOfDispatchPositions.forEach(positionData => {
@@ -101,6 +105,7 @@ export class EditDispatchModalComponent extends CreateDispatchModalComponent imp
                 this.isCmr = details.isCMR;
 
                 this.hideLoader();
+
             }, () => { this.activeModal.dismiss(); });
     }
 }

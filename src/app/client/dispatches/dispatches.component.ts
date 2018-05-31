@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DispatchInfoModalComponent} from '../../modals/dispatch-info-modal/dispatch-info-modal.component';
 import {CreateDispatchModalComponent} from '../../modals/create-dispatch-modal/create-dispatch-modal.component';
 import {EditDispatchModalComponent} from '../../modals/edit-dispatch-modal/edit-dispatch-modal.component';
+import {PdfCreatorService} from '../../shared/services/pdf-creator.service';
 
 @Component({
     selector: 'app-dispatches',
@@ -28,7 +29,8 @@ export class DispatchesComponent implements OnInit {
         private loader: LoaderService,
         private alert: AlertService,
         private modalHelper: ModalHelperService,
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        private pdfCreator: PdfCreatorService
     ) {
     }
 
@@ -91,6 +93,42 @@ export class DispatchesComponent implements OnInit {
         });
 
         modalRef.componentInstance.dispatchBase = dispatch;
+    }
+
+    public downloadDispatchReport(dispatch: any): void {
+        this.loader.show();
+
+        this.dispatchesService.getDispatchReport(dispatch)
+            .subscribe(data => {
+                if (!data) {
+                    this.alert.error('Coś poszło nie tak');
+                    this.loader.hide();
+                } else {
+                    this.pdfCreator.downloadPdf(
+                        data,
+                        this.pdfCreator.generateNameForDispatchReport(dispatch)
+                    );
+                    this.loader.hide();
+                }
+            }, () => { this.loader.hide(); });
+    }
+
+    public downloadCMRReport(dispatch: any): void {
+        this.loader.show();
+
+        this.dispatchesService.getCMRReport(dispatch)
+            .subscribe(data => {
+                if (!data) {
+                    this.alert.error('Coś poszło nie tak');
+                    this.loader.hide();
+                } else {
+                    this.pdfCreator.downloadPdf(
+                        data,
+                        this.pdfCreator.generateNameForCmrReport(dispatch)
+                    );
+                    this.loader.hide();
+                }
+            }, () => { this.loader.hide(); });
     }
 
     private handleDispatches(page: number = 1, needle: string = ''): void {

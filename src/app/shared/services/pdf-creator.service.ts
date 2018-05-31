@@ -5,7 +5,11 @@ import { saveAs } from 'file-saver/FileSaver';
 export class PdfCreatorService {
 
     private basicReportNames: any = {
-        differenceReport: 'raport-roznica'
+        differenceReport: 'raport-roznica',
+        orderReport: 'raport-zlecenie',
+        deliveryReport: 'raport-przyjecie',
+        dispatchReport: 'raport-wydanie',
+        cmrReport: 'raport-cmr'
     };
 
     public downloadPdf(data: any, name: string): void {
@@ -16,7 +20,27 @@ export class PdfCreatorService {
             });
     }
 
+    public generateNameForDispatchReport(dispatch: any): string {
+        return '';
+    }
+
+    public generateNameForCmrReport(dispatch: any): string {
+        return '';
+    }
+
     public generateNameForDifferenceReport(order: any): string {
-        return `${this.basicReportNames.differenceReport}_atb-${order.atb}_container-${order.container_Id}`;
+        return this.generateName(this.basicReportNames.differenceReport, order);
+    }
+
+    public generateNameForOrderReport(order: any): string {
+        return this.generateName(this.basicReportNames.orderReport, order);
+    }
+
+    public generateNameForDeliveryReport(order: any): string {
+        return this.generateName(this.basicReportNames.deliveryReport, order);
+    }
+
+    private generateName(basic: string, order: any): string {
+        return `${basic}_atb-${order.atb}_container-${order.container_Id}`;
     }
 }
