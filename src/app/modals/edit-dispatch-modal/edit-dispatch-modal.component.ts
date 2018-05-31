@@ -44,19 +44,17 @@ export class EditDispatchModalComponent extends CreateDispatchModalComponent imp
 
         const data = this.dispatch.getJSONData();
 
-        console.log(data);
-
-        // this.dispatchesService.edit(data, this.isCmr)
-        //     .subscribe(status => {
-        //         if (!status) {
-        //             this.alert.error('Błąd podczas zapisu wydania, sprawdź wprowadzone dane', true);
-        //             this.hideLoader();
-        //         } else {
-        //             this.alert.success('Wydanie zostało pomyślnie zapisane');
-        //             this.hideLoader();
-        //             this.activeModal.close();
-        //         }
-        //     }, () => { this.hideLoader(); });
+        this.dispatchesService.edit(data, this.isCmr)
+            .subscribe(status => {
+                if (!status) {
+                    this.alert.error('Błąd podczas zapisu wydania, sprawdź wprowadzone dane', true);
+                    this.hideLoader();
+                } else {
+                    this.alert.success('Wydanie zostało pomyślnie zapisane');
+                    this.hideLoader();
+                    this.activeModal.close();
+                }
+            }, () => { this.hideLoader(); });
     }
 
     public isValidData(): boolean {

@@ -1,5 +1,4 @@
 export class CmrDispatch {
-    public commodity_Type: string;
     public destination: string;
     public sender_Name: string;
     public sender_Address: string;
@@ -14,13 +13,11 @@ export class CmrDispatch {
             this.sender_Email &&
             this.sender_VAT_Id &&
             this.sender_Name &&
-            this.destination &&
-            this.commodity_Type
+            this.destination
         );
     }
 
     public setData(cmrDispatch: any): void {
-        this.commodity_Type = cmrDispatch.commodity_Type;
         this.destination = cmrDispatch.destination;
         this.sender_Name = cmrDispatch.sender_Name;
         this.sender_Address = cmrDispatch.sender_Address;
