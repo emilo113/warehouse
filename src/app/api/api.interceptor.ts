@@ -6,7 +6,7 @@ import { AlertService } from '../services/alert.service';
 @Injectable()
 export class APIInterceptor implements HttpInterceptor {
 
-    private API_URL: string = 'http://jbieniasz-001-site1.itempurl.com/api';
+    private API_URL: string = 'https://www.api.directtransport.eu/api';
 
 
     constructor(
