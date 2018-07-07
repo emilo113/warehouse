@@ -9,11 +9,11 @@
 		</button>
 	</div>
 	<div class="modal-body">
-		<form class="form-default">
+		<form class="form-default" id="createOrderForm">
 
 			<div class="form-label-group">
-				<input type="text" id="containerId" class="form-control" placeholder="ID kontenera" name="containerId" [(ngModel)]="orderData.container_Id" required>
-				<label for="containerId">ID kontenera</label>
+				<input type="text" id="containerId" class="form-control" placeholder="Numer kontenera" name="containerId" [(ngModel)]="orderData.container_Id" autocomplete="on" required>
+				<label for="containerId">Numer kontenera</label>
 			</div>
 
 			<div class="form-label-group">
@@ -27,8 +27,8 @@
 			</div>
 
 			<div class="form-label-group">
-				<input type="text" id="terminal" class="form-control" placeholder="Terminal" name="terminal" [(ngModel)]="orderData.terminal" required>
-				<label for="terminal">Terminal</label>
+				<input type="text" id="terminal" class="form-control" placeholder="Terminal odbioru" name="terminal" [(ngModel)]="orderData.terminal" required>
+				<label for="terminal">Terminal odbioru</label>
 			</div>
 
 			<div class="form-label-group">

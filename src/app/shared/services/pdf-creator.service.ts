@@ -41,6 +41,6 @@ export class PdfCreatorService {
     }
 
     private generateName(basic: string, order: any): string {
-        return `${basic}_atb-${order.atb}_container-${order.container_Id}`;
+        return `${basic}_container-${order.container_Id}`;
     }
 }

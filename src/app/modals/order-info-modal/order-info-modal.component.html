@@ -16,10 +16,9 @@
 				<ng-template ngbPanelContent>
 
 					<ul class="simple-list">
-						<li>ID: <span class="float-right">{{ order.id }}</span></li>
-						<li>ID kontenera: <span class="float-right">{{ order.container_Id | empty: '-'  }}</span></li>
+						<li>Numer kontenera: <span class="float-right">{{ order.container_Id | empty: '-'  }}</span></li>
 						<li>ATB: <span class="float-right">{{ order.atb | empty: '-'  }}</span></li>
-						<li>Terminal: <span class="float-right">{{ order.terminal | empty: '-'  }}</span></li>
+						<li>Terminal odbioru: <span class="float-right">{{ order.terminal | empty: '-'  }}</span></li>
 						<li>Utworzone: <span class="float-right">{{ order.creation_Date | empty: '-'  }}</span></li>
 						<li>ETA: <span class="float-right">{{ orderDetails.eta | empty: '-'  }}</span></li>
 						<li>Numer zlecenia: <span class="float-right">{{ orderDetails.order_Number | empty: '-'  }}</span></li>

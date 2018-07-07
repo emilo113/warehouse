@@ -54,13 +54,13 @@
 											<i class="fa fa-info fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" (click)="downloadDispatchReport(dispatch)" *ngIf="userService.isLevelAdmin()" ngbTooltip="Wygeneruj raport wydania">
+									<a class="table-link" (click)="downloadDispatchReport(dispatch)" *ngIf="userService.isLevelAdmin()" ngbTooltip="Pobierz raport wydania">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-file-text-o fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" (click)="downloadCMRReport(dispatch)" *ngIf="userService.isLevelAdmin() && dispatch.iscmr" ngbTooltip="Wygeneruj raport CMR">
+									<a class="table-link" (click)="downloadCMRReport(dispatch)" *ngIf="userService.isLevelAdmin() && dispatch.iscmr" ngbTooltip="Pobierz raport CMR">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>

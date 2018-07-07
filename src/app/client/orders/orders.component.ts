@@ -16,7 +16,8 @@ import { DispatchesInfoModalComponent } from '../../modals/dispatches-info-modal
 import { CreateDeliveryModalComponent } from '../../modals/create-delivery-modal/create-delivery-modal.component';
 import { EditDeliveryModalComponent } from '../../modals/edit-delivery-modal/edit-delivery-modal.component';
 import { CreateDifferenceReportComponent } from '../../modals/create-difference-report/create-difference-report.component';
-import {PdfCreatorService} from '../../shared/services/pdf-creator.service';
+import { PdfCreatorService } from '../../shared/services/pdf-creator.service';
+import { CreateDispatchModalComponent } from '../../modals/create-dispatch-modal/create-dispatch-modal.component';
 
 @Component({
     selector: 'app-orders',
@@ -52,7 +53,7 @@ export class OrdersComponent implements OnInit {
     }
 
     public getStatusName(status: number): string {
-        return Object.keys(orderStatuses).find(key => orderStatuses[key] === status);
+        return (Object.values(orderStatuses).find(value => value.key === status)).name;
     }
 
     public showOrderInfo(order: any): void {
@@ -85,6 +86,18 @@ export class OrdersComponent implements OnInit {
 
     public openCreateOrderModal(): void {
         const modalRef = this.modalService.open(CreateOrderModalComponent);
+
+        modalRef.result
+            .then(() => {
+                this.handleOrders(this.page, this.needle.value);
+            }, () => {});
+    }
+
+    public openCreateDispatchModal(): void {
+        const modalRef = this.modalService.open(CreateDispatchModalComponent, {
+            size: 'lg',
+            keyboard: false
+        });
 
         modalRef.result
             .then(() => {
@@ -161,11 +174,11 @@ export class OrdersComponent implements OnInit {
     }
 
     public isDelivered(order): boolean {
-        return order.status !== orderStatuses.Reported;
+        return order.status !== orderStatuses.Reported.key;
     }
 
     public isDifferent(order): boolean {
-        return order.status === orderStatuses.Different;
+        return order.status === orderStatuses.Different.key;
     }
 
     public downloadDifferenceReport(order: any): void {
