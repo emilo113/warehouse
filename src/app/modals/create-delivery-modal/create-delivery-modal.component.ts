@@ -3,7 +3,6 @@ import { AbstractModal } from '../abstract-modal';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrdersService } from '../../services/orders.service';
 import { AlertService } from '../../services/alert.service';
-import { transportTypes } from '../../models/enums/transport.types';
 import {Delivery} from '../../models/Delivery';
 
 @Component({
@@ -18,7 +17,6 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
     public deliveryData: Delivery;
     public title: string;
     public buttonValue: string;
-    public transportTypes: any;
 
     public isATBRequired: boolean;
 
@@ -30,7 +28,6 @@ export class CreateDeliveryModalComponent extends AbstractModal implements OnIni
         super(activeModal);
 
         this.deliveryData = new Delivery();
-        this.transportTypes = transportTypes;
         this.title = 'Tworzenie przyjęcia';
         this.buttonValue = 'Utwórz';
     }

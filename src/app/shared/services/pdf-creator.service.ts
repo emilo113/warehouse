@@ -21,11 +21,11 @@ export class PdfCreatorService {
     }
 
     public generateNameForDispatchReport(dispatch: any): string {
-        return '';
+        return `${this.basicReportNames.dispatchReport}_nr-${ dispatch.dispatch_Number }_car-${ dispatch.car_Id }`;
     }
 
     public generateNameForCmrReport(dispatch: any): string {
-        return '';
+        return `${this.basicReportNames.cmrReport}_nr-${ dispatch.dispatch_Number }_car-${ dispatch.car_Id }`;
     }
 
     public generateNameForDifferenceReport(order: any): string {

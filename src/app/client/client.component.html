@@ -14,7 +14,8 @@
 				<ul class="nav flex-column">
 					<li class="nav-item">
 						<a class="nav-link active" routerLink="orders" routerLinkActive="active-link">
-							Zlecenia
+							<span *ngIf="user.isLevelAdmin(); else ordersTitle">Przyjęcia</span>
+							<ng-template #ordersTitle>Zlecenia</ng-template>
 						</a>
 					</li>
 					<li class="nav-item" *ngIf="user.isLevelAdmin()">

@@ -35,7 +35,8 @@ export class Order {
             this.terminal &&
             this.eta &&
             this.isValidOrderer() &&
-            this.isValidPositions();
+            this.isValidPositions() &&
+            this.isValidATB();
     }
 
     public isValidEditingData(): boolean {
@@ -62,6 +63,14 @@ export class Order {
         return Boolean(
             this.name && this.address && this.vaT_Id && this.email
         );
+    }
+
+    public isValidATB(): boolean {
+        if (!this.atb) {
+            return true;
+        }
+
+        return /ATB[0-9]{18}/.test(this.atb);
     }
 
     public setDataFromOrder(order: any): void {
@@ -100,6 +109,10 @@ export class Order {
 
         if (data.creation_Date) {
             data.creation_Date = new Date(data.creation_Date);
+        }
+
+        if (!data.atb) {
+            data.atb = undefined;
         }
 
         if (data.eta) {

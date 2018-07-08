@@ -54,6 +54,11 @@
 			<div *ngIf="otherOrderer">
 
 				<div class="form-label-group">
+					<input type="text" id="vatId" class="form-control" name="vatId" [(ngModel)]="orderData.vaT_Id" placeholder="Vat Id">
+					<label for="vatId">Vat Id</label>
+				</div>
+
+				<div class="form-label-group">
 					<input type="text" id="name" class="form-control" name="name" [(ngModel)]="orderData.name" placeholder="Nazwa">
 					<label for="name">Nazwa</label>
 				</div>
@@ -66,11 +71,6 @@
 				<div class="form-label-group">
 					<input type="text" id="address" class="form-control" name="address" [(ngModel)]="orderData.address" placeholder="Adres">
 					<label for="address">Adres</label>
-				</div>
-
-				<div class="form-label-group">
-					<input type="text" id="vatId" class="form-control" name="vatId" [(ngModel)]="orderData.vaT_Id" placeholder="Vat Id">
-					<label for="vatId">Vat Id</label>
 				</div>
 
 			</div>

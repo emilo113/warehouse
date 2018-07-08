@@ -6,9 +6,7 @@ export class DifferenceReport {
     constructor() { }
 
     public isValidData(): boolean {
-        return Boolean(
-            this.FirstPersonName && this.SecondPersonName && this.ThirdPersonName
-        );
+        return true;
     }
 
     public getJSONData(): any {

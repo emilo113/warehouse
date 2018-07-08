@@ -71,22 +71,22 @@
 											<i class="fa fa-info fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
+									<a class="table-link danger" (click)="removeDelivery(order)" *ngIf="userService.isHeadAdmin() && isDelivered(order) && !order.isDispatched" ngbTooltip="Usuń przyjęcie">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
 									<a class="table-link" (click)="downloadDeliveryReport(order)" *ngIf="userService.isLevelAdmin() && isDelivered(order)" ngbTooltip="Pobierz raport przyjęcia">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-file-text-o fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" (click)="downloadDifferenceReport(order)" *ngIf="userService.isLevelAdmin() && isDifferent(order)" ngbTooltip="Pobierz raport różnicy">
+									<a class="table-link" (click)="downloadDifferenceReport(order)" *ngIf="userService.isLevelAdmin() && isDifferent(order)" ngbTooltip="Pobierz raport rozbieżności">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>
-										</span>
-									</a>
-									<a class="table-link danger" (click)="removeDelivery(order)" *ngIf="userService.isHeadAdmin() && isDelivered(order) && !order.isDispatched" ngbTooltip="Usuń przyjęcie">
-										<span class="fa-stack">
-											<i class="fa fa-square fa-stack-2x"></i>
-											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
 								</td>
@@ -103,16 +103,16 @@
 											<i class="fa fa-info fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
-									<a class="table-link" (click)="downloadOrderReport(order)" ngbTooltip="Pobierz raport zlecenia">
-										<span class="fa-stack">
-											<i class="fa fa-square fa-stack-2x"></i>
-											<i class="fa fa-file-text-o fa-stack-1x fa-inverse"></i>
-										</span>
-									</a>
 									<a class="table-link danger" *ngIf="userService.isHeadAdmin() && !isDelivered(order)" (click)="removeOrder(order)" ngbTooltip="Usuń zlecenie">
 										<span class="fa-stack">
 											<i class="fa fa-square fa-stack-2x"></i>
 											<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+										</span>
+									</a>
+									<a class="table-link" (click)="downloadOrderReport(order)" ngbTooltip="Pobierz raport zlecenia">
+										<span class="fa-stack">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-file-text-o fa-stack-1x fa-inverse"></i>
 										</span>
 									</a>
 									<a class="table-link" (click)="showDispatchesInfo(order)" *ngIf="order.isDispatched && userService.isLevelAdmin()" ngbTooltip="Informacje o wydaniu">

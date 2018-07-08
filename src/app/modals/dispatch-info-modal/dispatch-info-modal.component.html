@@ -19,7 +19,7 @@
 					<div class="p-3">
 						<ul class="simple-list">
 							<li>Numer wydania: <span class="float-right">{{ dispatchDetails.dispatch_Number | empty: '-'  }}</span></li>
-							<li>ID pojazdu: <span class="float-right">{{ dispatchDetails.car_Id | empty: '-'  }}</span></li>
+							<li>Numer rejestracyjny: <span class="float-right">{{ dispatchDetails.car_Id | empty: '-'  }}</span></li>
 							<li>Duty Doc ID: <span class="float-right">{{ dispatchDetails.duty_Doc_Id | empty: '-'  }}</span></li>
 							<li>Data wydania: <span class="float-right">{{ dispatchDetails.creation_Date | empty: '-'  }}</span></li>
 						</ul>
@@ -33,11 +33,11 @@
 
 					<div class="p-3">
 						<ul class="simple-list mt-2">
-							<li>Nazwa przewoźnika: <span class="float-right">{{ dispatchDetails.carrier.carrier_Name }}</span></li>
-							<li>Adres przewoźnika: <span class="float-right">{{ dispatchDetails.carrier.carrier_Address | empty: '-'  }}</span></li>
-							<li>E-mail przewoźnika: <span class="float-right">{{ dispatchDetails.carrier.carrier_Email | empty: '-'  }}</span></li>
-							<li>Telefon przewoźnika: <span class="float-right">{{ dispatchDetails.carrier.carrier_PhoneNumber | empty: '-'  }}</span></li>
-							<li>VAT ID przewoźnika: <span class="float-right">{{ dispatchDetails.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
+							<li>Nazwa: <span class="float-right">{{ dispatchDetails.carrier.carrier_Name }}</span></li>
+							<li>Adres: <span class="float-right">{{ dispatchDetails.carrier.carrier_Address | empty: '-'  }}</span></li>
+							<li>E-mail: <span class="float-right">{{ dispatchDetails.carrier.carrier_Email | empty: '-'  }}</span></li>
+							<li>Telefon: <span class="float-right">{{ dispatchDetails.carrier.carrier_PhoneNumber | empty: '-'  }}</span></li>
+							<li>VAT ID: <span class="float-right">{{ dispatchDetails.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
 						</ul>
 					</div>
 
@@ -49,11 +49,11 @@
 
 					<div class="p-3">
 						<ul class="simple-list mt-2">
-							<li>Nazwa odbiorcy: <span class="float-right">{{ dispatchDetails.receiver.receiver_Name }}</span></li>
-							<li>Adres odbiorcy: <span class="float-right">{{ dispatchDetails.receiver.receiver_Address | empty: '-'  }}</span></li>
-							<li>E-mail odbiorcy: <span class="float-right">{{ dispatchDetails.receiver.receiver_Email | empty: '-'  }}</span></li>
-							<li>Telefon odbiorcy: <span class="float-right">{{ dispatchDetails.receiver.receiver_PhoneNumber | empty: '-'  }}</span></li>
-							<li>VAT ID odbiorcy: <span class="float-right">{{ dispatchDetails.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
+							<li>Nazwa: <span class="float-right">{{ dispatchDetails.receiver.receiver_Name }}</span></li>
+							<li>Adres: <span class="float-right">{{ dispatchDetails.receiver.receiver_Address | empty: '-'  }}</span></li>
+							<li>E-mail: <span class="float-right">{{ dispatchDetails.receiver.receiver_Email | empty: '-'  }}</span></li>
+							<li>Telefon: <span class="float-right">{{ dispatchDetails.receiver.receiver_PhoneNumber | empty: '-'  }}</span></li>
+							<li>VAT ID: <span class="float-right">{{ dispatchDetails.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
 						</ul>
 					</div>
 
@@ -69,9 +69,10 @@
 			<ngb-panel *ngFor="let dispatch of dispatchDetails.listOfDispatchOrders; let i = index" id="dispatch-{{i}}">
 
 				<ng-template ngbPanelTitle>
-					ID zlecenia: <b>{{ dispatch.orderId }}</b> |
-					ID przyjęcia: <b>{{ dispatch.deliveryId }}</b> |
-					ATB: <b>{{ dispatch.atb }}</b>
+					<b>{{ dispatch.listOfDispatchPositions.length }}</b> |
+					Nr zlecenia: <b>{{ dispatch.order_Number }}</b> |
+					Nr przyjęcia: <b>{{ dispatch.delivery_Number }}</b> |
+					Nr kontenera: <b>{{ dispatch.containerId }}</b>
 				</ng-template>
 
 				<ng-template ngbPanelContent>

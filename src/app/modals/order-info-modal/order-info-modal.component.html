@@ -28,14 +28,14 @@
 
 				</ng-template>
 			</ngb-panel>
-			<ngb-panel id="orderer" title="Zamawiający">
+			<ngb-panel id="orderer" title="Zleceniodawca">
 				<ng-template ngbPanelContent>
 
 					<ul class="simple-list">
-						<li>Nazwa zamawiającego: <span class="float-right">{{ orderDetails.orderer.name }}</span></li>
-						<li>Adres zamawiającego: <span class="float-right">{{ orderDetails.orderer.address | empty: '-'  }}</span></li>
-						<li>E-mail zamawiającego: <span class="float-right">{{ orderDetails.orderer.email | empty: '-'  }}</span></li>
-						<li>VAT_ID zamawiającego: <span class="float-right">{{ orderDetails.orderer.vaT_Id | empty: '-'  }}</span></li>
+						<li>Nazwa: <span class="float-right">{{ orderDetails.orderer.name }}</span></li>
+						<li>Adres: <span class="float-right">{{ orderDetails.orderer.address | empty: '-'  }}</span></li>
+						<li>E-mail: <span class="float-right">{{ orderDetails.orderer.email | empty: '-'  }}</span></li>
+						<li>VAT_ID: <span class="float-right">{{ orderDetails.orderer.vaT_Id | empty: '-'  }}</span></li>
 					</ul>
 
 				</ng-template>

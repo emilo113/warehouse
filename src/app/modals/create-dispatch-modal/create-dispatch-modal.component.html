@@ -17,9 +17,9 @@
 				<div class="col">
 
 					<div class="form-label-group">
-						<input type="text" id="carId" class="form-control" placeholder="ID Pojazdu" name="carId"
+						<input type="text" id="carId" class="form-control" placeholder="Numer rejestracyjny" name="carId"
 							   [(ngModel)]="dispatch.car_Id" required>
-						<label for="carId">ID Pojazdu</label>
+						<label for="carId">Numer rejestracyjny</label>
 					</div>
 
 					<div class="form-label-group">
@@ -42,65 +42,65 @@
 					<p class="h5 mb-3">Przewoźnik:</p>
 
 					<div class="form-label-group">
-						<input type="text" id="carrierName" class="form-control" placeholder="Nazwa przewoźnika" name="carrierName"
-							   [(ngModel)]="dispatch.carrier.carrier_Name" required>
-						<label for="carrierName">Nazwa przewoźnika</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="carrierAddress" class="form-control" placeholder="Adres przewoźnika" name="carrierAddress"
-							   [(ngModel)]="dispatch.carrier.carrier_Address" required>
-						<label for="carrierAddress">Adres przewoźnika</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="carrierEmail" class="form-control" placeholder="E-mail przewoźnika"
-							   name="carrierEmail" [(ngModel)]="dispatch.carrier.carrier_Email" required>
-						<label for="carrierEmail">E-mail przewoźnika</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="carrierPhoneNumber" class="form-control" placeholder="Telefon przewoźnika"
-							   name="carrierPhoneNumber" [(ngModel)]="dispatch.carrier.carrier_PhoneNumber" required>
-						<label for="carrierPhoneNumber">Telefon przewoźnika</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="carrierVAT" class="form-control" placeholder="Vat ID przewoźnika"
+						<input type="text" id="carrierVAT" class="form-control" placeholder="Vat ID"
 							   name="carrierVAT" [(ngModel)]="dispatch.carrier.carrier_VAT_Id" required>
-						<label for="carrierVAT">Vat ID przewoźnika</label>
+						<label for="carrierVAT">Vat ID</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierName" class="form-control" placeholder="Nazwa" name="carrierName"
+							   [(ngModel)]="dispatch.carrier.carrier_Name" required>
+						<label for="carrierName">Nazwa</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierAddress" class="form-control" placeholder="Adres" name="carrierAddress"
+							   [(ngModel)]="dispatch.carrier.carrier_Address" required>
+						<label for="carrierAddress">Adres</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierEmail" class="form-control" placeholder="E-mail"
+							   name="carrierEmail" [(ngModel)]="dispatch.carrier.carrier_Email" required>
+						<label for="carrierEmail">E-mail</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierPhoneNumber" class="form-control" placeholder="Telefon"
+							   name="carrierPhoneNumber" [(ngModel)]="dispatch.carrier.carrier_PhoneNumber" required>
+						<label for="carrierPhoneNumber">Telefon</label>
 					</div>
 
 					<p class="h5 mb-3">Odbiorca:</p>
 
 					<div class="form-label-group">
-						<input type="text" id="receiverName" class="form-control" placeholder="Nazwa odbiorcy" name="receiverName"
-							   [(ngModel)]="dispatch.receiver.receiver_Name" required>
-						<label for="receiverName">Nazwa odbiorcy</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="receiverAddress" class="form-control" placeholder="Adres odbiorcy" name="receiverAddress"
-							   [(ngModel)]="dispatch.receiver.receiver_Address" required>
-						<label for="receiverAddress">Adres odbiorcy</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="receiverEmail" class="form-control" placeholder="E-mail odbiorcy"
-							   name="receiverEmail" [(ngModel)]="dispatch.receiver.receiver_Email" required>
-						<label for="receiverEmail">E-mail odbiorcy</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="receiverPhoneNumber" class="form-control" placeholder="Telefon odbiorcy"
-							   name="receiverPhoneNumber" [(ngModel)]="dispatch.receiver.receiver_PhoneNumber" required>
-						<label for="receiverPhoneNumber">Telefon odbiorcy</label>
-					</div>
-
-					<div class="form-label-group">
-						<input type="text" id="receiverVAT" class="form-control" placeholder="Vat ID odbiorcy"
+						<input type="text" id="receiverVAT" class="form-control" placeholder="Vat ID"
 							   name="receiverVAT" [(ngModel)]="dispatch.receiver.receiver_VAT_Id" required>
-						<label for="receiverVAT">Vat ID odbiorcy</label>
+						<label for="receiverVAT">Vat ID</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverName" class="form-control" placeholder="Nazwa" name="receiverName"
+							   [(ngModel)]="dispatch.receiver.receiver_Name" required>
+						<label for="receiverName">Nazwa</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverAddress" class="form-control" placeholder="Adres" name="receiverAddress"
+							   [(ngModel)]="dispatch.receiver.receiver_Address" required>
+						<label for="receiverAddress">Adres</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverEmail" class="form-control" placeholder="E-mail"
+							   name="receiverEmail" [(ngModel)]="dispatch.receiver.receiver_Email" required>
+						<label for="receiverEmail">E-mail</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="receiverPhoneNumber" class="form-control" placeholder="Telefon"
+							   name="receiverPhoneNumber" [(ngModel)]="dispatch.receiver.receiver_PhoneNumber" required>
+						<label for="receiverPhoneNumber">Telefon</label>
 					</div>
 
 				</div>
@@ -114,7 +114,7 @@
 
 					<div *ngIf="isCmr">
 
-						<p class="h5 mb-3">CMR:</p>
+						<p class="h5 mb-3">CMR (dane nadawcy):</p>
 
 						<div class="form-label-group">
 							<input type="text" id="destination" class="form-control" placeholder="Cel" name="destination"
@@ -123,27 +123,27 @@
 						</div>
 
 						<div class="form-label-group">
-							<input type="text" id="senderName" class="form-control" placeholder="Nazwa nadawcy" name="senderName"
-								   [(ngModel)]="dispatch.cmrDispatch.sender_Name" required>
-							<label for="senderName">Nazwa nadawcy</label>
-						</div>
-
-						<div class="form-label-group">
-							<input type="text" id="senderAddress" class="form-control" placeholder="Adres nadawcy" name="senderAddress"
-								   [(ngModel)]="dispatch.cmrDispatch.sender_Address" required>
-							<label for="senderAddress">Adres nadawcy</label>
-						</div>
-
-						<div class="form-label-group">
-							<input type="text" id="senderEmail" class="form-control" placeholder="E-mail nadawcy"
-								   name="senderEmail" [(ngModel)]="dispatch.cmrDispatch.sender_Email" required>
-							<label for="senderEmail">E-mail nadawcy</label>
-						</div>
-
-						<div class="form-label-group">
-							<input type="text" id="senderVAT" class="form-control" placeholder="Vat ID nadawcy"
+							<input type="text" id="senderVAT" class="form-control" placeholder="Vat ID"
 								   name="senderVAT" [(ngModel)]="dispatch.cmrDispatch.sender_VAT_Id" required>
-							<label for="senderVAT">Vat ID nadawcy</label>
+							<label for="senderVAT">Vat ID</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="senderName" class="form-control" placeholder="Nazwa" name="senderName"
+								   [(ngModel)]="dispatch.cmrDispatch.sender_Name" required>
+							<label for="senderName">Nazwa</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="senderAddress" class="form-control" placeholder="Adres" name="senderAddress"
+								   [(ngModel)]="dispatch.cmrDispatch.sender_Address" required>
+							<label for="senderAddress">Adres</label>
+						</div>
+
+						<div class="form-label-group">
+							<input type="text" id="senderEmail" class="form-control" placeholder="E-mail"
+								   name="senderEmail" [(ngModel)]="dispatch.cmrDispatch.sender_Email" required>
+							<label for="senderEmail">E-mail</label>
 						</div>
 
 					</div>
@@ -152,7 +152,7 @@
 
 					<div class="form-label-group">
 						<ng-template #rt let-r="result" let-t="term">
-							ATB: {{ r.atb }} | Name: {{ r.name }}
+							Nr kontenera: {{ r.container_Id }}
 						</ng-template>
 
 						<input
@@ -164,7 +164,7 @@
 								[resultTemplate]="rt"
 								[inputFormatter]="getFormatter()"
 								(selectItem)="onChooseDelivery($event)"
-								placeholder="Search for delivery..."
+								placeholder="Szukaj przyjęcia..."
 						/>
 						<label for="delivery">Szukaj przyjęcia...</label>
 					</div>
@@ -176,7 +176,7 @@
 							<ngb-panel *ngFor="let set of dispatchSets; let i = index" [id]="set.delivery.atb">
 
 								<ng-template ngbPanelTitle>
-									ATB: <b>{{ set.delivery.atb }}</b>
+									Numer kontenera: <b>{{ set.delivery.container_Id }}</b>
 								</ng-template>
 
 								<ng-template ngbPanelContent>

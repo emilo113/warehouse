@@ -16,7 +16,7 @@
 			<ngb-panel *ngFor="let dispatch of dispatchesDetails; let i = index" id="dispatch-{{i}}">
 
 				<ng-template ngbPanelTitle>
-					Przewoźnik: <b>{{ dispatch.carrier.carrier_Name | empty: '-' }}</b> | Data: <b>{{ dispatch.creation_Date | empty: '-' }}</b>
+					<b>{{ dispatch.listOfOrderPositions.length }}</b> | Numer wydania: <b>{{ dispatch.dispatch_Number | empty: '-' }}</b> | Data: <b>{{ dispatch.creation_Date | empty: '-' }}</b>
 				</ng-template>
 
 				<ng-template ngbPanelContent>
@@ -27,7 +27,7 @@
 							<ng-template ngbTabContent>
 
 								<ul class="simple-list mt-2">
-									<li>ID pojazdu: <span class="float-right">{{ dispatch.car_Id | empty: '-'  }}</span></li>
+									<li>Numer rejestracyjny: <span class="float-right">{{ dispatch.car_Id | empty: '-'  }}</span></li>
 									<li>Numer wydania: <span class="float-right">{{ dispatch.dispatch_Number | empty: '-'  }}</span></li>
 									<li>Data utworzenia: <span class="float-right">{{ dispatch.creation_Date | empty: '-'  }}</span></li>
 								</ul>
@@ -38,10 +38,10 @@
 							<ng-template ngbTabContent>
 
 								<ul class="simple-list mt-2">
-									<li>Nazwa przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_Name }}</span></li>
-									<li>Adres przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_Address | empty: '-'  }}</span></li>
-									<li>E-mail przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_Email | empty: '-'  }}</span></li>
-									<li>VAT ID przewoźnika: <span class="float-right">{{ dispatch.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
+									<li>Nazwa: <span class="float-right">{{ dispatch.carrier.carrier_Name }}</span></li>
+									<li>Adres: <span class="float-right">{{ dispatch.carrier.carrier_Address | empty: '-'  }}</span></li>
+									<li>E-mail: <span class="float-right">{{ dispatch.carrier.carrier_Email | empty: '-'  }}</span></li>
+									<li>VAT ID: <span class="float-right">{{ dispatch.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
 								</ul>
 
 							</ng-template>
@@ -50,10 +50,10 @@
 							<ng-template ngbTabContent>
 
 								<ul class="simple-list mt-2">
-									<li>Nazwa odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_Name }}</span></li>
-									<li>Adres odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_Address | empty: '-'  }}</span></li>
-									<li>E-mail odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_Email | empty: '-'  }}</span></li>
-									<li>VAT ID odbiorcy: <span class="float-right">{{ dispatch.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
+									<li>Nazwa: <span class="float-right">{{ dispatch.receiver.receiver_Name }}</span></li>
+									<li>Adres: <span class="float-right">{{ dispatch.receiver.receiver_Address | empty: '-'  }}</span></li>
+									<li>E-mail: <span class="float-right">{{ dispatch.receiver.receiver_Email | empty: '-'  }}</span></li>
+									<li>VAT ID: <span class="float-right">{{ dispatch.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
 								</ul>
 
 							</ng-template>

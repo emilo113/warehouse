@@ -1,11 +1,9 @@
 import { OrderPosition } from './OrderPosition';
-import { transportTypes } from './enums/transport.types';
 
 export class Delivery {
     public id: number;
     public atb: string;
     public order_Id: number;
-    public transport_Type: number;
     public car_Id: string;
     public delivery_Number: string;
     public date_Of_Delivery: any;
@@ -14,7 +12,6 @@ export class Delivery {
 
     constructor() {
         this.deliveryPositions = [];
-        this.transport_Type = transportTypes.Car.value;
     }
 
     public setDeliveryPositions(orderPositions: any, editing: boolean = false): void {
@@ -37,13 +34,13 @@ export class Delivery {
     }
 
     public isValidData(isATBRequired: boolean = false): boolean {
-        const isValidATB = isATBRequired && this.atb || !isATBRequired;
+        const isValidATB = isATBRequired && this.isValidATB() || !isATBRequired;
 
-        return this.order_Id && this.transport_Type && this.car_Id && isValidATB && this.isValidPositions();
+        return this.order_Id && this.car_Id && isValidATB && this.isValidPositions();
     }
 
     public isValidEditionData(): boolean {
-        return this.id && this.delivery_Number && this.date_Of_Delivery && this.car_Id && this.transport_Type && this.isValidPositions();
+        return this.id && this.delivery_Number && this.date_Of_Delivery && this.car_Id && this.isValidPositions();
     }
 
     public isValidPositions(): boolean {
@@ -59,11 +56,19 @@ export class Delivery {
         return isValid;
     }
 
+    public isValidATB(): boolean {
+        return /ATB[0-9]{18}/.test(this.atb);
+    }
+
     public getJSONData(): string {
         const data = JSON.parse(JSON.stringify(this));
 
         if (data.date_Of_Delivery) {
             data.date_Of_Delivery = new Date(data.date_Of_Delivery);
+        }
+
+        if (!data.atb) {
+            data.atb = undefined;
         }
 
         return JSON.parse(JSON.stringify(this));
@@ -73,7 +78,6 @@ export class Delivery {
         const date = data.date_Of_Delivery.split('-');
 
         this.id = data.id;
-        this.transport_Type = data.transport_Type;
         this.date_Of_Delivery = date[2] + '-' + date[1] + '-' + date[0];
         this.delivery_Number = data.delivery_Number;
         this.car_Id = data.car_Id;

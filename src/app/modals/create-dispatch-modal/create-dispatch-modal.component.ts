@@ -70,7 +70,7 @@ export class CreateDispatchModalComponent extends AbstractModal implements OnIni
     public getFormatter(): any {
 
         return (data: any): string => {
-            return data.name;
+            return null;
         };
     }
 

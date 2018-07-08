@@ -9,7 +9,7 @@ export const orderStatuses = {
     },
     Different: {
         key: 3,
-        name: 'Różnica'
+        name: 'Rozbieżność'
     }
 };
 

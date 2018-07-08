@@ -12,15 +12,8 @@
 		<form class="form-default">
 
 			<div class="form-label-group">
-				<select name="transportType" id="transportType" class="form-control" autofocus [(ngModel)]="deliveryData.transport_Type" required>
-					<option *ngFor="let key of transportTypes | keys" value="{{ transportTypes[key].value }}">{{ transportTypes[key].name }}</option>
-				</select>
-				<label for="transportType">Typ transportu</label>
-			</div>
-
-			<div class="form-label-group">
-				<input type="text" id="carId" class="form-control" placeholder="ID pojazdu" name="carId" [(ngModel)]="deliveryData.car_Id" required>
-				<label for="carId">ID pojazdu</label>
+				<input type="text" id="carId" class="form-control" placeholder="Numer rejestracyjny" name="carId" [(ngModel)]="deliveryData.car_Id" required>
+				<label for="carId">Numer rejestracyjny</label>
 			</div>
 
 			<div class="form-label-group" *ngIf="isATBRequired">
