@@ -93,6 +93,11 @@ export class DispatchesComponent implements OnInit {
         });
 
         modalRef.componentInstance.dispatchBase = dispatch;
+
+        modalRef.result
+            .then(() => {
+                this.handleDispatches(this.page, this.needle.value);
+            }, () => {});
     }
 
     public downloadDispatchReport(dispatch: any): void {

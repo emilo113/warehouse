@@ -66,9 +66,14 @@
 			</div>
 
 			<div class="form-label-group">
+				<input type="text" id="prefixVatId" class="form-control" name="prefixVatId" [(ngModel)]="userData.PrefixVAT_Id" placeholder="Kod kraju">
+				<label for="prefixVatId">Kod kraju</label>
+			</div>
+
+			<div class="form-label-group">
 				<input type="text" id="vatId" class="form-control" placeholder="Vat Id" [(ngModel)]="userData.VAT_Id"
 					   name="vatId">
-				<label for="vatId">Vat Id</label>
+				<label for="vatId">Numer VAT ID</label>
 			</div>
 
 		</div>

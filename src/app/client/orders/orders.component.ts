@@ -85,7 +85,9 @@ export class OrdersComponent implements OnInit {
     }
 
     public openCreateOrderModal(): void {
-        const modalRef = this.modalService.open(CreateOrderModalComponent);
+        const modalRef = this.modalService.open(CreateOrderModalComponent, {
+            keyboard: false
+        });
 
         modalRef.result
             .then(() => {

@@ -19,6 +19,7 @@
 						<li>Numer kontenera: <span class="float-right">{{ order.container_Id | empty: '-'  }}</span></li>
 						<li>ATB: <span class="float-right">{{ order.atb | empty: '-'  }}</span></li>
 						<li>Terminal odbioru: <span class="float-right">{{ order.terminal | empty: '-'  }}</span></li>
+						<li>Terminal zwrotu: <span class="float-right">{{ order.returnTerminal | empty: '-'  }}</span></li>
 						<li>Utworzone: <span class="float-right">{{ order.creation_Date | empty: '-'  }}</span></li>
 						<li>ETA: <span class="float-right">{{ orderDetails.eta | empty: '-'  }}</span></li>
 						<li>Numer zlecenia: <span class="float-right">{{ orderDetails.order_Number | empty: '-'  }}</span></li>
@@ -35,7 +36,8 @@
 						<li>Nazwa: <span class="float-right">{{ orderDetails.orderer.name }}</span></li>
 						<li>Adres: <span class="float-right">{{ orderDetails.orderer.address | empty: '-'  }}</span></li>
 						<li>E-mail: <span class="float-right">{{ orderDetails.orderer.email | empty: '-'  }}</span></li>
-						<li>VAT_ID: <span class="float-right">{{ orderDetails.orderer.vaT_Id | empty: '-'  }}</span></li>
+						<li>Kod kraju: <span class="float-right">{{ orderDetails.orderer.prefixVat_Id | empty: '-'  }}</span></li>
+						<li>Numer VAT ID: <span class="float-right">{{ orderDetails.orderer.vaT_Id | empty: '-'  }}</span></li>
 					</ul>
 
 				</ng-template>

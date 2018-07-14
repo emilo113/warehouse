@@ -1,10 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CreateOrderModalComponent } from '../create-order-modal/create-order-modal.component';
-
+import {NgbDateAdapter, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatePlAdapter} from '../../models/utils/NgbDatePlAdapter';
+import {NgbDatePlParserFormatter} from '../../models/utils/NgbDatePlParserFormatter';
 @Component({
     selector: 'app-edit-order-modal',
     templateUrl: '../create-order-modal/create-order-modal.component.html',
-    styleUrls: ['../create-order-modal/create-order-modal.component.scss']
+    styleUrls: ['../create-order-modal/create-order-modal.component.scss'],
+    providers: [{
+        provide: NgbDateAdapter,
+        useClass: NgbDatePlAdapter
+    }, {
+        provide: NgbDateParserFormatter,
+        useClass: NgbDatePlParserFormatter
+    }]
 })
 export class EditOrderModalComponent extends CreateOrderModalComponent implements OnInit {
     @Input() order: any;

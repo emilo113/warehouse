@@ -2,17 +2,26 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CreateDispatchModalComponent } from '../create-dispatch-modal/create-dispatch-modal.component';
 import { DispatchesService } from '../../services/dispatches.service';
 import { OrdersService } from '../../services/orders.service';
-import {NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { ModalHelperService } from '../modal-helper.service';
 import { AlertService } from '../../services/alert.service';
 import {DispatchSet} from '../../models/DispatchSet';
 import {OrderPosition} from '../../models/OrderPosition';
 import {Observable} from 'rxjs/Observable';
+import {NgbDatePlAdapter} from '../../models/utils/NgbDatePlAdapter';
+import {NgbDatePlParserFormatter} from '../../models/utils/NgbDatePlParserFormatter';
 
 @Component({
     selector: 'app-edit-dispatch-modal',
     templateUrl: '../create-dispatch-modal/create-dispatch-modal.component.html',
-    styleUrls: ['../create-dispatch-modal/create-dispatch-modal.component.scss']
+    styleUrls: ['../create-dispatch-modal/create-dispatch-modal.component.scss'],
+    providers: [{
+        provide: NgbDateAdapter,
+        useClass: NgbDatePlAdapter
+    }, {
+        provide: NgbDateParserFormatter,
+        useClass: NgbDatePlParserFormatter
+    }]
 })
 
 export class EditDispatchModalComponent extends CreateDispatchModalComponent implements OnInit {
@@ -82,8 +91,9 @@ export class EditDispatchModalComponent extends CreateDispatchModalComponent imp
                    const dispatchSet = new DispatchSet();
 
                    dispatchSet.delivery = {
-                       atb: order.atb,
-                       id: order.deliveryId
+                       container_Id: order.containerId,
+                       delivery_Number: order.delivery_Number,
+                       id: order.delivery_Id
                    };
 
                    dispatchSet.positions = [];

@@ -11,6 +11,7 @@ export class User {
     PhoneNumber: string;
     Name: string;
     Address: string;
+    PrefixVAT_Id: string;
     VAT_Id: string;
     Email: string;
 
@@ -48,6 +49,7 @@ export class User {
             Name: this.Name,
             Address: this.Address,
             VAT_Id: this.VAT_Id,
+            PrefixVat_Id: this.PrefixVAT_Id,
             Email: this.Email,
             PhoneNumber: this.PhoneNumber
         };
@@ -75,6 +77,7 @@ export class User {
         this.Name = userData.name;
         this.Address = userData.address;
         this.VAT_Id = userData.vaT_Id;
+        this.PrefixVAT_Id = userData.prefixVat_Id;
         this.Email = userData.email;
         this.UserName = userData.userName;
         this.UserSurname = userData.userSurname;

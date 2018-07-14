@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateDeliveryModalComponent } from '../create-delivery-modal/create-delivery-modal.component';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {AlertService} from '../../services/alert.service';
 import {OrdersService} from '../../services/orders.service';
+import {NgbDatePlAdapter} from '../../models/utils/NgbDatePlAdapter';
+import {NgbDatePlParserFormatter} from '../../models/utils/NgbDatePlParserFormatter';
 
 @Component({
     selector: 'app-edit-delivery-modal',
     templateUrl: '../create-delivery-modal/create-delivery-modal.component.html',
-    styleUrls: ['../create-delivery-modal/create-delivery-modal.component.scss']
+    styleUrls: ['../create-delivery-modal/create-delivery-modal.component.scss'],
+    providers: [{
+        provide: NgbDateAdapter,
+        useClass: NgbDatePlAdapter
+    }, {
+        provide: NgbDateParserFormatter,
+        useClass: NgbDatePlParserFormatter
+    }]
 })
 export class EditDeliveryModalComponent extends CreateDeliveryModalComponent implements OnInit {
 

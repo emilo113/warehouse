@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 import {Order} from '../../models/Order';
 import {ModalHelperService} from '../modal-helper.service';
 import {AbstractModal} from '../abstract-modal';
@@ -7,12 +7,23 @@ import {UsersService} from '../../api/users.service';
 import {UserService} from '../../services/user.service';
 import {AlertService} from '../../services/alert.service';
 import {OrdersService} from '../../services/orders.service';
-import {OrderPosition} from '../../models/OrderPosition';
+import {Observable} from 'rxjs/Observable';
+import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
+import {terminals} from '../../const/terminals';
+import {NgbDatePlParserFormatter} from '../../models/utils/NgbDatePlParserFormatter';
+import {NgbDatePlAdapter} from '../../models/utils/NgbDatePlAdapter';
 
 @Component({
     selector: 'app-create-order-modal',
     templateUrl: './create-order-modal.component.html',
-    styleUrls: ['./create-order-modal.component.scss']
+    styleUrls: ['./create-order-modal.component.scss'],
+    providers: [{
+        provide: NgbDateAdapter,
+        useClass: NgbDatePlAdapter
+    }, {
+        provide: NgbDateParserFormatter,
+        useClass: NgbDatePlParserFormatter
+    }]
 })
 export class CreateOrderModalComponent extends AbstractModal implements OnInit {
 
@@ -128,4 +139,14 @@ export class CreateOrderModalComponent extends AbstractModal implements OnInit {
         }
     }
 
+    public search() {
+        return (text$: Observable<string>): Observable<string[]> => {
+            return text$.pipe(
+                debounceTime(200),
+                distinctUntilChanged(),
+                map(term => term.length < 2 ? []
+                    : terminals.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+            );
+        };
+    }
 }

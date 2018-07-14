@@ -27,13 +27,26 @@
 			</div>
 
 			<div class="form-label-group">
-				<input type="text" id="terminal" class="form-control" placeholder="Terminal odbioru" name="terminal" [(ngModel)]="orderData.terminal" required>
+				<input id="terminal" type="text" class="form-control" placeholder="Terminal odbioru" name="terminal" [(ngModel)]="orderData.terminal" [ngbTypeahead]="search()"/>
 				<label for="terminal">Terminal odbioru</label>
 			</div>
 
 			<div class="form-label-group">
-				<input type="date" id="eta" class="form-control" placeholder="ETA" name="eta" [(ngModel)]="orderData.eta" required>
-				<label for="eta">ETA</label>
+				<input id="returnTerminal" type="text" class="form-control" placeholder="Terminal zwrotu" name="returnTerminal" [(ngModel)]="orderData.returnTerminal" [ngbTypeahead]="search()"/>
+				<label for="returnTerminal">Terminal zwrotu</label>
+			</div>
+
+			<div class="form-label-group date">
+				<div class="input-group">
+					<input class="form-control" placeholder="ETA" id="eta"
+						   name="eta" [(ngModel)]="orderData.eta" ngbDatepicker #d="ngbDatepicker" readonly="readonly">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</button>
+					</div>
+					<label for="eta">ETA</label>
+				</div>
 			</div>
 
 			<div class="form-label-group" *ngIf="isEditing">
@@ -41,9 +54,17 @@
 				<label for="orderNumber">Numer zlecenia</label>
 			</div>
 
-			<div class="form-label-group" *ngIf="isEditing">
-				<input type="date" id="creationDate" class="form-control" placeholder="Data utworzenia" name="creationDate" [(ngModel)]="orderData.creation_Date" required>
-				<label for="creationDate">Data utworzenia</label>
+			<div class="form-label-group date" *ngIf="isEditing">
+				<div class="input-group">
+					<input class="form-control" placeholder="Data utworzenia" id="creationDate"
+						   name="creationDate" [(ngModel)]="orderData.creation_Date" ngbDatepicker #d="ngbDatepicker" readonly="readonly">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</button>
+					</div>
+					<label for="creationDate">Data utworzenia</label>
+				</div>
 			</div>
 
 			<div class="form-group form-check">
@@ -54,8 +75,13 @@
 			<div *ngIf="otherOrderer">
 
 				<div class="form-label-group">
-					<input type="text" id="vatId" class="form-control" name="vatId" [(ngModel)]="orderData.vaT_Id" placeholder="Vat Id">
-					<label for="vatId">Vat Id</label>
+					<input type="text" id="prefixVatId" class="form-control" name="prefixVatId" [(ngModel)]="orderData.prefixVat_Id" placeholder="Kod kraju">
+					<label for="prefixVatId">Kod kraju</label>
+				</div>
+
+				<div class="form-label-group">
+					<input type="text" id="vatId" class="form-control" name="vatId" [(ngModel)]="orderData.vaT_Id" placeholder="Numer VAT ID">
+					<label for="vatId">Numer VAT ID</label>
 				</div>
 
 				<div class="form-label-group">

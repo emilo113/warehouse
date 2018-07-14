@@ -6,9 +6,8 @@ export class Delivery {
     public order_Id: number;
     public car_Id: string;
     public delivery_Number: string;
-    public date_Of_Delivery: any;
+    public date_Of_Delivery: Date;
     public deliveryPositions: OrderPosition[];
-
 
     constructor() {
         this.deliveryPositions = [];
@@ -63,10 +62,6 @@ export class Delivery {
     public getJSONData(): string {
         const data = JSON.parse(JSON.stringify(this));
 
-        if (data.date_Of_Delivery) {
-            data.date_Of_Delivery = new Date(data.date_Of_Delivery);
-        }
-
         if (!data.atb) {
             data.atb = undefined;
         }
@@ -78,7 +73,7 @@ export class Delivery {
         const date = data.date_Of_Delivery.split('-');
 
         this.id = data.id;
-        this.date_Of_Delivery = date[2] + '-' + date[1] + '-' + date[0];
+        this.date_Of_Delivery = new Date(date[2] + '-' + date[1] + '-' + date[0]);
         this.delivery_Number = data.delivery_Number;
         this.car_Id = data.car_Id;
 

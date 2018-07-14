@@ -23,9 +23,9 @@
 					</div>
 
 					<div class="form-label-group">
-						<input type="text" id="dutyDocId" class="form-control" placeholder="Duty Doc ID" name="dutyDocId"
+						<input type="text" id="dutyDocId" class="form-control" placeholder="Numer dokumentu celnego NCTS/ATC" name="dutyDocId"
 							   [(ngModel)]="dispatch.duty_Doc_Id" required>
-						<label for="dutyDocId">Duty Doc ID</label>
+						<label for="dutyDocId">Numer dokumentu celnego NCTS/ATC</label>
 					</div>
 
 					<div class="form-label-group" *ngIf="isEditing">
@@ -34,17 +34,30 @@
 						<label for="dispatchNumber">Numer wydania</label>
 					</div>
 
-					<div class="form-label-group" *ngIf="isEditing">
-						<input type="date" id="creationDate" class="form-control" placeholder="Data utworzenia" name="creationDate" [(ngModel)]="dispatch.creation_Date" required>
-						<label for="creationDate">Data utworzenia</label>
+					<div class="form-label-group date" *ngIf="isEditing">
+						<div class="input-group">
+							<input class="form-control" placeholder="Data utworzenia" id="creationDate"
+								   name="creationDate" [(ngModel)]="dispatch.creation_Date" ngbDatepicker #d="ngbDatepicker" readonly="readonly">
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+									<i class="fa fa-calendar" aria-hidden="true"></i>
+								</button>
+							</div>
+							<label for="creationDate">Data utworzenia</label>
+						</div>
 					</div>
 
 					<p class="h5 mb-3">Przewoźnik:</p>
 
 					<div class="form-label-group">
-						<input type="text" id="carrierVAT" class="form-control" placeholder="Vat ID"
+						<input type="text" id="carrierPrefix" class="form-control" name="carrierPrefix" [(ngModel)]="dispatch.carrier.carrier_PrefixVat_Id" placeholder="Kod kraju">
+						<label for="carrierPrefix">Kod kraju</label>
+					</div>
+
+					<div class="form-label-group">
+						<input type="text" id="carrierVAT" class="form-control" placeholder="Numer VAT ID"
 							   name="carrierVAT" [(ngModel)]="dispatch.carrier.carrier_VAT_Id" required>
-						<label for="carrierVAT">Vat ID</label>
+						<label for="carrierVAT">Numer VAT ID</label>
 					</div>
 
 					<div class="form-label-group">
@@ -74,9 +87,14 @@
 					<p class="h5 mb-3">Odbiorca:</p>
 
 					<div class="form-label-group">
+						<input type="text" id="receiverPrefix" class="form-control" name="receiverPrefix" [(ngModel)]="dispatch.receiver.receiver_PrefixVat_Id" placeholder="Kod kraju">
+						<label for="receiverPrefix">Kod kraju</label>
+					</div>
+
+					<div class="form-label-group">
 						<input type="text" id="receiverVAT" class="form-control" placeholder="Vat ID"
 							   name="receiverVAT" [(ngModel)]="dispatch.receiver.receiver_VAT_Id" required>
-						<label for="receiverVAT">Vat ID</label>
+						<label for="receiverVAT">Numer VAT ID</label>
 					</div>
 
 					<div class="form-label-group">
@@ -123,9 +141,14 @@
 						</div>
 
 						<div class="form-label-group">
+							<input type="text" id="senderPrefix" class="form-control" name="senderPrefix" [(ngModel)]="dispatch.cmrDispatch.sender_PrefixVat_Id" placeholder="Kod kraju">
+							<label for="senderPrefix">Kod kraju</label>
+						</div>
+
+						<div class="form-label-group">
 							<input type="text" id="senderVAT" class="form-control" placeholder="Vat ID"
 								   name="senderVAT" [(ngModel)]="dispatch.cmrDispatch.sender_VAT_Id" required>
-							<label for="senderVAT">Vat ID</label>
+							<label for="senderVAT">Numer VAT ID</label>
 						</div>
 
 						<div class="form-label-group">
@@ -173,7 +196,7 @@
 
 						<ngb-accordion [activeIds]="activeIds">
 
-							<ngb-panel *ngFor="let set of dispatchSets; let i = index" [id]="set.delivery.atb">
+							<ngb-panel *ngFor="let set of dispatchSets; let i = index" [id]="set.delivery.container_Id">
 
 								<ng-template ngbPanelTitle>
 									Numer kontenera: <b>{{ set.delivery.container_Id }}</b>

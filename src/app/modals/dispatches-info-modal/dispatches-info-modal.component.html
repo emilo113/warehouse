@@ -39,9 +39,10 @@
 
 								<ul class="simple-list mt-2">
 									<li>Nazwa: <span class="float-right">{{ dispatch.carrier.carrier_Name }}</span></li>
-									<li>Adres: <span class="float-right">{{ dispatch.carrier.carrier_Address | empty: '-'  }}</span></li>
-									<li>E-mail: <span class="float-right">{{ dispatch.carrier.carrier_Email | empty: '-'  }}</span></li>
-									<li>VAT ID: <span class="float-right">{{ dispatch.carrier.carrier_VAT_Id | empty: '-'  }}</span></li>
+									<li>Adres: <span class="float-right">{{ dispatch.carrier.carrier_Address | empty: '-' }}</span></li>
+									<li>E-mail: <span class="float-right">{{ dispatch.carrier.carrier_Email | empty: '-' }}</span></li>
+									<li>Kod kraju: <span class="float-right">{{ dispatch.carrier.carrier_prefixVat_Id | empty: '-' }}</span></li>
+									<li>Numer VAT ID: <span class="float-right">{{ dispatch.carrier.carrier_VAT_Id | empty: '-' }}</span></li>
 								</ul>
 
 							</ng-template>
@@ -53,7 +54,8 @@
 									<li>Nazwa: <span class="float-right">{{ dispatch.receiver.receiver_Name }}</span></li>
 									<li>Adres: <span class="float-right">{{ dispatch.receiver.receiver_Address | empty: '-'  }}</span></li>
 									<li>E-mail: <span class="float-right">{{ dispatch.receiver.receiver_Email | empty: '-'  }}</span></li>
-									<li>VAT ID: <span class="float-right">{{ dispatch.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
+									<li>Kod kraju: <span class="float-right">{{ dispatch.receiver.prefixVat_Id | empty: '-'  }}</span></li>
+									<li>Numer VAT ID: <span class="float-right">{{ dispatch.receiver.receiver_VAT_Id | empty: '-'  }}</span></li>
 								</ul>
 
 							</ng-template>

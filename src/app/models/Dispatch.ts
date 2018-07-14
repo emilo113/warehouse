@@ -13,7 +13,7 @@ export class Dispatch {
     public dispatchPositions: OrderPosition[];
 
     public dispatch_Number: string;
-    public creation_Date: string;
+    public creation_Date: Date;
 
     constructor() {
         this.receiver = new Receiver();
@@ -82,13 +82,7 @@ export class Dispatch {
     }
 
     public getJSONData(): any {
-        const data = JSON.parse(JSON.stringify(this));
-
-        if (data.creation_Date) {
-            data.creation_Date = new Date(data.creation_Date);
-        }
-
-        return data;
+        return JSON.parse(JSON.stringify(this));
     }
 
     public setFromDetails(details: any): void {
@@ -98,7 +92,7 @@ export class Dispatch {
         this.duty_Doc_Id = details.duty_Doc_Id;
         this.car_Id = details.car_Id;
         this.dispatch_Number = details.dispatch_Number;
-        this.creation_Date = date[2] + '-' + date[1] + '-' + date[0];
+        this.creation_Date = new Date(date[2] + '-' + date[1] + '-' + date[0]);
 
         this.carrier.setData(details.carrier);
         this.receiver.setData(details.receiver);

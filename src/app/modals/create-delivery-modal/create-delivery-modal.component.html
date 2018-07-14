@@ -26,9 +26,17 @@
 				<label for="deliveryNumber">Numer przyjęcia</label>
 			</div>
 
-			<div class="form-label-group" *ngIf="isEditing">
-				<input type="date" id="deliveryDate" class="form-control" placeholder="Data przyjęcia" name="deliveryDate" [(ngModel)]="deliveryData.date_Of_Delivery" required>
-				<label for="deliveryDate">Data przyjęcia</label>
+			<div class="form-label-group date" *ngIf="isEditing">
+				<div class="input-group">
+					<input class="form-control" placeholder="Data przyjęcia" id="deliveryDate"
+						   name="deliveryDate" [(ngModel)]="deliveryData.date_Of_Delivery" ngbDatepicker #d="ngbDatepicker" readonly="readonly">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+							<i class="fa fa-calendar" aria-hidden="true"></i>
+						</button>
+					</div>
+					<label for="deliveryDate">Data przyjęcia</label>
+				</div>
 			</div>
 
 			<p class="h5 mb-3">Zamówione pozycje:</p>

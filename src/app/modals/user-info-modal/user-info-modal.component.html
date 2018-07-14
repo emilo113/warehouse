@@ -10,6 +10,7 @@
     <li class="list-group-item">Adres: <span class="float-right">{{ user.address | empty: '-'}}</span></li>
     <li class="list-group-item">E-mail: <span class="float-right">{{ user.email | empty: '-'}}</span></li>
     <li class="list-group-item">Telefon: <span class="float-right">{{ user.phoneNumber | empty: '-'}}</span></li>
-    <li class="list-group-item">VAT_ID: <span class="float-right">{{ user.vaT_Id | empty: '-'}}</span></li>
+    <li class="list-group-item">Kod kraju: <span class="float-right">{{ user.prefixVaT_Id | empty: '-'}}</span></li>
+    <li class="list-group-item">Numer VAT ID: <span class="float-right">{{ user.vaT_Id | empty: '-'}}</span></li>
   </ul>
 </div>

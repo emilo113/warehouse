@@ -105,7 +105,7 @@ export class CreateDispatchModalComponent extends AbstractModal implements OnIni
         } else {
             this.dispatchSets.push(set);
             this.dispatch.addPositions(positions);
-            this.activeIds.push(delivery.atb);
+            this.activeIds.push(delivery.container_Id);
         }
     }
 

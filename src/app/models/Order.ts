@@ -7,12 +7,14 @@ export class Order {
     public atb: string;
     public pickup_PIN: string;
     public terminal: string;
+    public returnTerminal: string;
     public name: string;
     public address: string;
     public vaT_Id: string;
+    public prefixVat_Id: string;
     public email: string;
-    public eta: string;
-    public creation_Date: any;
+    public eta: Date;
+    public creation_Date: Date;
     public order_Number: string;
     public orderPositions: OrderPosition[] = [];
 
@@ -34,16 +36,19 @@ export class Order {
             this.pickup_PIN &&
             this.terminal &&
             this.eta &&
+            this.returnTerminal &&
             this.isValidOrderer() &&
             this.isValidPositions() &&
             this.isValidATB();
     }
 
     public isValidEditingData(): boolean {
-        return this.isValidData() &&
+        return Boolean(
+            this.isValidData() &&
             this.id &&
             this.order_Number &&
-            this.creation_Date;
+            this.creation_Date
+        );
     }
 
     public isValidPositions(): boolean {
@@ -61,7 +66,7 @@ export class Order {
 
     public isValidOrderer(): boolean {
         return Boolean(
-            this.name && this.address && this.vaT_Id && this.email
+            this.name && this.address && this.prefixVat_Id && this.vaT_Id && this.email
         );
     }
 
@@ -84,10 +89,11 @@ export class Order {
         this.name = order.orderer.name;
         this.address = order.orderer.address;
         this.email = order.orderer.email;
+        this.prefixVat_Id = order.orderer.prefixVat_Id;
         this.vaT_Id = order.orderer.vaT_Id;
         this.terminal = order.terminal;
-        this.creation_Date = date[2] + '-' + date[1] + '-' + date[0];
-        this.eta = eta[2] + '-' + eta[1] + '-' + eta[0];
+        this.creation_Date = new Date(date[2] + '-' + date[1] + '-' + date[0]);
+        this.eta = new Date(eta[2] + '-' + eta[1] + '-' + eta[0]);
         this.order_Number = order.order_Number;
 
         this.orderPositions = [];
@@ -107,16 +113,8 @@ export class Order {
     public getJSONData(): any {
         const data = JSON.parse(JSON.stringify(this));
 
-        if (data.creation_Date) {
-            data.creation_Date = new Date(data.creation_Date);
-        }
-
         if (!data.atb) {
             data.atb = undefined;
-        }
-
-        if (data.eta) {
-            data.eta = new Date(data.eta);
         }
 
         return data;
