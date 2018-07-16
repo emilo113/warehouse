@@ -1,4 +1,4 @@
-core-js@2.5.4
+core-js@2.5.7
 MIT
 Copyright (c) 2014-2018 Denis Pushkarev
 
@@ -67,7 +67,7 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@angular/core@5.2.9
+@angular/core@5.2.11
 MIT
 MIT
 
@@ -85,15 +85,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   [1]: http://eligrey.com
 
-@angular/platform-browser@5.2.9
+@angular/platform-browser@5.2.11
 MIT
 MIT
 
-@angular/common@5.2.9
+@angular/common@5.2.11
 MIT
 MIT
 
-@angular/forms@5.2.9
+@angular/forms@5.2.11
 MIT
 MIT
 
@@ -121,15 +121,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-@angular/router@5.2.9
+@angular/router@5.2.11
 MIT
 MIT
 
-@angular/platform-browser-dynamic@5.2.9
+@angular/platform-browser-dynamic@5.2.11
 MIT
 MIT
 
-bootstrap@4.0.0
+bootstrap@4.1.2
 MIT
 The MIT License (MIT)
 
